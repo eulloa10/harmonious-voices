@@ -13,5 +13,5 @@ user_servers = db.Table(
         db.Integer,
         db.ForeignKey("servers.id"),
         primary_key=True
-    )
+    ),
 )

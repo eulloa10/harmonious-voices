@@ -13,7 +13,9 @@ class User(db.Model, UserMixin):
     user_profile_img = db.Column(db.String(), nullable=True)
     hashed_password = db.Column(db.String(255), nullable=False)
 
+    owned_servers = db.relationship('Server', back_populates='server_owner')
     servers = db.relationship('Server', secondary=user_servers, back_populates="users")
+    messages = db.relationship("Message", back_populates="owner", cascade="all, delete-orphan")
 
     @property
     def password(self):
