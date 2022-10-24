@@ -5,7 +5,7 @@ from flask_migrate import Migrate
 from flask_wtf.csrf import CSRFProtect, generate_csrf
 from flask_login import LoginManager
 
-from .models import db, User
+from .models import db, User, Server
 from .api.user_routes import user_routes
 from .api.auth_routes import auth_routes
 
@@ -19,6 +19,11 @@ app = Flask(__name__)
 login = LoginManager(app)
 login.login_view = 'auth.unauthorized'
 
+
+@app.route('/hello')
+def init():
+    users = User.query.all()
+    return {'users': [user.to_dict() for user in users]}
 
 @login.user_loader
 def load_user(id):
