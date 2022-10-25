@@ -29,9 +29,9 @@ def get_one_server(id):
 @server_routes.route('/<int:id>', methods=['DELETE'])
 def delete_one_server(id):
     server = Server.query.get(id)
-    if(current_user.id != server.owner_id)
+    if(current_user.id != server.owner_id):
         return {"error_code": "403", "message": "This ain't yers"}
-    else
+    else:
         db.session.delete(server)
         db.session.commit()
         return f"{server.name} deleted"
@@ -42,9 +42,9 @@ def update_one_server(id):
     name = request.json['name']
     server_img = request.json['server_img']
 
-    if(current_user.id != server.owner_id)
+    if(current_user.id != server.owner_id):
         return {"error_code": "403", "message": "This ain't yers"}
-    else
+    else:
         server.name = name
         server.server_img = server_img
         db.session.commit()
