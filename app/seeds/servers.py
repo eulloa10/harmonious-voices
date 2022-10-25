@@ -4,15 +4,15 @@ from app.models import db, Server
 # Adds a demo user, you can add other users here if you want
 def seed_servers():
     demo = Server(
-        owner_id=1, server_img='test.jpg')
+        name="server1", owner_id=1, server_img='test.jpg')
     demo1 = Server(
-        iowner_id=2, server_img='test1.jpg')
+        name="server2", owner_id=2, server_img='test1.jpg')
     demo2 = Server(
-        iowner_id=3, server_img='test2.jpg')
+        name="server3", owner_id=3, server_img='test2.jpg')
     demo3 = Server(
-        iowner_id=4, server_img='test3.jpg')
+        name="server4", owner_id=4, server_img='test3.jpg')
     demo4 = Server(
-        iowner_id=5, server_img='test4.jpg')
+        name="server5", owner_id=5, server_img='test4.jpg')
 
 
     db.session.add(demo)
