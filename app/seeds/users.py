@@ -4,17 +4,17 @@ from app.models import db, User
 # Adds a demo user, you can add other users here if you want
 def seed_users():
     demo = User(
-        username='Demo', email='demo@aa.io', user_profile_img='user-prof.jpg', hashed_password='password')
+        username='Demo', email='demo@aa.io', user_profile_img='user-prof.jpg', password='password')
     marnie = User(
-        username='marnie', email='marnie@aa.io', user_profile_img='user-prof.jpg', hashed_password='password')
+        username='marnie', email='marnie@aa.io', user_profile_img='user-prof.jpg', password='password')
     bobbie = User(
-        username='bobbie', email='bobbie@aa.io', user_profile_img='user-prof.jpg', hashed_password='password')
+        username='bobbie', email='bobbie@aa.io', user_profile_img='user-prof.jpg', password='password')
     bilbo = User(
-        username='bilbo', email='bilbo@aa.io', user_profile_img='user-prof.jpg', hashed_password='password')
+        username='bilbo', email='bilbo@aa.io', user_profile_img='user-prof.jpg', password='password')
     frodo = User(
-        username='frodo', email='frodo@aa.io', user_profile_img='user-prof.jpg', hashed_password='password')
+        username='frodo', email='frodo@aa.io', user_profile_img='user-prof.jpg', password='password')
     gandalf = User(
-        username='gandalf', email='gandalf@aa.io', user_profile_img='user-prof.jpg', hashed_password='password')
+        username='gandalf', email='gandalf@aa.io', user_profile_img='user-prof.jpg', password='password')
 
     db.session.add(demo)
     db.session.add(marnie)
