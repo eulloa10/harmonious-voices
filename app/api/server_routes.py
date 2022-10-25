@@ -1,14 +1,18 @@
 from flask import Blueprint, jsonify, session, request
 from flask_login import current_user
 from app.models import Server, db
+from .channel_routes import channel_server_routes
 
 server_routes = Blueprint('servers', __name__)
 # TODO needs seeder data to test end points
+
+server_routes.register_blueprint(channel_server_routes, url_prefix="/")
 
 @server_routes.route('/', methods=['GET'])
 def get_all_servers():
     servers = Server.query.all()
     return {'Servers': [server.to_dict() for server in servers]}
+
 
 @server_routes.route('/', methods=['POST'])
 def create_one_server():
