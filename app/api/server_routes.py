@@ -18,6 +18,7 @@ def create_one_server():
     server = Server(name=name, owner_id=owner_id, server_img=server_img)
     db.session.add.server()
     db.session.commit()
+    return server.to_dict()
 
 
 @server_routes.route('/<int:id>', methods=['GET'])
