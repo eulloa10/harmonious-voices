@@ -14,7 +14,7 @@ def seed_users():
     frodo = User(
         username='frodo', email='frodo@aa.io', user_profile_img='user-prof.jpg', hashed_password='password')
     gandalf = User(
-        username='gandalf', email='bobbie@aa.io', user_profile_img='user-prof.jpg', hashed_password='password')
+        username='gandalf', email='gandalf@aa.io', user_profile_img='user-prof.jpg', hashed_password='password')
 
     db.session.add(demo)
     db.session.add(marnie)
