@@ -34,7 +34,7 @@ def create_dm_channel(user_id_2):
 
 @session_routes.route('/channels/<int:channelId>', methods=['PUT'])
 @login_required
-def delete_dm_channel(channelId):
+def edit_dm_channel(channelId):
   channel = Channel.query.get(channelId)
   form = DirectMessageChannelForm()
   form['csrf_token'].data = request.cookies['csrf_token']
