@@ -1,1 +1,20 @@
-/* TODO Add site wide styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 62.5%;
+  overflow-x: hidden;
+}
+
+a {
+  text-decoration: none;
+}
+
+input:focus,
+textarea:focus {
+  border: none;
+  outline: none;
+}
