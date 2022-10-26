@@ -5,7 +5,7 @@ from .channel_routes import channel_server_routes
 
 server_routes = Blueprint('servers', __name__)
 # TODO needs seeder data to test end points
-
+# TODO fix validations on routes to a WTForm
 server_routes.register_blueprint(channel_server_routes, url_prefix="/")
 
 @server_routes.route('/', methods=['GET'])
