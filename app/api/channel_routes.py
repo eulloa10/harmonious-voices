@@ -3,9 +3,13 @@ from app.forms import channel_server_form
 from app.models import Channel, db, server
 from flask_login import current_user, login_required
 from ..forms.channel_server_form import ChannelServerForm
+from .server_message_routes import channel_message_routes
 
 
 channel_server_routes = Blueprint("channel_servers", __name__)
+
+
+channel_server_routes.register_blueprint(channel_message_routes, url_prefix="/")
 
 
 def server_is_owned_by_user(serverId):
@@ -31,7 +35,7 @@ def create_a_channel(serverId):
       channel = Channel(
         name=form.data["name"],
         server_id=serverId,
-        type="direct"
+        type="server"
       )
       db.session.add(channel)
       db.session.commit()
