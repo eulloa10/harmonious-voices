@@ -1,16 +1,28 @@
-import { NavLink } from "react-router-dom";
+import { useEffect } from "react";
+import { useSelector } from "react-redux";
+import { NavLink, Route, Switch, useHistory } from "react-router-dom";
+import LoginForm from "../auth/LoginForm";
+import SignUpForm from "../auth/SignUpForm/SignUpForm";
+import NavBar from "./NavBar/NavBar";
 import "./SplashPage.css";
 
 const SplashPage = () => {
+  const history = useHistory();
+  const user = useSelector((state) => state.session.user);
+
+  useEffect(() => {
+    if (user) {
+      history.push("/me");
+    }
+  }, [user]);
+
   return (
     <div className="splash-page">
-      <div className="splash-page-header">
+      <div className="splash-page-header-sidebar-container">
         <NavLink className="splash-page-header-link" to="/" exact={true}>
-          <i class="fa-brands fa-discord"></i>
+          <i className="fa-brands fa-discord"></i>
           <span className="splash-page-header-name">Harmonious Voices</span>
         </NavLink>
-      </div>
-      <div className="splash-page-content">
         <div className="hero-text">
           <div className="hero-text-header">IMAGINE A PLACE...</div>
           <div className="hero-text-content">
@@ -20,25 +32,18 @@ const SplashPage = () => {
             and hang out more often.
           </div>
         </div>
-        <div className="splash-page-nav-links">
-          <NavLink
-            className="splash-page-nav-link  login"
-            to="/login"
-            exact={true}
-            activeClassName="active"
-          >
-            Login
-          </NavLink>
-          <NavLink
-            className="splash-page-nav-link signup"
-            to="/signup"
-            exact={true}
-            activeClassName="active"
-          >
-            Signup
-          </NavLink>
-        </div>
       </div>
+      <Switch>
+        <Route path="/" exact={true}>
+          <NavBar />
+        </Route>
+        <Route path="/login">
+          <LoginForm />
+        </Route>
+        <Route path="/signup">
+          <SignUpForm />
+        </Route>
+      </Switch>
     </div>
   );
 };

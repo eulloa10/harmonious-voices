@@ -1,3 +1,12 @@
+/*
+
+COLORS:
+
+DISCORD BLUE PRIMARY COLOR: #7289da
+SHADES: #445283
+
+*/
+
 * {
   margin: 0;
   padding: 0;
@@ -13,8 +22,17 @@ a {
   text-decoration: none;
 }
 
+button {
+  background-color: transparent;
+  border: none;
+}
+
+input,
+textarea {
+  border: none;
+}
+
 input:focus,
 textarea:focus {
-  border: none;
   outline: none;
 }

@@ -1,4 +1,4 @@
-.login-form-container {
+.signup-form-container {
   align-items: center;
   display: flex;
   flex-direction: column;
@@ -6,7 +6,7 @@
   width: 50%;
 }
 
-.login-form {
+.signup-form {
   align-items: center;
   display: flex;
   flex-direction: column;
@@ -14,38 +14,27 @@
   justify-content: center;
 }
 
-.login-form-header {
-  align-items: center;
-  display: flex;
-  flex-direction: column;
-  gap: 2rem;
-}
-
-.login-form-header-header {
+.signup-form-header {
   font-size: 4.8rem;
 }
 
-.login-form-header-text {
-  font-size: 1.8rem;
-}
-
-.login-form-input-container {
+.signup-form-input-container {
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
   width: 100%;
 }
 
-.login-form-input-label {
+.signup-form-input-label {
   font-size: 1.2rem;
 }
 
-.login-form-input {
+.signup-form-input {
   border-bottom: 0.05rem solid black;
   height: 2rem;
 }
 
-.login-form-submit {
+.signup-form-submit {
   background-color: #7289da;
   border-radius: 0.5rem;
   color: white;
@@ -55,15 +44,12 @@
   width: 100%;
 }
 
-.login-form-signup-link {
+.signup-form-login-link {
   align-self: flex-start;
   font-size: 1.2rem;
-}
-
-.login-form-signup-register-link {
   color: #445283;
 }
 
-.login-form-signup-register-link:hover {
+.signup-form-login-link:hover {
   text-decoration: underline;
 }
