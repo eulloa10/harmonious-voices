@@ -3,13 +3,14 @@ from app.models import Channel, User, Message, db
 from flask_login import current_user, login_required
 from ..forms.message_form import ChannelMessageForm
 
-channel_routes = Blueprint("channels", __name__)
+channel_routes = Blueprint('channels', __name__)
 message_routes = Blueprint('messages', __name__)
 
 
 @channel_routes.route('/<int:channelId>/messages', methods=['GET'])
 def get_channel_messages(channelId):
   messages = Message.query.filter(Message.channel_id==channelId)
+  print("MESSAGES TEST:", messages)
   return {'messages': [message.to_dict() for message in messages]}
 
 
@@ -19,9 +20,9 @@ def create_channel_message(channelId):
   form = ChannelMessageForm()
   form['csrf_token'].data = request.cookies['csrf_token']
   if form.validate_on_submit():
-    message = Channel(
+    message = Message(
       user_id=current_user.id,
-      channelId=channelId,
+      channel_id=channelId,
       content=form.data['content']
     )
     db.session.add(message)
