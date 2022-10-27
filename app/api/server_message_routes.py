@@ -30,7 +30,7 @@ def create_channel_message(channelId):
     return message.to_dict()
 
 
-@message_routes.route('/messages/<int:messageId>', methods=['PUT'])
+@message_routes.route('/<int:messageId>', methods=['PUT'])
 @login_required
 def edit_channel_message(messageId):
   message = Message.query.get(messageId)
@@ -43,7 +43,7 @@ def edit_channel_message(messageId):
 
 
 
-@message_routes.route('/messages/<int:messageId>', methods=['DELETE'])
+@message_routes.route('/<int:messageId>', methods=['DELETE'])
 @login_required
 def delete_channel_message(messageId):
   message = Message.query.get(messageId)
