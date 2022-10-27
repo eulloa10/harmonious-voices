@@ -1,10 +1,17 @@
 from flask import Blueprint, jsonify, session, request
-from app.models import Channel, User, db
+from app.models import Channel, Server, db
 from flask_login import current_user, login_required
 from ..forms.dm_channel_form import DirectMessageChannelForm
 
 session_routes = Blueprint('me', __name__)
 
+
+@session_routes.route('/servers', methods=['GET'])
+@login_required
+def get_owned_servers():
+  user_id = current_user.id
+  owned_servers = Server.query.filter(Server.owner_id==user_id)
+  return {'owned_servers': [server.to_dict() for server in owned_servers]}
 
 @session_routes.route('/channels', methods=['GET'])
 @login_required
