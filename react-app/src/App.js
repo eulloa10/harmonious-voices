@@ -32,13 +32,16 @@ function App() {
   return (
     <BrowserRouter>
       <Switch>
+        <Route path="/login">
+          <LoginForm />
+        </Route>
         <Route path="/me">
           <MeTest />
         </Route>
         <Route path='/servers'>
           <ListOwnedServers></ListOwnedServers>
         </Route>
-        <Route path="/channels/:channelId/Messages" exact={true}>
+        <Route exact path='/channels/:channelId/messages'>
           <MessageList />
         </Route>
         <Route exact path="/">

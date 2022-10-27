@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { fetchMessages } from '../../../store/messages';
-// import SpotIndexItem from '../SpotIndexItem/SpotIndexItem'
+import Message from '../Message/Message';
 import './MessageList.css'
 
 
@@ -39,7 +39,9 @@ const MessageList = () => {
   //   </section>
   // );
   return (
-    <h1>Message List</h1>
+    <div className="test">
+      <h1>Message List</h1>
+    </div>
   )
 }
 
