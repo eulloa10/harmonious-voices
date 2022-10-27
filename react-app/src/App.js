@@ -34,7 +34,10 @@ function App() {
         <Route path="/me">
           <MeTest />
         </Route>
-        <Route path="/">
+        <Route path='/servers'>
+          <ListOwnedServers></ListOwnedServers>
+        </Route>
+        <Route exact path="/">
           <SplashPage />
         </Route>
       </Switch>
