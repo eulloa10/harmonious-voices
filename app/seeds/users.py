@@ -1,4 +1,4 @@
-from app.models import db, User
+from app.models import db, User, Server
 
 
 # Adds a demo user, you can add other users here if you want
@@ -15,6 +15,27 @@ def seed_users():
         username='frodo', email='frodo@aa.io', user_profile_img='user-prof.jpg', password='password')
     gandalf = User(
         username='gandalf', email='gandalf@aa.io', user_profile_img='user-prof.jpg', password='password')
+
+    server_one = Server.query.get(1)
+    server_two = Server.query.get(2)
+    server_three = Server.query.get(3)
+    server_four = Server.query.get(4)
+    server_five = Server.query.get(5)
+
+
+    demo.servers.append(server_one)
+    demo.servers.append(server_two)
+    marnie.servers.append(server_two)
+    marnie.servers.append(server_three)
+    bobbie.servers.append(server_two)
+    bobbie.servers.append(server_three)
+    bilbo.servers.append(server_one)
+    bilbo.servers.append(server_four)
+    frodo.servers.append(server_two)
+    frodo.servers.append(server_four)
+    gandalf.servers.append(server_two)
+    gandalf.servers.append(server_four)
+
 
     db.session.add(demo)
     db.session.add(marnie)
