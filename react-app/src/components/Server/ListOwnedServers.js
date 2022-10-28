@@ -8,12 +8,10 @@ import Fab from './Fab';
 import './Servers.css'
 import Explore from '../../svgFiles/explore.svg'
 
-export let myServers;
 const ListOwnedServers = () => {
     const dispatch = useDispatch();
 
-    // TODO update logic to not display all servers
-    myServers = useSelector(state => {
+    let myServers = useSelector(state => {
         console.log(state);
         const serversArr = Object.values(state.servers)
         return serversArr
@@ -26,16 +24,16 @@ const ListOwnedServers = () => {
         dispatch(getBelongsServers());
     },[dispatch]);
 
-    if (!myServers) {
-        return null;
-      }
+    useEffect(() => {
+
+    },[])
 
     return (
         <main>
             <nav>
-            <h3>My servers</h3>
                 <div>
-                    <button className='custom-server'>DM</button>
+
+                    <NavLink to='/directMessages' className='server-icon-div dm server-icon'>DM</NavLink>
                 </div>
                 {myServers.map((server) => {
                     return(
@@ -47,7 +45,9 @@ const ListOwnedServers = () => {
                     )
                 })}
                 <div>
-                    <button className='custom-server'> <img src={Explore}/> </button>
+                    <NavLink to={`/explore/servers`} className='server-icon-div'>
+                        <img src={Explore}/>
+                    </NavLink>
                 </div>
                 <Fab hidden={showForm} onClick={() => setShowForm(true)} />
             </nav>
