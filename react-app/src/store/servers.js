@@ -44,11 +44,11 @@ export const getServers = () => async (dispatch) => {
     dispatch(loadAllServers(allServers));
   }
 };
-// TODO make this end point
-export const getOwnedServers = () => async (dispatch) => {
+export const getBelongsServers = () => async (dispatch) => {
   const promise = await fetch("/api/servers/me");
   if (promise.ok) {
     const promisedSevers = await promise.json();
+	console.log(promisedSevers);
     dispatch(loadOwnedSevers(promisedSevers));
   }
 };
@@ -120,7 +120,7 @@ const serverReducer = (state = {...initialState}, action) => {
 
     case OWNED:
       const myServersQ = {};
-      action.myServers.Servers.forEach((server) => {
+      action.ownedServers.MyServers.forEach((server) => {
         myServersQ[server.id] = server;
       });
       return {
