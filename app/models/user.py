@@ -33,6 +33,6 @@ class User(db.Model, UserMixin):
         return {
             'id': self.id,
             'username': self.username,
-            'email': self.email
-            # 'servers': [server for server in self.servers]
+            'email': self.email,
+            'servers': [server.to_dict() for server in self.servers]
         }
