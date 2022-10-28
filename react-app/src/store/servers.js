@@ -106,17 +106,17 @@ const initialState = {
   // list: []
 };
 
-const serverReducer = (state = initialState, action) => {
-  switch (action.type) {
-    case LOAD_ALL:
-      const allServersQ = {};
-      action.allServers.Servers.forEach((server) => {
-        allServersQ[server.id] = server;
-      });
-      return {
-        ...allServersQ,
-        ...state,
-      };
+const serverReducer = (state = {...initialState}, action) => {
+    switch (action.type) {
+		case LOAD_ALL:
+			const allServersQ = {};
+			action.allServers.Servers.forEach((server) => {
+				allServersQ[server.id] = server;
+			});
+			return {
+				...allServersQ,
+				...state,
+			};
 
     case OWNED:
       const myServersQ = {};
