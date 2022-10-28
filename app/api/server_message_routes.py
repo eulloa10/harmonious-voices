@@ -8,6 +8,7 @@ message_routes = Blueprint('messages', __name__)
 
 
 @channel_routes.route('/<int:channelId>/messages', methods=['GET'])
+@login_required
 def get_channel_messages(channelId):
   messages = Message.query.filter(Message.channel_id==channelId)
   print("MESSAGES TEST:", messages)
