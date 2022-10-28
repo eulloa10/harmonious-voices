@@ -11,6 +11,8 @@ server_routes.register_blueprint(channel_server_routes, url_prefix="/")
 @server_routes.route('/', methods=['GET'])
 def get_all_servers():
     servers = Server.query.all()
+    user = current_user
+    print('------------', user['servers'])
     return {'Servers': [server.to_dict() for server in servers]}
 
 
@@ -53,3 +55,7 @@ def update_one_server(id):
         server.server_img = server_img
         db.session.commit()
         return f"{server.name} updated"
+
+@server_routes.route('/me', methods=['GET'])
+def get_my_servers():
+    servers = session.query(Server).filter(Server)

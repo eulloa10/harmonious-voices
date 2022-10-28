@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import {useDispatch, useSelector} from 'react-redux';
-import { NavLink, Route } from 'react-router-dom';
+import { NavLink, Route, useParams } from 'react-router-dom';
 import { getServers } from '../../store/servers';
 import ServerCard from './ServerCard';
 import CreateSeverForm from './CreateServerForm';

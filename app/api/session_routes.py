@@ -1,10 +1,17 @@
 from flask import Blueprint, jsonify, session, request
-from app.models import Channel, User, db
+from app.models import Channel, Server, db
 from flask_login import current_user, login_required
 from ..forms.dm_channel_form import DirectMessageChannelForm
 
 session_routes = Blueprint('me', __name__)
 
+
+@session_routes.route('/servers', methods=['GET'])
+@login_required
+def get_owned_servers():
+  user_id = current_user.id
+  owned_servers = Server.query.filter(Server.owner_id==user_id)
+  return {'owned_servers': [server.to_dict() for server in owned_servers]}
 
 @session_routes.route('/channels', methods=['GET'])
 @login_required
@@ -16,20 +23,21 @@ def get_dm_channels():
 
 @session_routes.route('/channels', methods=['POST'])
 @login_required
-def create_dm_channel(user_id_2):
+def create_dm_channel():
   form = DirectMessageChannelForm()
   form['csrf_token'].data = request.cookies['csrf_token']
-  user_2_info = User.query.filter(User.id == user_id_2)
+  channel_data = request.get_json()
   if form.validate_on_submit():
     channel = Channel(
-      name=user_2_info.username,
+      name=channel_data['name'],
       type='direct',
       user_id_one=current_user.id,
-      user_id_two=user_id_2
+      user_id_two=channel_data['user_id_two']
     )
     db.session.add(channel)
     db.session.commit()
     return channel.to_dict()
+
 
 
 @session_routes.route('/channels/<int:channelId>', methods=['PUT'])

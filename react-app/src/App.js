@@ -7,6 +7,7 @@ import NavBar from "./components/SplashPage/NavBar/NavBar";
 import ProtectedRoute from "./components/auth/ProtectedRoute";
 import UsersList from "./components/UsersList";
 import User from "./components/User";
+import MessageList from "./components/Messages/MessageList/MessageList";
 import { authenticate } from "./store/session";
 import ListOwnedServers from "./components/Server/ListOwnedServers";
 import SplashPage from "./components/SplashPage";
@@ -32,6 +33,9 @@ function App() {
   return (
     <BrowserRouter>
       <Switch>
+        <Route path="/login">
+          <LoginForm />
+        </Route>
         <Route path="/me">
           <MeTest />
         </Route>
@@ -41,7 +45,13 @@ function App() {
         <Route path="/:serverId/channels">
           <Channels />
         </Route>
-        <Route path="/">
+        <Route path="/servers">
+          <ListOwnedServers></ListOwnedServers>
+        </Route>
+        <Route exact path="/channels/:channelId/messages">
+          <MessageList />
+        </Route>
+        <Route exact path="/">
           <SplashPage />
         </Route>
       </Switch>
