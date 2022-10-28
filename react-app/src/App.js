@@ -13,6 +13,8 @@ import ListOwnedServers from "./components/Server/ListOwnedServers";
 import SplashPage from "./components/SplashPage";
 import MeTest from "./components/MeTest/MeTest.js";
 import Channels from "./components/Channels";
+import ListAllServers from "./components/Server/ListAllServers";
+import AllServers from "./components/Server/AllServers";
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -33,6 +35,9 @@ function App() {
   return (
     <BrowserRouter>
       <Switch>
+        <Route path="/explore/servers">
+          <ListAllServers/>
+        </Route>
         <Route path="/login">
           <LoginForm />
         </Route>
