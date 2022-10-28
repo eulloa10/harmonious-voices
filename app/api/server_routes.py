@@ -1,18 +1,22 @@
 from flask import Blueprint, jsonify, session, request
 from flask_login import current_user
-from app.models import Server, db
+from app.models import Server, db, User
 from .channel_routes import channel_server_routes
 
 server_routes = Blueprint('servers', __name__)
-# TODO needs seeder data to test end points
 # TODO fix validations on routes to a WTForm
 server_routes.register_blueprint(channel_server_routes, url_prefix="/")
+
+@server_routes.route('/me', methods=['GET'])
+def get_my_servers():
+    user_id = current_user.id
+    user = User.query.get(user_id)
+    my_servers = user.servers
+    return {'MyServers': [server.to_dict() for server in my_servers]}
 
 @server_routes.route('/', methods=['GET'])
 def get_all_servers():
     servers = Server.query.all()
-    user = current_user
-    print('------------', user['servers'])
     return {'Servers': [server.to_dict() for server in servers]}
 
 
@@ -51,11 +55,7 @@ def update_one_server(id):
     if(current_user.id != server.owner_id):
         return {"error_code": "403", "message": "This ain't yers"}
     else:
-        server.name = name
-        server.server_img = server_img
+        server['name'] = name
+        server['server_img'] = server_img
         db.session.commit()
-        return f"{server.name} updated"
-
-@server_routes.route('/me', methods=['GET'])
-def get_my_servers():
-    servers = session.query(Server).filter(Server)
+        return f"{server['name']} updated"
