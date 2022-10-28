@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { logout } from "../../store/session";
+import Channels from "../Channels";
 
 const MeTest = () => {
   const history = useHistory();
@@ -20,7 +21,12 @@ const MeTest = () => {
     dispatch(logout());
   };
 
-  return <button onClick={handleLogOut}>Logout</button>;
+  return (
+    <>
+      <Channels />
+      <button onClick={handleLogOut}>Logout</button>
+    </>
+  );
 };
 
 export default MeTest;

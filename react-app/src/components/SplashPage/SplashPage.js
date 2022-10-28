@@ -14,7 +14,7 @@ const SplashPage = () => {
     if (user) {
       history.push("/me");
     }
-  }, [user]);
+  }, [user, history]);
 
   return (
     <div className="splash-page">

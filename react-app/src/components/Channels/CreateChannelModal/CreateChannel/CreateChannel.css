@@ -1,0 +1,71 @@
+.create-channel-form-container {
+  display: flex;
+  flex-direction: column;
+  width: 40rem;
+}
+
+.create-channel-form-header {
+  display: flex;
+  justify-content: space-between;
+  color: white;
+  padding: 2rem 2rem;
+  font-size: 2.4rem;
+}
+
+.fa-solid.fa-xmark {
+  color: white;
+  font-size: 2.4rem;
+}
+
+.create-channel-input-container {
+  color: #c3c4c5;
+  display: flex;
+  flex-direction: column;
+  padding: 0 2rem;
+  gap: 1rem;
+  width: 100%;
+}
+
+.create-channel-input-container label {
+  font-size: 1.2rem;
+}
+
+.create-channel-input-container input {
+  color: #c3c4c5;
+  background-color: #1b1d1f;
+  border-radius: 0.4rem;
+  height: 3.6rem;
+  padding: 1rem;
+}
+
+.create-channel-form-buttons {
+  align-items: center;
+  background-color: #26282b;
+  border-radius: 0 0 1rem 1rem;
+  display: flex;
+  font-size: 1.4rem;
+  gap: 2rem;
+  justify-content: flex-end;
+  margin-top: 2rem;
+  padding: 1.2rem 2rem 1.2rem;
+}
+
+.create-channel-form-cancel {
+  color: white;
+}
+
+.create-channel-form-cancel:hover {
+  text-decoration: underline;
+}
+
+.create-channel-form-submit {
+  background-color: #9cace5;
+  border-radius: 0.5rem;
+  color: #ebebec;
+  padding: 1rem;
+}
+
+.create-channel-form-submit.typed {
+  background-color: #7289da;
+  color: white;
+}

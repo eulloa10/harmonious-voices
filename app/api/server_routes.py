@@ -28,7 +28,7 @@ def create_one_server():
 @server_routes.route('/<int:id>', methods=['GET'])
 def get_one_server(id):
     server = Server.query.get(id)
-    return server.to_dict
+    return server.to_dict()
 
 @server_routes.route('/<int:id>', methods=['DELETE'])
 def delete_one_server(id):

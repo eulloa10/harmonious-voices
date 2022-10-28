@@ -24,7 +24,6 @@ def get_all_channels(serverId):
   channels = Channel.query.filter(Channel.server_id == serverId)
   return {'channels': [channel.to_dict() for channel in channels]}
 
-
 @channel_server_routes.route("/<int:serverId>/channels", methods=["POST"])
 @login_required
 def create_a_channel(serverId):
@@ -41,9 +40,9 @@ def create_a_channel(serverId):
       db.session.commit()
       return channel.to_dict()
     else:
-      return {"error": "Unauthorized user"}
+      return {"error": "Unauthorized"}
   else:
-    return {"error": "Please enter a valid name"}
+    return {"error": "Please enter a valid channel name."}
 
 
 @channel_server_routes.route("/<int:serverId>/channels/<int:channelId>", methods=["GET"])

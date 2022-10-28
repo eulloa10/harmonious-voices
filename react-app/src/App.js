@@ -11,6 +11,7 @@ import { authenticate } from "./store/session";
 import ListOwnedServers from "./components/Server/ListOwnedServers";
 import SplashPage from "./components/SplashPage";
 import MeTest from "./components/MeTest/MeTest.js";
+import Channels from "./components/Channels";
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -34,11 +35,16 @@ function App() {
         <Route path="/me">
           <MeTest />
         </Route>
+        <Route path="/channels" exact={true}>
+          <Channels />
+        </Route>
+        <Route path="/:serverId/channels">
+          <Channels />
+        </Route>
         <Route path="/">
           <SplashPage />
         </Route>
       </Switch>
-      {/* <Switch> */}
       {/* <Route path="/servers">
           <ListOwnedServers></ListOwnedServers>
         </Route>
