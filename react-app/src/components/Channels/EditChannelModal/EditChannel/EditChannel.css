@@ -1,0 +1,85 @@
+.edit-channel-form-container {
+  display: flex;
+  flex-direction: column;
+  width: 40rem;
+}
+
+.edit-channel-form-header {
+  display: flex;
+  justify-content: space-between;
+  color: white;
+  padding: 2rem 2rem;
+  font-size: 2.4rem;
+}
+
+.fa-solid.fa-xmark {
+  color: white;
+  cursor: pointer;
+  font-size: 2.4rem;
+}
+
+.edit-channel-input-container {
+  color: #c3c4c5;
+  display: flex;
+  flex-direction: column;
+  padding: 0 2rem;
+  gap: 1rem;
+  width: 100%;
+}
+
+.edit-channel-input-container label {
+  font-size: 1.2rem;
+}
+
+.edit-channel-input-container input {
+  color: #c3c4c5;
+  background-color: #1b1d1f;
+  border-radius: 0.4rem;
+  height: 3.6rem;
+  padding: 1rem;
+}
+
+.edit-channel-form-buttons {
+  align-items: center;
+  background-color: #26282b;
+  border-radius: 0 0 1rem 1rem;
+  display: flex;
+  font-size: 1.4rem;
+  justify-content: space-between;
+  margin-top: 2rem;
+  padding: 1.2rem 2rem 1.2rem;
+}
+
+.edit-buttons {
+  display: flex;
+  gap: 2rem;
+}
+
+.edit-channel-form-cancel {
+  color: white;
+  cursor: pointer;
+}
+
+.edit-channel-form-cancel:hover {
+  text-decoration: underline;
+}
+
+.edit-channel-form-submit {
+  background-color: #9cace5;
+  border-radius: 0.5rem;
+  color: #ebebec;
+  cursor: not-allowed;
+  padding: 1rem;
+}
+
+.edit-channel-form-submit.typed {
+  background-color: #7289da;
+  color: white;
+  cursor: pointer;
+}
+
+.error {
+  color: #d43b3b;
+  list-style: none;
+  padding: 0.8rem 0 0 2rem;
+}

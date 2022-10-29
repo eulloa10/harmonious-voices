@@ -14,6 +14,7 @@
 
 .fa-solid.fa-xmark {
   color: white;
+  cursor: pointer;
   font-size: 2.4rem;
 }
 
@@ -56,16 +57,25 @@
 
 .create-channel-form-cancel:hover {
   text-decoration: underline;
+  cursor: pointer;
 }
 
 .create-channel-form-submit {
   background-color: #9cace5;
   border-radius: 0.5rem;
   color: #ebebec;
+  cursor: not-allowed;
   padding: 1rem;
 }
 
 .create-channel-form-submit.typed {
   background-color: #7289da;
   color: white;
+  cursor: pointer;
+}
+
+.error {
+  color: #dc4c4c;
+  list-style: none;
+  padding: 0.8rem 0 0 2rem;
 }

@@ -12,13 +12,19 @@ class Channel(db.Model):
 
     messages = db.relationship("Message", back_populates="channel", cascade="all, delete-orphan")
     server = db.relationship("Server", back_populates="channels")
+    user_one = db.relationship("User", foreign_keys=[user_id_one])
+    user_two = db.relationship("User", foreign_keys=[user_id_two])
 
     def to_dict(self):
-        return {
+        response = {
             'id': self.id,
             'name': self.name,
             'server_id': self.server_id,
             'type': self.type,
-            'user_id_one': self.user_id_one,
-            'user_id_two': self.user_id_two
         }
+
+        if self.user_id_one and self.user_id_two:
+            response["userOne"] = self.user_one.to_dict()
+            response["userTwo"] = self.user_two.to_dict()
+
+        return response

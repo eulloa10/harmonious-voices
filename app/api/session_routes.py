@@ -17,8 +17,8 @@ def get_owned_servers():
 @login_required
 def get_dm_channels():
   user_id = current_user.id
-  direct_channels = Channel.query.filter(Channel.type=='direct', Channel.user_id_one==user_id)
-  return {'direct_channels': [channel.to_dict() for channel in direct_channels]}
+  direct_channels = Channel.query.filter(Channel.type == 'direct', Channel.user_id_one == user_id)
+  return {'directChannels': [channel.to_dict() for channel in direct_channels]}
 
 
 @session_routes.route('/channels', methods=['POST'])

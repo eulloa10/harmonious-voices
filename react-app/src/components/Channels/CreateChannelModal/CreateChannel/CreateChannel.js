@@ -47,7 +47,7 @@ const CreateChannel = ({ serverId, onClose }) => {
           <i className="fa-solid fa-xmark"></i>
         </button>
       </div>
-      <form className="create-channel-form" onSubmit={handleSubmit}>
+      <div className="create-channel-form">
         <div className="create-channel-input-fields">
           <div className="create-channel-input-container">
             <label htmlFor="channel-name">CHANNEL NAME</label>
@@ -64,7 +64,6 @@ const CreateChannel = ({ serverId, onClose }) => {
           {errors.map((error, i) => {
             return (
               <div key={i} className="error">
-                <i className="fa-solid fa-circle-exclamation"></i>
                 <li>{error}</li>
               </div>
             );
@@ -74,11 +73,11 @@ const CreateChannel = ({ serverId, onClose }) => {
           <button className="create-channel-form-cancel" onClick={onClose}>
             Cancel
           </button>
-          <button className="create-channel-form-submit" type="submit">
+          <button className="create-channel-form-submit" onClick={handleSubmit}>
             Create Channel
           </button>
         </div>
-      </form>
+      </div>
     </div>
   );
 };

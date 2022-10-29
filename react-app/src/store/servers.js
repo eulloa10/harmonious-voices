@@ -48,7 +48,7 @@ export const getBelongsServers = () => async (dispatch) => {
   const promise = await fetch("/api/servers/me");
   if (promise.ok) {
     const promisedSevers = await promise.json();
-	console.log(promisedSevers);
+    console.log(promisedSevers);
     dispatch(loadOwnedSevers(promisedSevers));
   }
 };
@@ -105,27 +105,27 @@ export const deleteAServer = (serverId) => async (dispatch) => {
 
 const initialState = {
   memberOf: {},
-  allServers: {}
+  allServers: {},
 };
 
-const serverReducer = (state = {...initialState}, action) => {
-    switch (action.type) {
-		case LOAD_ALL:
-			const allServersQ = {};
-			action.allServers.Servers.forEach((server) => {
-				allServersQ[server.id] = server;
-			});
-      state.allServers = {...allServersQ}
-			return {
-				...state,
-			};
+const serverReducer = (state = { ...initialState }, action) => {
+  switch (action.type) {
+    case LOAD_ALL:
+      const allServersQ = {};
+      action.allServers.Servers.forEach((server) => {
+        allServersQ[server.id] = server;
+      });
+      state.allServers = { ...allServersQ };
+      return {
+        ...state,
+      };
 
     case OWNED:
       const myServersQ = {};
       action.ownedServers.MyServers.forEach((server) => {
         myServersQ[server.id] = server;
       });
-      state.memberOf = {...myServersQ}
+      state.memberOf = { ...myServersQ };
       return {
         ...state,
       };

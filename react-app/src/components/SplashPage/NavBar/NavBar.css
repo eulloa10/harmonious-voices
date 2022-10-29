@@ -18,6 +18,7 @@
 .splash-page-nav-link.login {
   background-color: #7289da;
   border-radius: 4rem;
+  cursor: pointer;
   transition: all 0.5s;
 }
 

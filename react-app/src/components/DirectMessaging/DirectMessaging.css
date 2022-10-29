@@ -1,0 +1,63 @@
+.direct-channels-container {
+  background-color: #36393e;
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  position: relative;
+  width: 22rem;
+  height: 100%;
+}
+
+.direct-channels-header {
+  display: flex;
+  color: #c3c4c5;
+  font-size: 1.4rem;
+  justify-content: space-between;
+  padding: 0.8rem 1rem;
+}
+
+.channels-header:hover {
+  color: #ebebec;
+}
+
+.direct-channels {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.direct-channel-link-container {
+  position: relative;
+  height: 3.4rem;
+}
+
+.direct-channel-link {
+  color: #c3c4c5;
+  display: flex;
+  font-size: 1.4rem;
+  padding: 0.8rem 1rem;
+}
+
+.direct-channel-link:hover {
+  background-color: #4a4d51;
+  border-radius: 0.4rem;
+  color: #ebebec;
+}
+
+.direct-channel-link:focus {
+  background-color: #727478;
+  border-radius: 0.4rem;
+  color: #ebebec;
+}
+
+.direct-channel-link.active {
+  background-color: #727478;
+  border-radius: 0.4rem;
+  color: #ebebec;
+}
+
+.direct-channel-name {
+  align-items: center;
+  display: flex;
+  gap: 0.6rem;
+}
