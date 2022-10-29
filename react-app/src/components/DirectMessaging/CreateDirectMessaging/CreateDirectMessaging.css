@@ -1,0 +1,50 @@
+.create-direct-messaging-form-container {
+  background-color: #424549;
+  box-shadow: 0 2.4rem 4.8rem rgba(0, 0, 0.1, 0.3);
+  border-radius: 0.4rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  position: absolute;
+  left: 18.5rem;
+  text-align: start;
+  top: 4rem;
+  padding: 2rem;
+  width: 35rem;
+  z-index: 1000;
+}
+
+.create-direct-messaging-form {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.create-direct-messaging-form-header {
+  color: white;
+  font-size: 2.4rem;
+}
+
+.create-direct-messaging-name-input-field {
+  color: #c3c4c5;
+  background-color: #1b1d1f;
+  border-radius: 0.4rem;
+  height: 3.6rem;
+  padding: 1rem;
+  width: 100%;
+}
+
+.create-direct-messaging-form-submit {
+  background-color: #7289da;
+  color: white;
+  cursor: pointer;
+  border-radius: 0.5rem;
+  padding: 1rem;
+  width: 100%;
+}
+
+.error {
+  color: #dc4c4c;
+  list-style: none;
+  padding: 0.8rem 0 0 2rem;
+}

@@ -13,6 +13,7 @@ import ListOwnedServers from "./components/Server/ListOwnedServers";
 import SplashPage from "./components/SplashPage";
 import MeTest from "./components/MeTest/MeTest.js";
 import Channels from "./components/Channels";
+import DirectMessaging from "./components/DirectMessaging";
 import ListAllServers from "./components/Server/ListAllServers";
 import AllServers from "./components/Server/AllServers";
 
@@ -36,27 +37,27 @@ function App() {
     <BrowserRouter>
       <Switch>
         <Route path="/explore/servers">
-          <ListAllServers/>
+          <ListAllServers />
         </Route>
         <Route path="/login">
           <LoginForm />
         </Route>
         <Route path="/me">
-          <MeTest />
+          <ListOwnedServers />
         </Route>
-        <Route path="/channels" exact={true}>
-          <Channels />
+        <Route path="/channels/me">
+          <DirectMessaging />
         </Route>
         <Route path="/:serverId/channels">
           <Channels />
         </Route>
         <Route path="/servers">
-          <ListOwnedServers></ListOwnedServers>
+          <ListAllServers />
         </Route>
         <Route exact path="/channels/:channelId/messages">
           <MessageList />
         </Route>
-        <Route exact path="/">
+        <Route path="/">
           <SplashPage />
         </Route>
       </Switch>

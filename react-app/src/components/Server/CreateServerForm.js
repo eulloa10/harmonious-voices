@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { addSever } from "../../store/servers";
-// import './FormStyling.css'
+import './Servers.css'
 
 
 const CreateSeverForm = ( {hideForm}) => {
@@ -61,7 +61,7 @@ const CreateSeverForm = ( {hideForm}) => {
                         placeholder="Server Image"
                         value={serverImg}
                         onChange={updateServerImg} />
-                    <button type="submit">Create new Server</button>
+                    <button type="submit">Create New Server</button>
                     <button type="button" onClick={handleCancelClick}>Cancel</button>
                 </form>
             </section>
