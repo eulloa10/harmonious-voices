@@ -23,8 +23,8 @@ class Channel(db.Model):
             'type': self.type,
         }
 
-        # if self.user_id_one and self.user_id_two:
-        #     response["userOne"] = self.user_one.to_dict()
-        #     response["userTwo"] = self.user_two.to_dict()
+        if self.user_id_one and self.user_id_two:
+            response["userOne"] = self.user_one.to_dict()
+            response["userTwo"] = self.user_two.to_dict()
 
         return response
