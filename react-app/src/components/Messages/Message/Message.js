@@ -1,22 +1,20 @@
-import React, {useEffect} from 'react';
-import { Link, useLocation, useHistory } from 'react-router-dom';
-import { useSelector, useDispatch } from 'react-redux';
-import { deleteSelectedMessage } from '../../../store/messages';
-import { fetchUsers } from '../../../store/user';
-import './Message.css'
-import { user } from 'pg/lib/defaults';
-
+import React, { useEffect } from "react";
+import { Link, useLocation, useHistory } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import { deleteSelectedMessage } from "../../../store/messages";
+import { fetchUsers } from "../../../store/user";
+import "./Message.css";
 
 const Message = ({ message }) => {
   const dispatch = useDispatch();
   // const location = useLocation();
-  const users = useSelector(state => state.users);
-  const message_user_id = message.user_id
+  const users = useSelector((state) => state.users);
+  const message_user_id = message.user_id;
   const allUsersList = [];
 
   useEffect(() => {
     dispatch(fetchUsers());
-  }, [dispatch])
+  }, [dispatch]);
 
   for (let key in users) {
     allUsersList.push(users[key]);
@@ -24,16 +22,14 @@ const Message = ({ message }) => {
 
   // console.log("ALLUSERSLIST ->", allUsersList)
 
-
   // const deleteMessage = (e) => {
   //   dispatch(deleteSelectedMessage(message.id))
   //   e.preventDefault();
   // };
 
-
   return (
     <>
-    <li>
+      <li>
         <div className="message">
           <div>
             <div>
@@ -44,10 +40,9 @@ const Message = ({ message }) => {
             {message.content}
           </div>
         </div>
-    </li>
+      </li>
     </>
   );
-
 };
 
 export default Message;

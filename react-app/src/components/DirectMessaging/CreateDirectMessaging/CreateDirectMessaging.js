@@ -1,10 +1,32 @@
 import { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { loadFriendThunk } from "../../../store/friend";
 import "./CreateDirectMessaging.css";
 
 const CreateDirectMessaging = () => {
   const dispatch = useDispatch();
   const [name, setName] = useState("");
+  const friend = useSelector((state) => state.friend);
+
+  useEffect(() => {
+    dispatch(loadFriendThunk(name));
+  }, [name]);
+
+  const handleSubmit = async () => {
+    // const payload = {
+    //   user_id_two:
+    // };
+    // dispatch(addChannel(serverId, payload)).then((res) => {
+    //   if (res.error) {
+    //     let errors = [res.error];
+    //     setErrors(errors);
+    //     return;
+    //   } else {
+    //     setErrors([]);
+    //     onClose();
+    //   }
+    // });
+  };
 
   return (
     <div className="create-direct-messaging-form-container">
@@ -20,7 +42,16 @@ const CreateDirectMessaging = () => {
             value={name}
           ></input>
         </div>
-        <button className="create-direct-messaging-form-submit">
+        {!Object.values(friend).length && (
+          <div className="no-friends-found-container">
+            <div>No friends found.</div>
+          </div>
+        )}
+
+        <button
+          className="create-direct-messaging-form-submit"
+          onClick={handleSubmit}
+        >
           Create Channel
         </button>
       </div>
