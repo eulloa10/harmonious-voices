@@ -43,7 +43,7 @@ function App() {
           <LoginForm />
         </Route>
         <Route path="/me">
-          <MeTest />
+          <ListOwnedServers />
         </Route>
         <Route path="/channels/me">
           <DirectMessaging />
@@ -52,7 +52,7 @@ function App() {
           <Channels />
         </Route>
         <Route path="/servers">
-          <ListOwnedServers></ListOwnedServers>
+          <ListAllServers />
         </Route>
         <Route exact path="/channels/:channelId/messages">
           <MessageList />
