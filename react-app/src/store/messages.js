@@ -34,11 +34,13 @@ const deleteMessage = (messageId) => {
   }
 }
 
-export const fetchMessages = () => (channelId) => async (dispatch) => {
-  const res = await fetch(`/channels/${channelId}/messages`);
+
+export const fetchMessages = (channelId) => async (dispatch) => {
+  const res = await fetch(`/api/channels/${channelId}/messages`);
   const data = await res.json();
+  // console.log("FETCHED DATA", data)
   if (res.ok) {
-    dispatch(getMessages(data.Messages));
+    dispatch(getMessages(data.messages));
   } else {
     // if response status code is 400 or greater, throw the response as an error
     throw res;
@@ -89,6 +91,7 @@ const messagesReducer = (state = initialState, action) => {
 	switch (action.type) {
 		case GET_MESSAGES:
       newState = {...state};
+      // console.log("MESSAGESRED", action.messages)
 			action.messages.forEach((message) => {
 				newState[message.id] = message;
 			});

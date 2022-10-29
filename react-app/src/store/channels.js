@@ -1,10 +1,10 @@
-const LOAD = "channels/LOAD";
-const ADD = "channels/ADD";
-const EDIT = "channels/EDIT";
-const DELETE = "channels/DELETE";
+const LOAD_ALL = "serverChannels/LOAD";
+const ADD = "serverChannels/ADD";
+const EDIT = "serverChannels/EDIT";
+const DELETE = "serverChannels/DELETE";
 
-const load = (channels) => ({
-  type: LOAD,
+const loadServerChannels = (channels) => ({
+  type: LOAD_ALL,
   channels,
 });
 
@@ -23,12 +23,13 @@ const deleteChannel = (channel) => ({
   channel,
 });
 
-export const getAllChannels = (serverId) => async (dispatch) => {
+export const getServerChannels = (serverId) => async (dispatch) => {
   const response = await fetch(`/api/servers/${serverId}/channels`);
 
   if (response.ok) {
     const channels = await response.json();
-    dispatch(load(channels));
+    const serverChannels = channels.serverChannels;
+    dispatch(loadServerChannels(serverChannels));
   }
 };
 
@@ -83,12 +84,12 @@ const initialState = {};
 const channelReducer = (state = initialState, action) => {
   const newState = { ...state };
   switch (action.type) {
-    case LOAD:
-      const channels = {};
-      action.channels.channels.forEach((channel) => {
-        channels[channel.id] = channel;
+    case LOAD_ALL:
+      const serverChannels = {};
+      action.channels.forEach((channel) => {
+        serverChannels[channel.id] = channel;
       });
-      return channels;
+      return serverChannels;
     case ADD:
       const { channel } = action;
       newState[channel.id] = channel;
@@ -97,7 +98,6 @@ const channelReducer = (state = initialState, action) => {
       newState[action.channel.id] = action.channel;
       return newState;
     case DELETE:
-      console.log(action.channel.id);
       delete newState[action.channel.id];
       return newState;
     default:

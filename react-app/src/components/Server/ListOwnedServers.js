@@ -1,16 +1,17 @@
 import { useEffect, useState } from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import { NavLink, Route } from 'react-router-dom';
-import { getServers } from '../../store/servers';
+import { getServers, getBelongsServers } from '../../store/servers';
 import ServerCard from './ServerCard';
 import CreateSeverForm from './CreateServerForm';
+import Fab from './Fab';
+import './Servers.css'
+import Explore from '../../svgFiles/explore.svg'
 
-export let myServers;
 const ListOwnedServers = () => {
     const dispatch = useDispatch();
 
-    // TODO update logic to not display all servers
-    myServers = useSelector(state => {
+    let myServers = useSelector(state => {
         console.log(state);
         const serversArr = Object.values(state.servers)
         return serversArr
@@ -19,38 +20,43 @@ const ListOwnedServers = () => {
 
 
     useEffect(() => {
-        dispatch(getServers());
-        // dispatch(getBelongsServers());
+        // dispatch(getServers());
+        dispatch(getBelongsServers());
     },[dispatch]);
 
-    if (!myServers) {
-        return null;
-      }
+    useEffect(() => {
+
+    },[])
 
     return (
         <main>
             <nav>
-            {/* <Fab hidden={showForm} onClick={() => setShowForm(true)} /> */}
-            <h3>All servers</h3>
+                <div>
+
+                    <NavLink to='/directMessages' className='server-icon-div dm server-icon'>DM</NavLink>
+                </div>
                 {myServers.map((server) => {
                     return(
                         <NavLink key={server.id} to={`/servers/${server.id}`}>
                             <div className='servers-container'>
-                                {/* <h2 className='servers-title'>{server.name}</h2> */}
                                 <ServerCard server={server}></ServerCard>
-                                {/* <p className='song-description'>{song.description}</p> */}
                             </div>
                         </NavLink>
                     )
                 })}
+                <div>
+                    <NavLink to={`/explore/servers`} className='server-icon-div'>
+                        <img src={Explore}/>
+                    </NavLink>
+                </div>
+                <Fab hidden={showForm} onClick={() => setShowForm(true)} />
             </nav>
             {showForm ? (
             <CreateSeverForm hideForm={() => setShowForm(false)} />
             ) : (
             <Route path="/servers/:severId">
                 <div className='server-detail'>
-                    {/* <SongDetail/>
-                    <Comments/> */}
+                    {/* <ChannelDetailsComponentHeres/>*/}
                 </div>
             </Route>
             )}
