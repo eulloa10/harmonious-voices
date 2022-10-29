@@ -20,13 +20,13 @@ def get_all_servers():
     return {'Servers': [server.to_dict() for server in servers]}
 
 
-@server_routes.route('/', methods=['POST'])
+@server_routes.route('', methods=['POST'])
 def create_one_server():
     name = request.json['name']
     owner_id = current_user.id
     server_img = request.json['server_img']
     server = Server(name=name, owner_id=owner_id, server_img=server_img)
-    db.session.add.server()
+    db.session.add(server)
     db.session.commit()
     return server.to_dict()
 
