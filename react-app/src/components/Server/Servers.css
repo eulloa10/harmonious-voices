@@ -115,8 +115,8 @@ option:hover {
   background-color: rgb(114, 137, 218);
   cursor: pointer;
 }
-
-button {
+/* TODO take care of the buttons with class names */
+.form-button {
   margin: 0;
   margin-top: 10px;
   background-color: rgb(114, 137, 218);
@@ -125,6 +125,6 @@ button {
   font-weight: 600;
   padding: 4px;
 }
-button:hover {
+.form-button:hover {
   cursor: pointer;
 }
