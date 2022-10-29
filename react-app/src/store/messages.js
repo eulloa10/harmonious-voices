@@ -48,8 +48,10 @@ export const fetchMessages = (channelId) => async (dispatch) => {
 };
 
 export const createNewMessage = (message, channelId) => async(dispatch) => {
-  const res = await fetch(`/channels/${channelId}/messages`, {
+
+  const res = await fetch(`/api/channels/${channelId}/messages`, {
     method: 'POST',
+    headers: { "Content-Type": "application/json" },
     body: JSON.stringify(message)
   } )
 
@@ -61,7 +63,7 @@ export const createNewMessage = (message, channelId) => async(dispatch) => {
 }
 
 export const updateMessage = (messageId, messageContent) => async (dispatch) => {
-  const res = await fetch(`/messages/${messageId}`, {
+  const res = await fetch(`/api/messages/${messageId}`, {
     method: 'PUT',
     body: JSON.stringify(messageContent)
   })
@@ -74,7 +76,7 @@ export const updateMessage = (messageId, messageContent) => async (dispatch) => 
 }
 
 export const deleteSelectedMessage = (messageId) => async (dispatch) => {
-  const res = await fetch(`/messages/${messageId}`, {
+  const res = await fetch(`/api/messages/${messageId}`, {
     method: 'DELETE',
   })
 

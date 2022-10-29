@@ -4,12 +4,14 @@ import { useSelector, useDispatch } from 'react-redux';
 import { deleteSelectedMessage } from '../../../store/messages';
 import { fetchUsers } from '../../../store/user';
 import './Message.css'
+import { user } from 'pg/lib/defaults';
 
 
 const Message = ({ message }) => {
   const dispatch = useDispatch();
   // const location = useLocation();
   const users = useSelector(state => state.users);
+  const message_user_id = message.user_id
   const allUsersList = [];
 
   useEffect(() => {
@@ -20,7 +22,7 @@ const Message = ({ message }) => {
     allUsersList.push(users[key]);
   }
 
-  console.log("ALLUSERSLIST ->", allUsersList)
+  // console.log("ALLUSERSLIST ->", allUsersList)
 
 
   // const deleteMessage = (e) => {
@@ -31,12 +33,11 @@ const Message = ({ message }) => {
 
   return (
     <>
-    {/* <li> */}
     <li>
         <div className="message">
           <div>
             <div>
-              {message.user_id}
+              {users[message_user_id]}
               {message.date_created}
             </div>
 
@@ -44,20 +45,6 @@ const Message = ({ message }) => {
           </div>
         </div>
     </li>
-
-      {/* {user && user.id === message.ownerId && currentPath === '/user/spots' &&
-      (
-      <div className="modify-spots-container">
-
-        <Link className="edit-message" to={`/user/spots/${message.id}/edit`}><button className="edit-spots-btn">Edit</button></Link>
-
-        <div className="delete-message">
-        <button className="delete-spots-btn" onClick={deleteMessage}>Delete</button>
-        </div>
-      </div>
-      )
-      }
-    </li> */}
     </>
   );
 

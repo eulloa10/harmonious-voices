@@ -16,10 +16,10 @@ class Message(db.Model):
 
     def to_dict(self):
         return {
-        'id': self.id,
-        'user_id': self.user_id,
-        'channel_id': self.channel_id,
-        'content': self.content,
-        'date_created': self.date_created,
-        'date_modified': self.date_modified
-    }
+            'id': self.id,
+            'user_id': self.user_id,
+            'channel_id': self.channel_id,
+            'content': self.content,
+            'date_created': self.date_created,
+            'date_modified': self.date_modified
+        }
