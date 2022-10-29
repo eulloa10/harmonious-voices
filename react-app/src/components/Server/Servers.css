@@ -17,6 +17,7 @@ nav {
   height: 100%;
 }
 #root {
+  display: flex;
   height: 100%;
   width: auto;
   background-color: rgb(54, 57, 62);

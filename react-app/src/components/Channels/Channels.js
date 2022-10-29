@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react";
-import { NavLink, useParams, useRouteMatch } from "react-router-dom";
+import { NavLink, useParams, useRouteMatch, Route } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getServerChannels } from "../../store/channels";
 import "./Channels.css";
 import { getServerById } from "../../store/servers";
 import CreateChannelModal from "./CreateChannelModal";
 import EditChannelModal from "./EditChannelModal";
+import MessageList from "../Messages/MessageList/MessageList";
 
 const Channels = () => {
   const dispatch = useDispatch();

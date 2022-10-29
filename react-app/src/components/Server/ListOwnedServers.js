@@ -10,6 +10,7 @@ import "./Servers.css";
 import Explore from "../../svgFiles/explore.svg";
 import Logout from "../../svgFiles/logout.svg";
 import { logout } from "../../store/session";
+import Channels from "../Channels/Channels";
 
 const ListOwnedServers = () => {
   const dispatch = useDispatch();
@@ -61,18 +62,14 @@ const ListOwnedServers = () => {
         </div>
         <Fab hidden={showForm} onClick={() => setShowForm(true)} />
         <div className="server-icon-div" onClick={handleLogOut}>
-          {/* <button onClick={logout}>  */}
           <img src={Logout} />
-          {/* </button> */}
         </div>
       </nav>
       {showForm ? (
         <CreateSeverForm hideForm={() => setShowForm(false)} />
       ) : (
         <Route path="/servers/:severId">
-          <div className="server-detail">
-            {/* <ChannelDetailsComponentHeres/>*/}
-          </div>
+          <div className="server-detail">{/* <Channels/> */}</div>
         </Route>
       )}
     </main>
