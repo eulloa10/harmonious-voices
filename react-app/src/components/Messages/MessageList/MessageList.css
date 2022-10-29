@@ -1,5 +1,16 @@
-.test {
-  font: 100px;
-  height: 500px;
-  width: 1000px;
+.all-messages {
+  background-color: #424549;
+  height: 80vh;
+  width: 65vw;
+}
+
+.messaging-functionality {
+  background-color: #424549;
+  height: 20vh;
+  width: 65vw;
+}
+
+.channel-messages-container {
+  margin: 0;
+  padding: 0;
 }

@@ -33,7 +33,7 @@ const usersReducer = (state = initialState, action) => {
       newState = {...state};
       // console.log("MESSAGESRED", action.users)
 			action.users.forEach((user) => {
-				newState[user.id] = user;
+				newState[user.id] = user.username;
 			});
 			return newState;
 		default:
