@@ -61,8 +61,8 @@ const CreateSeverForm = ( {hideForm}) => {
                         placeholder="Server Image"
                         value={serverImg}
                         onChange={updateServerImg} />
-                    <button type="submit">Create New Server</button>
-                    <button type="button" onClick={handleCancelClick}>Cancel</button>
+                    <button className='form-button' type="submit">Create New Server</button>
+                    <button className='form-button' type="button" onClick={handleCancelClick}>Cancel</button>
                 </form>
             </section>
         )
