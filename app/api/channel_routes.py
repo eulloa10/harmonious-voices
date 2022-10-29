@@ -21,7 +21,7 @@ def server_is_owned_by_user(serverId):
 
 @channel_server_routes.route("/<int:serverId>/channels", methods=["GET"])
 def get_all_channels(serverId):
-  channels = Channel.query.filter(Channel.server_id == serverId)
+  channels = Channel.query.filter(Channel.server_id == serverId).filter(Channel.type == "server")
   return {'channels': [channel.to_dict() for channel in channels]}
 
 @channel_server_routes.route("/<int:serverId>/channels", methods=["POST"])

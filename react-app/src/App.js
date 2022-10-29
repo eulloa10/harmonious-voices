@@ -13,6 +13,7 @@ import ListOwnedServers from "./components/Server/ListOwnedServers";
 import SplashPage from "./components/SplashPage";
 import MeTest from "./components/MeTest/MeTest.js";
 import Channels from "./components/Channels";
+import DirectMessaging from "./components/DirectMessaging";
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -33,15 +34,12 @@ function App() {
   return (
     <BrowserRouter>
       <Switch>
-        <Route path="/login">
-          <LoginForm />
-        </Route>
         <Route path="/me">
           <MeTest />
         </Route>
-        <Route path="/channels" exact={true}>
-          <Channels />
-        </Route>
+        {/* <Route path="/channels/me" exact={true}>
+          <DirectMessaging />
+        </Route> */}
         <Route path="/:serverId/channels">
           <Channels />
         </Route>
@@ -51,7 +49,7 @@ function App() {
         <Route exact path="/channels/:channelId/messages">
           <MessageList />
         </Route>
-        <Route exact path="/">
+        <Route path="/">
           <SplashPage />
         </Route>
       </Switch>

@@ -3,7 +3,7 @@ import { Modal } from "../../../context/Modal";
 import EditChannel from "./EditChannel/EditChannel";
 import "./EditChannelModal.css";
 
-const EditChannelModal = ({ serverId }) => {
+const EditChannelModal = ({ channel, serverId }) => {
   const [showModal, setShowModal] = useState(false);
 
   return (
@@ -16,7 +16,11 @@ const EditChannelModal = ({ serverId }) => {
       </button>
       {showModal && (
         <Modal onClose={() => setShowModal(false)} showModal={showModal}>
-          <EditChannel />
+          <EditChannel
+            channel={channel}
+            serverId={serverId}
+            onClose={() => setShowModal(false)}
+          />
         </Modal>
       )}
     </>

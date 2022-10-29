@@ -48,7 +48,9 @@ const Channels = () => {
                   {channel.name}
                 </div>
               </NavLink>
-              {isOwnedByUser && <EditChannelModal />}
+              {isOwnedByUser && (
+                <EditChannelModal channel={channel} serverId={serverId} />
+              )}
             </div>
           );
         })}
