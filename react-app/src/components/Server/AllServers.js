@@ -13,6 +13,8 @@ const AllServers = () => {
     const dispatch = useDispatch();
     let allServers = useSelector(state => {
         console.log(state);
+        const serversArr = Object.values(state.servers.allServers)
+        return serversArr
     })
 
     useEffect(() => {
@@ -21,7 +23,15 @@ const AllServers = () => {
 
     return (
         <>
-
+            {allServers.map((server) => {
+                return(
+                    <NavLink key={server.id} to={`/servers/${server.id}`}>
+                        <div className='servers-container'>
+                            <ServerCard server={server}></ServerCard>
+                        </div>
+                    </NavLink>
+                )
+            })}
         </>
     )
 }

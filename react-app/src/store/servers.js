@@ -62,6 +62,7 @@ export const getServerById = (id) => async (dispatch) => {
   }
 };
 export const addSever = (server) => async (dispatch) => {
+  console.log(server);
   const response = await fetch(`/api/servers`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
@@ -103,7 +104,8 @@ export const deleteAServer = (serverId) => async (dispatch) => {
 };
 
 const initialState = {
-  // list: []
+  memberOf: {},
+  allServers: {}
 };
 
 const serverReducer = (state = {...initialState}, action) => {
@@ -113,8 +115,8 @@ const serverReducer = (state = {...initialState}, action) => {
 			action.allServers.Servers.forEach((server) => {
 				allServersQ[server.id] = server;
 			});
+      state.allServers = {...allServersQ}
 			return {
-				...allServersQ,
 				...state,
 			};
 
@@ -123,8 +125,8 @@ const serverReducer = (state = {...initialState}, action) => {
       action.ownedServers.MyServers.forEach((server) => {
         myServersQ[server.id] = server;
       });
+      state.memberOf = {...myServersQ}
       return {
-        ...myServersQ,
         ...state,
       };
 

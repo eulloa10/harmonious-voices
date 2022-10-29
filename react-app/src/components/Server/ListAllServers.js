@@ -8,6 +8,7 @@ import Fab from './Fab';
 import './Servers.css'
 import Explore from '../../svgFiles/explore.svg'
 import AllServers from './AllServers';
+import ServerBubble from './ServerBubble';
 
 
 // TODO list All aint working right
@@ -15,7 +16,7 @@ const ListAllServers = () => {
     const dispatch = useDispatch();
     let myServers = useSelector(state => {
         console.log(state);
-        const serversArr = Object.values(state.servers)
+        const serversArr = Object.values(state.servers.memberOf)
         return serversArr
       });
 
@@ -37,13 +38,13 @@ const ListAllServers = () => {
                     return(
                         <NavLink key={server.id} to={`/servers/${server.id}`}>
                             <div className='servers-container'>
-                                <ServerCard server={server}></ServerCard>
+                                <ServerBubble server={server}></ServerBubble>
                             </div>
                         </NavLink>
                     )
                 })}
                 <div>
-                    <NavLink to={`/explore/servers`} className='server-icon-div'>
+                    <NavLink to={`/servers`} className='server-icon-div'>
                         <img src={Explore}/>
                     </NavLink>
                 </div>
@@ -52,7 +53,7 @@ const ListAllServers = () => {
             {showForm ? (
             <CreateSeverForm hideForm={() => setShowForm(false)} />
             ) : (
-            <Route path="/explore/servers">
+            <Route path="/servers">
                 <div className='server-detail'>
                     <AllServers/>
                 </div>
