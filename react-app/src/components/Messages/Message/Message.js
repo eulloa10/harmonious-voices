@@ -4,7 +4,6 @@ import { useSelector, useDispatch } from 'react-redux';
 import { deleteSelectedMessage } from '../../../store/messages';
 import { fetchUsers } from '../../../store/user';
 import './Message.css'
-import { user } from 'pg/lib/defaults';
 
 
 const Message = ({ message }) => {
