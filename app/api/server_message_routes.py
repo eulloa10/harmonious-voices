@@ -20,7 +20,7 @@ def get_channel_messages(channelId):
 def create_channel_message(channelId):
   form = ChannelMessageForm()
   form['csrf_token'].data = request.cookies['csrf_token']
-  print("FORM", form.data)
+  # print("FORM", form.data)
   if form.validate_on_submit():
     message = Message(
       user_id=current_user.id,
