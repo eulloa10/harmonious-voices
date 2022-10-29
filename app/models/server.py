@@ -9,6 +9,7 @@ class Server(db.Model):
     owner_id = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=True)
     server_img = db.Column(db.String(), nullable=True)
 
+    #test
     # server_owner = db.relationship("User", back_populates="owned_servers")
     users = db.relationship('User', secondary=user_servers, back_populates="servers")
     channels = db.relationship("Channel", back_populates="server", cascade="all, delete-orphan")
