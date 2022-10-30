@@ -21,27 +21,18 @@ const Message = ({ message }) => {
     allUsersList.push(users[key]);
   }
 
-  // console.log("ALLUSERSLIST ->", allUsersList)
-
-
-  // const deleteMessage = (e) => {
-  //   dispatch(deleteSelectedMessage(message.id))
-  //   e.preventDefault();
-  // };
-
 
   return (
     <>
-    <li>
+    <li className='single-user-message'>
         <div className="message">
-          <div>
             <div>
               {users[message_user_id]}
               {message.date_created}
             </div>
-
-            {message.content}
-          </div>
+            <div>
+              {message.content}
+            </div>
         </div>
     </li>
     </>

@@ -8,9 +8,16 @@
   background-color: #424549;
   height: 10vh;
   width: 80vw;
+  display: space-around;
+  justify-content: center;
+  align-items: center;
 }
 
 /* .channel-messages-container {
   margin: 0;
   padding: 0;
 } */
+
+.single-user-message {
+  list-style: none;
+}
