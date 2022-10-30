@@ -1,16 +1,16 @@
 .all-messages {
   background-color: #424549;
-  height: 80vh;
-  width: 65vw;
+  height: 90vh;
+  width: 80vw;
 }
 
 .messaging-functionality {
   background-color: #424549;
-  height: 20vh;
-  width: 65vw;
+  height: 10vh;
+  width: 80vw;
 }
 
-.channel-messages-container {
+/* .channel-messages-container {
   margin: 0;
   padding: 0;
-}
+} */
