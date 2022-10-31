@@ -65,13 +65,14 @@ const ListOwnedServers = () => {
           <img src={Logout} />
         </div>
       </nav>
-      {showForm ? (
-        <CreateSeverForm hideForm={() => setShowForm(false)} />
-      ) : (
-        <Route path="/servers/:severId">
-          <div className="server-detail">{/* <Channels/> */}</div>
-        </Route>
-      )}
+      {
+        showForm && <CreateSeverForm hideForm={() => setShowForm(false)} />
+        // ) : (
+        // <Route path="/servers/:severId">
+        //   <div className="server-detail">{/* <Channels/> */}</div>
+        // </Route>
+        // )}
+      }
     </main>
   );
 };
