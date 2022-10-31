@@ -16,7 +16,7 @@ const NavBar = () => {
       }
     );
     if (!signedIn) {
-      history.push("/me");
+      history.push("/direct-messages");
     }
   };
 

@@ -1,26 +1,14 @@
-html {
-  height: 100%;
-  width: auto;
-}
-body {
-  height: 100%;
-  width: auto;
-}
-main {
+.owned-servers-container {
   display: flex;
-  height: 100%;
-  width: auto;
 }
 
-nav {
-  background-color: rgb(30, 33, 36);
-  height: 100%;
-}
-#root {
+.servers-nav-bar {
   display: flex;
+  flex-direction: column;
+  background-color: rgb(30, 33, 36);
+  gap: 1rem;
   height: 100%;
-  width: auto;
-  background-color: rgb(54, 57, 62);
+  padding: 1rem;
 }
 
 .server-icon-div {
@@ -29,7 +17,6 @@ nav {
   border-radius: 50%;
   width: 50px;
   height: 50px;
-  margin: 3px;
   justify-content: center;
   align-items: center;
   color: white;
@@ -89,11 +76,11 @@ nav {
 input {
   background-color: black;
   height: 25px;
-  margin: 3px;
+  /* margin: 3px; */
   color: rgb(114, 137, 218);
 }
 input:hover {
-  /* background-color: rgba(114,137,218); */
+  background-color: rgba(114, 137, 218);
   border: 3px solid black;
   border-radius: 5px;
 }

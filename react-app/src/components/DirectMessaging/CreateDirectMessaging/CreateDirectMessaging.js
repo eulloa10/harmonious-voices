@@ -10,6 +10,11 @@ const CreateDirectMessaging = () => {
 
   useEffect(() => {
     dispatch(loadFriendThunk(name));
+    if (Object.values(friend).length) {
+      const submitButton = document.querySelector(
+        ".create-direct-messaging-form-submit"
+      );
+    }
   }, [name]);
 
   const handleSubmit = async () => {
