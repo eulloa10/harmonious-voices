@@ -2,6 +2,7 @@
   background-color: #424549;
   height: 90vh;
   width: 80vw;
+  overflow-y: auto;
 }
 
 .messaging-functionality {
@@ -13,10 +14,11 @@
   align-items: center;
 }
 
-/* .channel-messages-container {
-  margin: 0;
-  padding: 0;
-} */
+.allMessages {
+  display: flex;
+  flex-direction: column;
+  row-gap: 20px;
+}
 
 .single-user-message {
   list-style: none;

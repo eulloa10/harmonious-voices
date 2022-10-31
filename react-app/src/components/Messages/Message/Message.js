@@ -26,11 +26,13 @@ const Message = ({ message }) => {
     <>
     <li className='single-user-message'>
         <div className="message">
-            <div>
+            <div className="message-header">
               {users[message_user_id]}
-              {message.date_created}
+              <span className='message-date'>
+                {message.date_created}
+              </span>
             </div>
-            <div>
+            <div className="message-content">
               {message.content}
             </div>
         </div>

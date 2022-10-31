@@ -29,6 +29,7 @@ const MessageInput = () => {
     });
 
     if (res) {
+      setMessageContent('')
       history.push(`/servers/${serverId}/${channelId}`)
     }
   }

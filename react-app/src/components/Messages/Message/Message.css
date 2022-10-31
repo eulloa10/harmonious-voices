@@ -5,3 +5,21 @@
   align-items: center;
   color: white;
 }
+
+.single-user-message {
+  display: flexbox;
+}
+
+.message-header {
+  font-size: 14px;
+}
+
+.message-content {
+  font-size: 14px;
+}
+
+.message-date {
+  margin-left: 5px;
+  color: grey;
+  font-size:12px;
+}
