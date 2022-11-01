@@ -1,5 +1,5 @@
 from app.models import db, Server
-
+import os
 
 # Adds a demo user, you can add other users here if you want
 def seed_servers():
@@ -30,6 +30,8 @@ def seed_servers():
 # resets the auto incrementing primary key, CASCADE deletes any
 # dependent entities
 def undo_servers():
-    db.session.execute('TRUNCATE servers RESTART IDENTITY CASCADE;')
-    db.session.execute('DELETE FROM servers;')
+    if os.environ.get("FLASK_ENV") == 'development':
+        db.session.execute('DELETE FROM servers;')
+    else:
+        db.session.execute('TRUNCATE servers RESTART IDENTITY CASCADE;')
     db.session.commit()

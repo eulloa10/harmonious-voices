@@ -1,5 +1,5 @@
 from app.models import db, Message
-
+import os
 
 # Adds a demo user, you can add other users here if you want
 def seed_messages():
@@ -54,6 +54,8 @@ def seed_messages():
 # resets the auto incrementing primary key, CASCADE deletes any
 # dependent entities
 def undo_messages():
-    db.session.execute('TRUNCATE messages RESTART IDENTITY CASCADE;')
-    db.session.execute('DELETE FROM messages;')
+    if os.environ.get("FLASK_ENV") == 'development':
+        db.session.execute('DELETE FROM messages;')
+    else:
+        db.session.execute('TRUNCATE messages RESTART IDENTITY CASCADE;')
     db.session.commit()
