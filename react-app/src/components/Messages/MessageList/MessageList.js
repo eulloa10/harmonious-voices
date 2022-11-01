@@ -26,6 +26,7 @@ const MessageList = () => {
     return null;
   }
 
+  console.log("CHANNELID", channelId)
 
 
   const handleCancelClick = (e) => {
