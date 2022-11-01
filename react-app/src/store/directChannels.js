@@ -1,8 +1,14 @@
 const LOAD_DIRECT_CHANNELS = "directChannels/LOAD";
+const ADD = "directChannels/ADD";
 
 const loadDirectChannels = (channels) => ({
   type: LOAD_DIRECT_CHANNELS,
   channels,
+});
+
+const add = (channel) => ({
+  type: ADD,
+  channel,
 });
 
 export const getDirectChannels = () => async (dispatch) => {
@@ -21,6 +27,11 @@ export const addDirectChannel = (payload) => async (dispatch) => {
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(payload),
   });
+
+  if (response.ok) {
+    const channel = response.json();
+    dispatch(add(channel));
+  }
 };
 
 const initialState = {};
@@ -34,6 +45,9 @@ const directChannelReducer = (state = initialState, action) => {
         directChannels[channel.id] = channel;
       });
       return directChannels;
+    case ADD:
+      newState[action.channel.id] = action.channel;
+      return newState;
     default:
       return newState;
   }

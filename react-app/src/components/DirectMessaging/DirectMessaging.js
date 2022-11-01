@@ -43,7 +43,9 @@ const DirectMessaging = () => {
         >
           <i className="fa-solid fa-plus"></i>
         </button>
-        {showCreateForm && <CreateDirectMessaging />}
+        {showCreateForm && (
+          <CreateDirectMessaging onClose={() => setShowCreateForm(false)} />
+        )}
       </header>
       <div className="direct-channels">
         {directChannels.map((channel, i) => {

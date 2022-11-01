@@ -4,7 +4,7 @@ import { addDirectChannel } from "../../../store/directChannels";
 import { loadFriendThunk } from "../../../store/friend";
 import "./CreateDirectMessaging.css";
 
-const CreateDirectMessaging = () => {
+const CreateDirectMessaging = ({ onClose }) => {
   const dispatch = useDispatch();
   const [name, setName] = useState("");
   const friend = useSelector((state) => state.friend);
@@ -21,6 +21,7 @@ const CreateDirectMessaging = () => {
   const handleSubmit = () => {
     const payload = { user_id_two: Object.values(friend)[0].id };
     dispatch(addDirectChannel(payload));
+    onClose();
   };
 
   return (
@@ -45,7 +46,17 @@ const CreateDirectMessaging = () => {
             <div>No friends found.</div>
           </div>
         )}
-
+        {Object.values(friend).length > 0 && (
+          <div className="create-direct-messaging-friends">
+            <div className="friend-info-logo">
+              <i className="fa-brands fa-discord"></i>
+            </div>
+            <div className="friend-info">
+              <div>{Object.values(friend)[0].username}</div>
+              <div>#{Object.values(friend)[0].id}</div>
+            </div>
+          </div>
+        )}
         <button
           className="create-direct-messaging-form-submit"
           onClick={handleSubmit}
