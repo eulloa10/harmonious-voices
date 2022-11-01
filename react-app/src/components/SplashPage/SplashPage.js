@@ -34,14 +34,14 @@ const SplashPage = () => {
         </div>
       </div>
       <Switch>
-        <Route path="/" exact={true}>
-          <NavBar />
-        </Route>
         <Route path="/login">
           <LoginForm />
         </Route>
         <Route path="/signup">
           <SignUpForm />
+        </Route>
+        <Route path="/">
+          <NavBar />
         </Route>
       </Switch>
     </div>

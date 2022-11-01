@@ -34,6 +34,29 @@
   width: 100%;
 }
 
+.create-direct-messaging-friends {
+  align-items: center;
+  display: flex;
+  gap: 1rem;
+}
+
+.friend-info-logo {
+  align-items: center;
+  display: flex;
+  font-size: 1.6rem;
+  background-color: #7289da;
+  height: 3.4rem;
+  justify-content: center;
+  width: 3.4rem;
+  padding: 0.4rem;
+  border-radius: 100%;
+}
+
+.friend-info {
+  display: flex;
+  font-size: 1.2rem;
+}
+
 .create-direct-messaging-form-submit {
   background-color: #7289da;
   color: white;
@@ -41,10 +64,4 @@
   border-radius: 0.5rem;
   padding: 1rem;
   width: 100%;
-}
-
-.error {
-  color: #dc4c4c;
-  list-style: none;
-  padding: 0.8rem 0 0 2rem;
 }

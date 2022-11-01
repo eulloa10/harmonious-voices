@@ -36,11 +36,11 @@ const ListOwnedServers = () => {
   };
 
   return (
-    <main>
-      <nav>
+    <main className="owned-servers-container">
+      <nav className="servers-nav-bar">
         <div>
           <NavLink
-            to="/directMessages"
+            to="/direct-messages"
             className="server-icon-div dm server-icon"
           >
             DM
@@ -65,15 +65,14 @@ const ListOwnedServers = () => {
           <img src={Logout} />
         </div>
       </nav>
-      {showForm ? (
-        <CreateSeverForm hideForm={() => setShowForm(false)} />
-      ) : (
-        <Route path="/servers/:severId">
-          <div className="server-detail">
-            {/* <Channels/> */}
-          </div>
-        </Route>
-      )}
+      {
+        showForm && <CreateSeverForm hideForm={() => setShowForm(false)} />
+        // ) : (
+        // <Route path="/servers/:severId">
+        //   <div className="server-detail">{/* <Channels/> */}</div>
+        // </Route>
+        // )}
+      }
     </main>
   );
 };

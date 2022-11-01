@@ -27,9 +27,9 @@ def create_dm_channel():
   form = DirectMessageChannelForm()
   form['csrf_token'].data = request.cookies['csrf_token']
   channel_data = request.get_json()
+  print('hi')
   if form.validate_on_submit():
     channel = Channel(
-      name=channel_data['name'],
       type='direct',
       user_id_one=current_user.id,
       user_id_two=channel_data['user_id_two']

@@ -6,7 +6,6 @@ import "./Channels.css";
 import { getServerById } from "../../store/servers";
 import CreateChannelModal from "./CreateChannelModal";
 import EditChannelModal from "./EditChannelModal";
-import MessageList from "../Messages/MessageList/MessageList";
 
 const Channels = () => {
   const dispatch = useDispatch();
@@ -25,6 +24,8 @@ const Channels = () => {
     if (server) {
       if (server.ownerId === user.id) {
         setIsOwnedByUser(true);
+      } else {
+        setIsOwnedByUser(false);
       }
     }
   }, [dispatch, server]);
@@ -56,7 +57,6 @@ const Channels = () => {
           );
         })}
       </div>
-
     </div>
   );
 };

@@ -16,7 +16,18 @@ const DirectMessaging = () => {
 
   useEffect(() => {
     dispatch(getDirectChannels());
-  }, [dispatch]);
+    if (!showCreateForm) return;
+
+    const closeCreateForm = (e) => {
+      setShowCreateForm(false);
+    };
+
+    document.addEventListener("click", closeCreateForm);
+
+    return () => {
+      document.removeEventListener("click", closeCreateForm);
+    };
+  }, [dispatch, showCreateForm]);
 
   const handleShowCreateForm = () => {
     setShowCreateForm(true);
@@ -31,8 +42,10 @@ const DirectMessaging = () => {
           onClick={handleShowCreateForm}
         >
           <i className="fa-solid fa-plus"></i>
-          {showCreateForm && <CreateDirectMessaging />}
         </button>
+        {showCreateForm && (
+          <CreateDirectMessaging onClose={() => setShowCreateForm(false)} />
+        )}
       </header>
       <div className="direct-channels">
         {directChannels.map((channel, i) => {
@@ -48,9 +61,6 @@ const DirectMessaging = () => {
                   {channel.userTwo.username}
                 </div>
               </NavLink>
-              {/* {isOwnedByUser && (
-                <EditChannelModal channel={channel} serverId={serverId} />
-              )} */}
             </div>
           );
         })}
