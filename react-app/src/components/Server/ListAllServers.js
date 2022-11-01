@@ -19,6 +19,10 @@ const ListAllServers = () => {
     return serversArr;
   });
 
+  const rightClick = (e) => {
+    console.log('Did it work');
+  }
+
   const [showForm, setShowForm] = useState(false);
 
   useEffect(() => {
