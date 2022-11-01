@@ -4,17 +4,17 @@ from app.models import db, User, Server
 # Adds a demo user, you can add other users here if you want
 def seed_users():
     demo = User(
-        username='Demo', email='demo@aa.io', user_profile_img='user-prof.jpg', password='password')
+        username='Demo', email='demo@aa.io', user_profile_img='https://static01.nyt.com/images/2021/04/30/multimedia/30xp-meme/29xp-meme-articleLarge-v3.jpg?quality=75&auto=webp&disable=upscale', password='password')
     marnie = User(
-        username='marnie', email='marnie@aa.io', user_profile_img='user-prof.jpg', password='password')
+        username='marnie', email='marnie@aa.io', user_profile_img='https://i.kym-cdn.com/entries/icons/facebook/000/018/012/this_is_fine.jpg', password='password')
     bobbie = User(
-        username='bobbie', email='bobbie@aa.io', user_profile_img='user-prof.jpg', password='password')
+        username='bobbie', email='bobbie@aa.io', user_profile_img='https://i.insider.com/55ba87b8dd0895c81c8b4581?width=1000&format=jpeg&auto=webp', password='password')
     bilbo = User(
-        username='bilbo', email='bilbo@aa.io', user_profile_img='user-prof.jpg', password='password')
+        username='bilbo', email='bilbo@aa.io', user_profile_img='https://comicvine.gamespot.com/a/uploads/scale_medium/11/114183/6626228-the-hobbit-poster-bilbo-baggins.jpg', password='password')
     frodo = User(
-        username='frodo', email='frodo@aa.io', user_profile_img='user-prof.jpg', password='password')
+        username='frodo', email='frodo@aa.io', user_profile_img='https://www.looper.com/img/gallery/frodo-baggins-12-best-moments-in-the-lord-of-the-rings-franchise-ranked/l-intro-1663422318.jpg', password='password')
     gandalf = User(
-        username='gandalf', email='gandalf@aa.io', user_profile_img='user-prof.jpg', password='password')
+        username='gandalf', email='gandalf@aa.io', user_profile_img='https://static.wikia.nocookie.net/lotr/images/e/e7/Gandalf_the_Grey.jpg/revision/latest?cb=20121110131754', password='password')
 
     server_one = Server.query.get(1)
     server_two = Server.query.get(2)
