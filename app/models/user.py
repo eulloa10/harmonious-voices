@@ -3,7 +3,6 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
 from .user_server import user_servers
 
-
 class User(db.Model, UserMixin):
     __tablename__ = 'users'
 
@@ -13,10 +12,10 @@ class User(db.Model, UserMixin):
     user_profile_img = db.Column(db.String(), nullable=True)
     hashed_password = db.Column(db.String(255), nullable=False)
 
-    owned_servers = db.relationship('Server', backref='server_owner')
-
-    servers = db.relationship('Server', secondary=user_servers, back_populates="users")
+    owned_servers = db.relationship('Server', backref='server_owner', cascade="all, delete-orphan")
+    server_member = db.relationship('ServerMember', backref="user", cascade="all, delete-orphan")
     messages = db.relationship("Message", back_populates="owner", cascade="all, delete-orphan")
+
 
     @property
     def password(self):
@@ -35,5 +34,6 @@ class User(db.Model, UserMixin):
             'username': self.username,
             'email': self.email,
             'user_profile_img': self.user_profile_img,
-            'servers': [server.to_dict() for server in self.servers]
+            'servers': [server.to_dict() for server in self.server_member],
+            'owned_servers': [server.to_dict() for server in self.owned_servers]
         }

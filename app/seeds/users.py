@@ -1,5 +1,5 @@
 from app.models import db, User, Server
-
+import os
 
 # Adds a demo user, you can add other users here if you want
 def seed_users():
@@ -16,25 +16,26 @@ def seed_users():
     gandalf = User(
         username='gandalf', email='gandalf@aa.io', user_profile_img='https://static.wikia.nocookie.net/lotr/images/e/e7/Gandalf_the_Grey.jpg/revision/latest?cb=20121110131754', password='password')
 
-    server_one = Server.query.get(1)
-    server_two = Server.query.get(2)
-    server_three = Server.query.get(3)
-    server_four = Server.query.get(4)
-    server_five = Server.query.get(5)
+
+    # server_one = Server.query.get(1)
+    # server_two = Server.query.get(2)
+    # server_three = Server.query.get(3)
+    # server_four = Server.query.get(4)
+    # server_five = Server.query.get(5)
 
 
-    demo.servers.append(server_one)
-    demo.servers.append(server_two)
-    marnie.servers.append(server_two)
-    marnie.servers.append(server_three)
-    bobbie.servers.append(server_two)
-    bobbie.servers.append(server_three)
-    bilbo.servers.append(server_one)
-    bilbo.servers.append(server_four)
-    frodo.servers.append(server_two)
-    frodo.servers.append(server_four)
-    gandalf.servers.append(server_two)
-    gandalf.servers.append(server_four)
+    # demo.servers.append(server_one)
+    # demo.servers.append(server_two)
+    # marnie.servers.append(server_two)
+    # marnie.servers.append(server_three)
+    # bobbie.servers.append(server_two)
+    # bobbie.servers.append(server_three)
+    # bilbo.servers.append(server_one)
+    # bilbo.servers.append(server_four)
+    # frodo.servers.append(server_two)
+    # frodo.servers.append(server_four)
+    # gandalf.servers.append(server_two)
+    # gandalf.servers.append(server_four)
 
 
     db.session.add(demo)
@@ -53,6 +54,8 @@ def seed_users():
 # resets the auto incrementing primary key, CASCADE deletes any
 # dependent entities
 def undo_users():
-    db.session.execute('TRUNCATE users RESTART IDENTITY CASCADE;')
-    db.session.execute('DELETE FROM users;')
+    if os.environ.get("FLASK_ENV") == 'development':
+        db.session.execute('DELETE FROM users;')
+    else:
+        db.session.execute('TRUNCATE users RESTART IDENTITY CASCADE;')
     db.session.commit()
