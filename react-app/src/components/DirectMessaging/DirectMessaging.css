@@ -31,6 +31,21 @@
   height: 3.4rem;
 }
 
+.delete-direct-channel-button-container {
+  position: absolute;
+  right: 1rem;
+  top: 1rem;
+}
+
+.fa-solid.fa-xmark.delete-direct-channel-button {
+  font-size: 1.4rem;
+  color: #c3c4c5;
+}
+
+.fa-solid.fa-xmark.delete-direct-channel-button:hover {
+  color: #ebebec;
+}
+
 .direct-channel-link {
   color: #c3c4c5;
   display: flex;

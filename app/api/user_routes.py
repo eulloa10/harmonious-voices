@@ -1,6 +1,7 @@
 from flask import Blueprint
 from flask_login import login_required
 from app.models import User
+from flask_login import current_user
 
 user_routes = Blueprint('users', __name__)
 
@@ -22,6 +23,5 @@ def user(id):
 @user_routes.route("/find/<string:username>")
 @login_required
 def find_user(username):
-    users = User.query.filter(User.username == username)
-    print(users)
+    users = User.query.filter(User.username == username).filter(User.username != current_user.username)
     return {user.id: user.to_dict() for user in users}

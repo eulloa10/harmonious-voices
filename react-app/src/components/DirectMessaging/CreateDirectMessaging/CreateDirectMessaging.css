@@ -42,6 +42,7 @@
 
 .friend-info-logo {
   align-items: center;
+  color: white;
   display: flex;
   font-size: 1.6rem;
   background-color: #7289da;
@@ -58,10 +59,16 @@
 }
 
 .create-direct-messaging-form-submit {
-  background-color: #7289da;
+  background-color: #9cace5;
   color: white;
-  cursor: pointer;
+  cursor: not-allowed;
   border-radius: 0.5rem;
   padding: 1rem;
   width: 100%;
+}
+
+.create-direct-messaging-form-submit.typed {
+  background-color: #7289da;
+  color: white;
+  cursor: pointer;
 }
