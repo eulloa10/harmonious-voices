@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { addDirectChannel } from "../../../store/directChannels";
 import { loadFriendThunk } from "../../../store/friend";
 import "./CreateDirectMessaging.css";
 
@@ -17,24 +18,16 @@ const CreateDirectMessaging = () => {
     }
   }, [name]);
 
-  const handleSubmit = async () => {
-    // const payload = {
-    //   user_id_two:
-    // };
-    // dispatch(addChannel(serverId, payload)).then((res) => {
-    //   if (res.error) {
-    //     let errors = [res.error];
-    //     setErrors(errors);
-    //     return;
-    //   } else {
-    //     setErrors([]);
-    //     onClose();
-    //   }
-    // });
+  const handleSubmit = () => {
+    const payload = { user_id_two: Object.values(friend)[0].id };
+    dispatch(addDirectChannel(payload));
   };
 
   return (
-    <div className="create-direct-messaging-form-container">
+    <div
+      className="create-direct-messaging-form-container"
+      onClick={(e) => e.stopPropagation()}
+    >
       <header className="create-direct-messaging-form-header">
         Find a Friend
       </header>
@@ -47,7 +40,7 @@ const CreateDirectMessaging = () => {
             value={name}
           ></input>
         </div>
-        {!Object.values(friend).length && (
+        {!Object.values(friend).length && name.length !== 0 && (
           <div className="no-friends-found-container">
             <div>No friends found.</div>
           </div>
@@ -56,6 +49,7 @@ const CreateDirectMessaging = () => {
         <button
           className="create-direct-messaging-form-submit"
           onClick={handleSubmit}
+          disable={friend ? true : false}
         >
           Create Channel
         </button>

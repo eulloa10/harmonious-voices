@@ -4,7 +4,7 @@ class Channel(db.Model):
     __tablename__ = 'channels'
 
     id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String, nullable=False)
+    name = db.Column(db.String, nullable=True)
     server_id = db.Column(db.Integer, db.ForeignKey("servers.id"), nullable=True)
     type = db.Column(db.String())
     user_id_one = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=True)

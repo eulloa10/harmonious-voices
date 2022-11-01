@@ -23,4 +23,5 @@ def user(id):
 @login_required
 def find_user(username):
     users = User.query.filter(User.username == username)
+    print(users)
     return {user.id: user.to_dict() for user in users}

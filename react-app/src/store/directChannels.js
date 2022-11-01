@@ -15,6 +15,14 @@ export const getDirectChannels = () => async (dispatch) => {
   }
 };
 
+export const addDirectChannel = (payload) => async (dispatch) => {
+  const response = await fetch(`/api/me/channels`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(payload),
+  });
+};
+
 const initialState = {};
 
 const directChannelReducer = (state = initialState, action) => {
