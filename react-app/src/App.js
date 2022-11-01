@@ -16,13 +16,12 @@ import DirectMessaging from "./components/DirectMessaging";
 import ListAllServers from "./components/Server/ListAllServers";
 import AllServers from "./components/Server/AllServers";
 import Channels from "./components/Channels";
-
+import MainPage from "./components/MainPage";
 
 function App() {
   const [loaded, setLoaded] = useState(false);
   const dispatch = useDispatch();
-  const history = useHistory();
-  const cur = useSelector(state => state.session.user)
+  const cur = useSelector((state) => state.session.user);
 
   useEffect(() => {
     (async () => {
@@ -39,36 +38,13 @@ function App() {
     <>
       <BrowserRouter>
         {loaded && cur ? (
-          <Switch>
-            <Route path='/servers/:serverId/:channelId'>
-              <ListOwnedServers/>
-              <Channels/>
-              <MessageList/>
-            </Route>
-            <Route path='/servers/:serverId'>
-              <ListOwnedServers/>
-              <Channels/>
-            </Route>
-            <Route path='/servers'>
-            <ListOwnedServers/>
-              <AllServers/>
-            </Route>
-            <Route>
-              <ListOwnedServers/>
-            </Route>
-          </Switch>
-        ):(
-          <>
-            <Route exact path='/'>
-              <SplashPage></SplashPage>
-            </Route>
-            <Route path="/login">
-              <LoginForm />
-            </Route>
-            <Route path="/signup">
-              <SignUpForm/>
-            </Route>
-          </>
+          <Route path="/">
+            <MainPage />
+          </Route>
+        ) : (
+          <Route path="/">
+            <SplashPage />
+          </Route>
         )}
       </BrowserRouter>
     </>

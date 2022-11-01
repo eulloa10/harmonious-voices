@@ -1,13 +1,34 @@
 import { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { addDirectChannel } from "../../../store/directChannels";
+import { loadFriendThunk } from "../../../store/friend";
 import "./CreateDirectMessaging.css";
 
-const CreateDirectMessaging = () => {
+const CreateDirectMessaging = ({ onClose }) => {
   const dispatch = useDispatch();
   const [name, setName] = useState("");
+  const friend = useSelector((state) => state.friend);
+
+  useEffect(() => {
+    dispatch(loadFriendThunk(name));
+    if (Object.values(friend).length) {
+      const submitButton = document.querySelector(
+        ".create-direct-messaging-form-submit"
+      );
+    }
+  }, [name]);
+
+  const handleSubmit = () => {
+    const payload = { user_id_two: Object.values(friend)[0].id };
+    dispatch(addDirectChannel(payload));
+    onClose();
+  };
 
   return (
-    <div className="create-direct-messaging-form-container">
+    <div
+      className="create-direct-messaging-form-container"
+      onClick={(e) => e.stopPropagation()}
+    >
       <header className="create-direct-messaging-form-header">
         Find a Friend
       </header>
@@ -20,7 +41,27 @@ const CreateDirectMessaging = () => {
             value={name}
           ></input>
         </div>
-        <button className="create-direct-messaging-form-submit">
+        {!Object.values(friend).length && name.length !== 0 && (
+          <div className="no-friends-found-container">
+            <div>No friends found.</div>
+          </div>
+        )}
+        {Object.values(friend).length > 0 && (
+          <div className="create-direct-messaging-friends">
+            <div className="friend-info-logo">
+              <i className="fa-brands fa-discord"></i>
+            </div>
+            <div className="friend-info">
+              <div>{Object.values(friend)[0].username}</div>
+              <div>#{Object.values(friend)[0].id}</div>
+            </div>
+          </div>
+        )}
+        <button
+          className="create-direct-messaging-form-submit"
+          onClick={handleSubmit}
+          disable={friend ? true : false}
+        >
           Create Channel
         </button>
       </div>
