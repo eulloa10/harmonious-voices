@@ -1,5 +1,6 @@
 const LOAD_DIRECT_CHANNELS = "directChannels/LOAD";
 const ADD = "directChannels/ADD";
+const DELETE = "directChannels/DELETE";
 
 const loadDirectChannels = (channels) => ({
   type: LOAD_DIRECT_CHANNELS,
@@ -9,6 +10,11 @@ const loadDirectChannels = (channels) => ({
 const add = (channel) => ({
   type: ADD,
   channel,
+});
+
+const deleteChannel = (channelId) => ({
+  type: DELETE,
+  channelId,
 });
 
 export const getDirectChannels = () => async (dispatch) => {
@@ -34,6 +40,16 @@ export const addDirectChannel = (payload) => async (dispatch) => {
   }
 };
 
+export const deleteDirectChannel = (channelId) => async (dispatch) => {
+  const response = await fetch(`/api/me/channels/${channelId}`, {
+    method: "DELETE",
+  });
+
+  if (response.ok) {
+    dispatch(deleteChannel(channelId));
+  }
+};
+
 const initialState = {};
 
 const directChannelReducer = (state = initialState, action) => {
@@ -47,6 +63,9 @@ const directChannelReducer = (state = initialState, action) => {
       return directChannels;
     case ADD:
       newState[action.channel.id] = action.channel;
+      return newState;
+    case DELETE:
+      delete newState[action.channelId];
       return newState;
     default:
       return newState;

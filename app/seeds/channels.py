@@ -31,9 +31,14 @@ def seed_channels():
 # resets the auto incrementing primary key, CASCADE deletes any
 # dependent entities
 def undo_channels():
+<<<<<<< HEAD
+    db.session.execute('TRUNCATE messages RESTART IDENTITY CASCADE;')
+    db.session.execute('DELETE FROM channels;')
+=======
     if os.environ.get("FLASK_ENV") == 'development':
         db.session.execute('DELETE FROM channels;')
     else:
         db.session.execute('TRUNCATE channels RESTART IDENTITY CASCADE;')
 
+>>>>>>> main
     db.session.commit()

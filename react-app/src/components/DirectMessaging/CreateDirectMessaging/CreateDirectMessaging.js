@@ -1,13 +1,16 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useHistory } from "react-router-dom";
 import { addDirectChannel } from "../../../store/directChannels";
 import { loadFriendThunk } from "../../../store/friend";
 import "./CreateDirectMessaging.css";
 
 const CreateDirectMessaging = ({ onClose }) => {
+  const history = useHistory();
   const dispatch = useDispatch();
   const [name, setName] = useState("");
   const friend = useSelector((state) => state.friend);
+  const directChannels = useSelector((state) => state.directChannels);
 
   useEffect(() => {
     dispatch(loadFriendThunk(name));
@@ -18,10 +21,25 @@ const CreateDirectMessaging = ({ onClose }) => {
     }
   }, [name]);
 
+  useEffect(() => {
+    const submitButton = document.querySelector(
+      ".create-direct-messaging-form-submit"
+    );
+    if (Object.values(friend).length) {
+      submitButton.classList.add("typed");
+      submitButton.removeAttribute("disabled");
+    } else {
+      submitButton.classList.remove("typed");
+      submitButton.setAttribute("disabled", "");
+    }
+  }, [friend]);
+
   const handleSubmit = () => {
     const payload = { user_id_two: Object.values(friend)[0].id };
-    dispatch(addDirectChannel(payload));
+    const createdDirectChannel = dispatch(addDirectChannel(payload));
     onClose();
+    if (createdDirectChannel.id)
+      history.push(`/direct-messages/${createdDirectChannel.id}`);
   };
 
   return (
