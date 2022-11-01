@@ -26,7 +26,9 @@ const MessageList = () => {
     return null;
   }
 
+  console.log("SERVERID", serverId)
   console.log("CHANNELID", channelId)
+
 
 
   const handleCancelClick = (e) => {
@@ -34,6 +36,8 @@ const MessageList = () => {
   };
 
   return (
+    <>
+    { channelId &&
     <div className="channel-messages-container">
       <section className="all-messages">
         <ul className="allMessages">
@@ -51,6 +55,8 @@ const MessageList = () => {
         <MessageInput />
       </section>
     </div>
+    }
+    </>
   );
 }
 
