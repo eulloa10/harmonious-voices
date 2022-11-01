@@ -42,7 +42,8 @@ const Channels = () => {
               <NavLink
                 className="channel-link"
                 activeClassName="active"
-                to={`${match.url}/${channel.id}`}
+                // to={`${match.url}/${channel.id}`}
+                to={`/servers/${serverId}/${channel.id}`}
               >
                 <div className="channel-name">
                   <i className="fa-solid fa-hashtag"></i>
