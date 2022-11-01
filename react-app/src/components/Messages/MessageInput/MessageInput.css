@@ -1,0 +1,19 @@
+.message-content-input {
+  width: 78vw;
+  height: 5vh;
+  background-color:#55585b;
+  border-radius: 5px;
+  margin: 15px;
+  padding: 15px;
+  color: #d9dadb;
+}
+
+.create-message-btn {
+  visibility: hidden;
+}
+
+
+.message-content-input:hover {
+  border: none;
+  border-color: none;
+}

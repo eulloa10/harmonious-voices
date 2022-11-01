@@ -39,6 +39,6 @@ def seed_user_servers():
 # resets the auto incrementing primary key, CASCADE deletes any
 # dependent entities
 def undo_user_servers():
-    # db.session.execute('TRUNCATE servers RESTART IDENTITY CASCADE;')
+    # db.session.execute('TRUNCATE user_servers RESTART IDENTITY CASCADE;')
     db.session.execute('DELETE FROM servers;')
     db.session.commit()

@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import {  useParams, useHistory } from "react-router-dom";
+import {  useParams, useHistory, useSearchParams } from "react-router-dom";
 import { useSelector, useDispatch } from 'react-redux';
 import { createNewMessage  } from '../../../store/messages';
 import './MessageInput.css'
@@ -7,19 +7,12 @@ import './MessageInput.css'
 const MessageInput = () => {
   const dispatch = useDispatch();
   const history = useHistory();
+  const {channelId, serverId} = useParams();
   const current_user = useSelector(state => state.session)['user']
-  const { channelId } = useParams();
+  // const { channelId } = useParams();
   const [messageContent, setMessageContent] = useState('');
   // const [errors, setErrors] = useState({});
-  // console.log(current_user.id)
 
-  // useEffect(() => {
-  //   dispatch(createNewMessage(messageContent, channelId));
-  // }, [dispatch])
-
-  // if (!messages) {
-  //   return null;
-  // }
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -36,7 +29,8 @@ const MessageInput = () => {
     });
 
     if (res) {
-      history.push(`/channels/${channelId}/messages`)
+      setMessageContent('')
+      history.push(`/servers/${serverId}/${channelId}`)
     }
   }
 
@@ -47,7 +41,6 @@ const MessageInput = () => {
   return (
     <div className="message-input-container">
       <form className="create-message-form" onSubmit={handleSubmit}>
-        <div className="create-message-form-container">
         {/* <ul className="create-spot-errors">
           {
           Object.keys(errors).map(error => {
@@ -58,20 +51,16 @@ const MessageInput = () => {
           )
         }
         </ul> */}
-        <div className="create-message-info-btns">
           <input
-            className="message-content-btn"
+            className="message-content-input"
             type="text"
             value={messageContent}
             onChange={(e) => setMessageContent(e.target.value)}
             placeholder="Message"
             required
           />
-
-
-        </div>
         <button className="create-message-btn" type="submit">Send</button>
-        </div>
+
       </form>
     </div>
   );
