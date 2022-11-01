@@ -11,7 +11,6 @@ import MessageList from "./components/Messages/MessageList/MessageList";
 import { authenticate } from "./store/session";
 import ListOwnedServers from "./components/Server/ListOwnedServers";
 import SplashPage from "./components/SplashPage";
-import MeTest from "./components/MeTest/MeTest.js";
 import DirectMessaging from "./components/DirectMessaging";
 import ListAllServers from "./components/Server/ListAllServers";
 import AllServers from "./components/Server/AllServers";
