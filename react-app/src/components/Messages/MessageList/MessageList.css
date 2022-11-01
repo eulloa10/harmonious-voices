@@ -1,16 +1,25 @@
 .all-messages {
   background-color: #424549;
-  height: 80vh;
-  width: 65vw;
+  height: 90vh;
+  width: 80vw;
+  overflow-y: auto;
 }
 
 .messaging-functionality {
   background-color: #424549;
-  height: 20vh;
-  width: 65vw;
+  height: 10vh;
+  width: 80vw;
+  display: space-around;
+  justify-content: center;
+  align-items: center;
 }
 
-.channel-messages-container {
-  margin: 0;
-  padding: 0;
+.allMessages {
+  display: flex;
+  flex-direction: column;
+  row-gap: 20px;
+}
+
+.single-user-message {
+  list-style: none;
 }

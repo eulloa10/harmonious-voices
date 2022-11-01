@@ -38,6 +38,7 @@ def create_dm_channel():
     db.session.commit()
     return channel.to_dict()
 
+# Test
 
 
 @session_routes.route('/channels/<int:channelId>', methods=['PUT'])

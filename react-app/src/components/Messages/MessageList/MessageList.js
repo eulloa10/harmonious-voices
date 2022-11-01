@@ -9,15 +9,14 @@ import './MessageList.css'
 
 const MessageList = () => {
   const dispatch = useDispatch();
-  const { channelId } = useParams();
+  const { serverId, channelId } = useParams();
+  // console.log("SERVERID", serverId, "CHANNELID", channelId)
   const messages = useSelector(state => state.messages)
   const allMessagesList = [];
-  // console.log("MESSAGES", messages)
-  // console.log("CHANNELID", channelId)
 
   useEffect(() => {
     dispatch(fetchMessages(channelId));
-  }, [dispatch])
+  }, [dispatch, channelId])
 
   for (let key in messages) {
     allMessagesList.push(messages[key]);

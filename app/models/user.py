@@ -34,5 +34,6 @@ class User(db.Model, UserMixin):
             'id': self.id,
             'username': self.username,
             'email': self.email,
+            'user_profile_img': self.user_profile_img,
             'servers': [server.to_dict() for server in self.servers]
         }
