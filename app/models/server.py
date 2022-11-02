@@ -36,5 +36,6 @@ class ServerMember(db.Model):
         return {
             'id': self.user.id,
             'name': self.user.username,
-            'user_profile_img': self.user.user_profile_img
+            'user_profile_img': self.user.user_profile_img,
+            'server_id': self.server_id
         }
