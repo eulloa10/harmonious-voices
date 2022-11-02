@@ -10,15 +10,9 @@ const CreateDirectMessaging = ({ onClose }) => {
   const dispatch = useDispatch();
   const [name, setName] = useState("");
   const friend = useSelector((state) => state.friend);
-  const directChannels = useSelector((state) => state.directChannels);
 
   useEffect(() => {
     dispatch(loadFriendThunk(name));
-    if (Object.values(friend).length) {
-      const submitButton = document.querySelector(
-        ".create-direct-messaging-form-submit"
-      );
-    }
   }, [name]);
 
   useEffect(() => {
@@ -34,12 +28,14 @@ const CreateDirectMessaging = ({ onClose }) => {
     }
   }, [friend]);
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     const payload = { user_id_two: Object.values(friend)[0].id };
-    const createdDirectChannel = dispatch(addDirectChannel(payload));
+    const createdDirectChannel = await dispatch(addDirectChannel(payload)).then(
+      (res) => {
+        history.push(`/direct-messages/${res.id}`);
+      }
+    );
     onClose();
-    if (createdDirectChannel.id)
-      history.push(`/direct-messages/${createdDirectChannel.id}`);
   };
 
   return (

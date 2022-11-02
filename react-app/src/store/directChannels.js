@@ -35,8 +35,9 @@ export const addDirectChannel = (payload) => async (dispatch) => {
   });
 
   if (response.ok) {
-    const channel = response.json();
-    dispatch(add(channel));
+    const channel = await response.json();
+    await dispatch(add(channel));
+    return channel;
   }
 };
 
