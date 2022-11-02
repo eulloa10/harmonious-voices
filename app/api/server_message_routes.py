@@ -40,6 +40,7 @@ def edit_channel_message(messageId):
   message = Message.query.get(messageId)
   form = ChannelMessageForm()
   form['csrf_token'].data = request.cookies['csrf_token']
+  print("------------------", message)
   if current_user.id == message.user_id:
     message.content = form.data["content"]
     db.session.commit()

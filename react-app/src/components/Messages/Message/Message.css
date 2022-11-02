@@ -44,10 +44,16 @@
   background: #3b3e42;
 }
 
-.message-options {
+/* .message-options {
   visibility: hidden;
 }
 
 .message-options:hover {
   visibility: visible;
+} */
+
+.message-edit-input {
+  background: #424549;
+  border-radius: 5px;
+  color: white;
 }
