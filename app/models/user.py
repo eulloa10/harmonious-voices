@@ -21,6 +21,14 @@ class User(db.Model, UserMixin):
     def password(self):
         return self.hashed_password
 
+    @property
+    def joined_servers_ids(self):
+        joined_servers = []
+        for i in range(len(self.server_member)):
+            membership = self.server_member[i].to_dict()
+            joined_servers.append(membership["server_id"])
+        return joined_servers
+
     @password.setter
     def password(self, password):
         self.hashed_password = generate_password_hash(password)

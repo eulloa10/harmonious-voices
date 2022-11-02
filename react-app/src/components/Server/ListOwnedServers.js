@@ -29,7 +29,7 @@ const ListOwnedServers = () => {
   const [showForm, setShowForm] = useState(false);
 
   useEffect(() => {
-    // dispatch(getServers());
+    dispatch(getServers());
     dispatch(getBelongsServers());
   }, [dispatch]);
 
