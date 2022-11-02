@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link, useLocation, useHistory } from "react-router-dom";
+import { Link, useLocation, useHistory, useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { deleteSelectedMessage, updateMessage } from "../../../store/messages";
 import { fetchUsers } from "../../../store/user";
@@ -7,7 +7,8 @@ import "./Message.css";
 
 const Message = ({ message }) => {
   const dispatch = useDispatch();
-  // const location = useLocation();
+  const history = useHistory();
+  const {channelId, serverId} = useParams();
   const users = useSelector((state) => state.users);
   const message_user_id = message.user_id;
   const [messageContent, setMessageContent] = useState(`${message.content}`);
@@ -24,11 +25,18 @@ const Message = ({ message }) => {
     setMessageContent(e.target.value)
   }
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setEditMode(!editMode);
-    setMessageContent(e.target.value)
-    dispatch(updateMessage(message.id, messageContent))
+    let res = await dispatch(updateMessage(message)).catch(async (res) => {
+      const data = await res.json();
+    });
+
+    if (res) {
+      // setMessageContent('')
+      history.push(`/servers/${serverId}/${channelId}`)
+    }
+
   }
 
   const handleClick = (e) => {
@@ -54,7 +62,7 @@ const Message = ({ message }) => {
                 <span className="message-date">{message.date_created}</span>
               </h3>
               <div className="message-content">
-                {message.content}
+                {messageContent}
               </div>
             </div>
             <div className="message-options">
@@ -89,10 +97,11 @@ const Message = ({ message }) => {
                   className="message-edit-input"
                   type="text"
                   name="message"
-                  defaultValue={message.content}
-                  onChange={handleEdit}
+                  defaultValue={messageContent}
+                  onChange={(e) => setMessageContent(e.target.value)}
+                  required
                 />
-                {/* <button>Submit</button> */}
+                {/* <button type="submit">Submit</button> */}
               </form>
             </div>
           </div>
