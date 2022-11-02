@@ -1,3 +1,4 @@
+
 .owned-servers-container {
   display: flex;
   height: 100%;
@@ -69,6 +70,17 @@
   font-size: 15px;
 }
 
+.server-card-container{
+  display: flex;
+  flex-wrap: wrap;
+  /* height: 100px;
+  width: 5px; */
+}
+
+.server-card-container > a{
+  height: 50px;
+}
+
 /* ----------- FORM STYLING ---------- */
 .create-song-form {
   display: flex;
@@ -116,4 +128,25 @@ option:hover {
 }
 .form-button:hover {
   cursor: pointer;
+}
+
+
+/* --------------------------------Context Server ---------------------------------------*/
+.context-menu{
+  font-size: 14px;
+  background-color: #fff;
+  border-radius: 2px;
+  padding: 5px 0 5px 0;
+  width: 150px;
+  height: auto;
+  margin: 0;
+  position: absolute;
+  box-shadow: 0 0 20px 0 #ccc;
+  opacity: 1;
+  transition: opacity 0.5s linear;
+  cursor: pointer;
+}
+
+.context-menu-list{
+  list-style: none;
 }
