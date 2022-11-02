@@ -1,6 +1,6 @@
 .splash-page {
   display: flex;
-  height: 100vh;
+  height: 100%;
 }
 
 .splash-page-header-sidebar-container {

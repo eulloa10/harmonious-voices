@@ -9,6 +9,8 @@ class Channel(db.Model):
     type = db.Column(db.String())
     user_id_one = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=True)
     user_id_two = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=True)
+    user_one_active = db.Column(db.Boolean, default=True, nullable=True)
+    user_two_active = db.Column(db.Boolean, default=True, nullable=True)
 
     messages = db.relationship("Message", back_populates="channel", cascade="all, delete-orphan")
     server = db.relationship("Server", back_populates="channels")
@@ -25,6 +27,8 @@ class Channel(db.Model):
 
         if self.user_id_one and self.user_id_two:
             response["userOne"] = self.user_one.to_dict()
+            response["userOneActive"] = self.user_one_active
             response["userTwo"] = self.user_two.to_dict()
+            response["userTwoActive"] = self.user_two_active
 
         return response
