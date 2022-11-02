@@ -6,6 +6,7 @@ import "./SignUpForm.css";
 
 const SignUpForm = () => {
   const [errors, setErrors] = useState([]);
+  const [image, setImage] = useState("");
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -16,7 +17,14 @@ const SignUpForm = () => {
   const onSignUp = async (e) => {
     e.preventDefault();
     if (password === repeatPassword) {
-      const data = await dispatch(signUp(username, email, password));
+      const user = new FormData();
+      user.append("username", username);
+      user.append("email", email);
+      user.append("password", password);
+
+      if (image) user.append("user_profile_img", image);
+
+      const data = await dispatch(signUp(user));
       if (data) {
         setErrors(data);
       }
@@ -39,6 +47,11 @@ const SignUpForm = () => {
     setRepeatPassword(e.target.value);
   };
 
+  const updateFile = (e) => {
+    const file = e.target.files[0];
+    if (file) setImage(file);
+  };
+
   if (user) {
     return <Redirect to="/" />;
   }
@@ -51,6 +64,14 @@ const SignUpForm = () => {
           {errors.map((error, ind) => (
             <div key={ind}>{error}</div>
           ))}
+        </div>
+        <div className="signup-form-input-container">
+          <input
+            type="file"
+            name="user_profile_img"
+            className="create-user-form-input"
+            onChange={updateFile}
+          />
         </div>
         <div className="signup-form-input-container">
           <label className="signup-form-input-label">EMAIL</label>

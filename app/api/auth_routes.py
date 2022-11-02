@@ -3,6 +3,12 @@ from app.models import User, db
 from app.forms import LoginForm
 from app.forms import SignUpForm
 from flask_login import current_user, login_user, logout_user, login_required
+import boto3
+from ..config import Config
+
+s3 = boto3.client("s3",
+                aws_access_key_id=Config.S3_KEY,
+                aws_secret_access_key=Config.S3_SECRET)
 
 auth_routes = Blueprint('auth', __name__)
 
