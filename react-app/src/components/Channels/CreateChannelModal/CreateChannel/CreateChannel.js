@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-import { useRouteMatch } from "react-router-dom";
+import { useHistory, useRouteMatch } from "react-router-dom";
 import { addChannel } from "../../../../store/channels";
 import "./CreateChannel.css";
 
 const CreateChannel = ({ serverId, onClose }) => {
   const dispatch = useDispatch();
+  const history = useHistory();
   const [name, setName] = useState("");
   const [errors, setErrors] = useState([]);
 
@@ -27,7 +28,7 @@ const CreateChannel = ({ serverId, onClose }) => {
       server_id: serverId,
       type: "server",
     };
-    dispatch(addChannel(serverId, payload)).then((res) => {
+    await dispatch(addChannel(serverId, payload)).then((res) => {
       if (res.error) {
         let errors = [res.error];
         setErrors(errors);
@@ -35,6 +36,7 @@ const CreateChannel = ({ serverId, onClose }) => {
       } else {
         setErrors([]);
         onClose();
+        history.push(`/servers/${serverId}/${res.id}`);
       }
     });
   };

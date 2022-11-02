@@ -11,10 +11,15 @@ import Explore from "../../svgFiles/explore.svg";
 import Logout from "../../svgFiles/logout.svg";
 import { logout } from "../../store/session";
 import Channels from "../Channels/Channels";
+import ContextMenu from "./ContextMenu";
 
 const ListOwnedServers = () => {
   const dispatch = useDispatch();
   const history = useHistory();
+  const [showContext, setShowContext] = useState(false);
+  const [points, setPoints] = useState({ x: 0, y: 0 });
+
+
 
   let myServers = useSelector((state) => {
     console.log(state);
@@ -24,11 +29,15 @@ const ListOwnedServers = () => {
   const [showForm, setShowForm] = useState(false);
 
   useEffect(() => {
-    // dispatch(getServers());
+    dispatch(getServers());
     dispatch(getBelongsServers());
   }, [dispatch]);
 
-  useEffect(() => {}, []);
+  useEffect(() => {
+    const handleClick = () => setShowContext(false);
+    window.addEventListener('click', handleClick);
+    return () => window.removeEventListener('click', handleClick);
+  }, []);
 
   const handleLogOut = () => {
     history.push("/");
@@ -49,7 +58,11 @@ const ListOwnedServers = () => {
         {myServers.map((server) => {
           return (
             <NavLink key={server.id} to={`/servers/${server.id}`}>
-              <div className="servers-container">
+              <div className="servers-container"  onContextMenu={(e) => {
+                e.preventDefault();
+                setShowContext(true);
+                setPoints({x:e.pageX, y:e.pageY})
+              }}>
                 <ServerBubble server={server}></ServerBubble>
               </div>
             </NavLink>
@@ -73,6 +86,11 @@ const ListOwnedServers = () => {
         // </Route>
         // )}
       }
+      {showContext && (
+        <ContextMenu className="context-menu" top={points.y} left={points.x}>
+
+        </ContextMenu>
+      )}
     </main>
   );
 };

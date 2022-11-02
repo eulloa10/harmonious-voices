@@ -42,7 +42,7 @@ export const addChannel = (serverId, payload) => async (dispatch) => {
 
   const data = await response.json();
   if (!data.error) {
-    dispatch(add(data));
+    await dispatch(add(data));
     return data;
   }
   return data;

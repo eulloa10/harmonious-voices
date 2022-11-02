@@ -11,8 +11,12 @@ server_routes.register_blueprint(channel_server_routes, url_prefix="/")
 def get_my_servers():
     user_id = current_user.id
     user = User.query.get(user_id)
-    my_servers = user.servers
-    return {'MyServers': [server.to_dict() for server in my_servers]}
+    user_servers_ids = user.joined_servers_ids
+    return_arr = []
+    for i in range(len(user_servers_ids)):
+        appending = Server.query.get(i + 1)
+        return_arr.append(appending.to_dict())
+    return {'MyServers': return_arr}
 
 @server_routes.route('/', methods=['GET'])
 def get_all_servers():

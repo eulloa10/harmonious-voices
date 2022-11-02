@@ -1,14 +1,16 @@
 import { NavLink } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { useRouteMatch } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import "./DirectMessaging.css";
-import { getDirectChannels } from "../../store/directChannels";
+import {
+  deleteDirectChannel,
+  getDirectChannels,
+} from "../../store/directChannels";
 import CreateDirectMessaging from "./CreateDirectMessaging/CreateDirectMessaging";
 
 const DirectMessaging = () => {
   const dispatch = useDispatch();
-  const match = useRouteMatch();
+  const user = useSelector((state) => state.session.user);
   const [showCreateForm, setShowCreateForm] = useState(false);
   const directChannels = Object.values(
     useSelector((state) => state.directChannels)
@@ -16,6 +18,9 @@ const DirectMessaging = () => {
 
   useEffect(() => {
     dispatch(getDirectChannels());
+  }, [dispatch]);
+
+  useEffect(() => {
     if (!showCreateForm) return;
 
     const closeCreateForm = (e) => {
@@ -27,11 +32,46 @@ const DirectMessaging = () => {
     return () => {
       document.removeEventListener("click", closeCreateForm);
     };
-  }, [dispatch, showCreateForm]);
+  }, [showCreateForm]);
 
   const handleShowCreateForm = () => {
     setShowCreateForm(true);
   };
+
+  const onDelete = (channelId) => {
+    dispatch(deleteDirectChannel(channelId));
+  };
+
+  let directChannelLinks;
+
+  directChannelLinks = directChannels.map((channel, i) => {
+    return (
+      <div className="direct-channel-link-container" key={i}>
+        <NavLink
+          className="direct-channel-link"
+          activeClassName="active"
+          to={`/direct-messages/${channel.id}`}
+        >
+          <div className="direct-channel-name">
+            <i className="fa-solid fa-hashtag"></i>
+            <div>
+              {channel.userOne.username === user.username
+                ? channel.userTwo.username
+                : channel.userOne.username}
+            </div>
+          </div>
+        </NavLink>
+        <button
+          className="delete-direct-channel-button-container"
+          onClick={() => {
+            onDelete(channel.id);
+          }}
+        >
+          <i className="fa-solid fa-xmark delete-direct-channel-button"></i>
+        </button>
+      </div>
+    );
+  });
 
   return (
     <div className="direct-channels-container">
@@ -47,24 +87,7 @@ const DirectMessaging = () => {
           <CreateDirectMessaging onClose={() => setShowCreateForm(false)} />
         )}
       </header>
-      <div className="direct-channels">
-        {directChannels.map((channel, i) => {
-          return (
-            <div className="direct-channel-link-container" key={i}>
-              <NavLink
-                className="direct-channel-link"
-                activeClassName="active"
-                to={`${match.url}/${channel.id}`}
-              >
-                <div className="direct-channel-name">
-                  <i className="fa-solid fa-hashtag"></i>
-                  {channel.userTwo.username}
-                </div>
-              </NavLink>
-            </div>
-          );
-        })}
-      </div>
+      <div className="direct-channels">{directChannelLinks}</div>
     </div>
   );
 };
