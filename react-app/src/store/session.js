@@ -67,13 +67,10 @@ export const logout = () => async (dispatch) => {
   }
 };
 
-export const signUp = (userData) => async (dispatch) => {
+export const signUp = (formData) => async (dispatch) => {
   const response = await fetch("/api/auth/signup", {
     method: "POST",
-    headers: {
-      "Content-Type": "multipart/form-data",
-    },
-    body: userData,
+    body: formData,
   });
 
   if (response.ok) {

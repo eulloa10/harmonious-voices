@@ -6,7 +6,7 @@ import "./SignUpForm.css";
 
 const SignUpForm = () => {
   const [errors, setErrors] = useState([]);
-  const [profileImage, setProfileImage] = useState(null);
+  const [image, setImage] = useState(null);
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -23,8 +23,8 @@ const SignUpForm = () => {
       userData.append("email", email);
       userData.append("password", password);
 
-      if (profileImage) {
-        userData.append("file", profileImage);
+      if (image) {
+        userData.append("image", image);
       }
 
       const data = await dispatch(signUp(userData));
@@ -56,11 +56,18 @@ const SignUpForm = () => {
 
   const updateFile = (e) => {
     const file = e.target.files[0];
-    if (file) setProfileImage(file);
+    if (file) setImage(file);
   };
 
   return (
     <div className="signup-form-container">
+      {image && (
+        <img
+          className=""
+          src={URL.createObjectURL(image)}
+          alt="server pic"
+        ></img>
+      )}
       <form className="signup-form" onSubmit={onSignUp}>
         <div className="signup-form-header">Create an account</div>
         <div>
@@ -70,7 +77,7 @@ const SignUpForm = () => {
         </div>
         <div className="signup-form-input-container">
           <label className="signup-form-input-label">PROFILE IMAGE</label>
-          <input name="file" type="file" onChange={updateFile}></input>
+          <input type="file" onChange={updateFile} accept="image/*"></input>
         </div>
         <div className="signup-form-input-container">
           <label className="signup-form-input-label">EMAIL</label>
