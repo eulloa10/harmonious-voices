@@ -137,7 +137,6 @@ const serverReducer = (state = { ...initialState }, action) => {
 
     case JOINED:
       const joinedServers = {};
-      console.log('***************',action);
       action.joinedServers.MyServers.forEach((server) => {
         joinedServers[server.id] = server;
       });
