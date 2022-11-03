@@ -19,7 +19,13 @@ class Server(db.Model):
             'id': self.id,
             'name': self.name,
             'ownerId': self.owner_id,
-            'members': [user.to_dict() for user in self.members]
+            'members': [user.to_dict() for user in self.members],
+        }
+    def to_resource_dict(self):
+        return {
+            'id': self.id,
+            'name': self.name,
+            'ownerId': self.owner_id,
         }
 
 class ServerMember(db.Model):
@@ -37,5 +43,6 @@ class ServerMember(db.Model):
             'id': self.user.id,
             'name': self.user.username,
             'user_profile_img': self.user.user_profile_img,
-            'server_id': self.server_id
+            'server_id': self.server_id,
+            'server': self.server.to_resource_dict()
         }

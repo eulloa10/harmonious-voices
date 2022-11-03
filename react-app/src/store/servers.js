@@ -1,6 +1,6 @@
 const LOAD_ALL = "servers/LOAD";
 const OWNED = "servers/OWNED";
-const BELONGS = "servers/BELONGS";
+const JOINED = "servers/JOINED";
 const EDIT = "servers/EDIT";
 const ADD = "servers/ADD";
 const DELETE = "servers/DELETE";
@@ -15,9 +15,9 @@ const loadOwnedSevers = (ownedServers) => ({
   ownedServers,
 });
 
-const loadBelongsSevers = (belongsServers) => ({
-  type: BELONGS,
-  belongsServers,
+const loadJoinedSevers = (joinedServers) => ({
+  type: JOINED,
+  joinedServers,
 });
 
 const edit = (server) => ({
@@ -40,12 +40,19 @@ export const getServers = () => async (dispatch) => {
 
   if (response.ok) {
     const allServers = await response.json();
-    console.log(allServers);
     dispatch(loadAllServers(allServers));
   }
 };
-export const getBelongsServers = () => async (dispatch) => {
+export const getJoinedServers = () => async (dispatch) => {
   const promise = await fetch("/api/servers/me");
+  if (promise.ok) {
+    const promisedSevers = await promise.json();
+    console.log(promisedSevers);
+    dispatch(loadJoinedSevers(promisedSevers));
+  }
+};
+export const getOwnedServers = () => async (dispatch) => {
+  const promise = await fetch("/api/servers/owned");
   if (promise.ok) {
     const promisedSevers = await promise.json();
     console.log(promisedSevers);
@@ -61,8 +68,7 @@ export const getServerById = (id) => async (dispatch) => {
     dispatch(add(server));
   }
 };
-export const addSever = (server) => async (dispatch) => {
-  console.log(server);
+export const addServer = (server) => async (dispatch) => {
   const response = await fetch(`/api/servers`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
@@ -76,8 +82,7 @@ export const addSever = (server) => async (dispatch) => {
   }
 };
 
-export const editSever = (server, serverId) => async (dispatch) => {
-  console.log(server);
+export const editServer = (server, serverId) => async (dispatch) => {
   const response = await fetch(`/api/servers/${serverId}`, {
     method: "PUT",
     headers: { "Content-Type": "application/json" },
@@ -92,7 +97,7 @@ export const editSever = (server, serverId) => async (dispatch) => {
 };
 
 export const deleteAServer = (serverId) => async (dispatch) => {
-  console.log(serverId);
+  console.log('from store delete', serverId);
   const response = await fetch(`/api/servers/${serverId}`, {
     method: "DELETE",
   });
@@ -121,11 +126,21 @@ const serverReducer = (state = { ...initialState }, action) => {
       };
 
     case OWNED:
-      const myServersQ = {};
-      action.ownedServers.MyServers.forEach((server) => {
-        myServersQ[server.id] = server;
+      const ownedServers = {};
+      action.ownedServers.OwnedServers.forEach((server) => {
+        ownedServers[server.id] = server;
       });
-      state.memberOf = { ...myServersQ };
+      state.memberOf = { ...ownedServers };
+      return {
+        ...state,
+      };
+
+    case JOINED:
+      const joinedServers = {};
+      action.joinedServers.MyServers.forEach((server) => {
+        joinedServers[server.id] = server;
+      });
+      state.memberOf = { ...joinedServers };
       return {
         ...state,
       };
