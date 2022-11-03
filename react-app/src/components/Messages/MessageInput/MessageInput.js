@@ -9,14 +9,12 @@ const MessageInput = () => {
   const history = useHistory();
   const {channelId, serverId} = useParams();
   const current_user = useSelector(state => state.session)['user']
-  // const { channelId } = useParams();
   const [messageContent, setMessageContent] = useState('');
-  // const [errors, setErrors] = useState({});
+
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // console.log(messageContent)
     const newMessage = {
       content: messageContent
     };
@@ -30,7 +28,7 @@ const MessageInput = () => {
 
     if (res) {
       setMessageContent('')
-      history.push(`/servers/${serverId}/${channelId}`)
+      // history.push(`/servers/${serverId}/${channelId}`)
     }
   }
 

@@ -4,6 +4,7 @@ export const GET_MESSAGES = 'messages/GET_MESSAGES';
 export const ADD_MESSAGE = 'messages/ADD_MESSAGES';
 export const EDIT_MESSAGE= 'messages/EDIT_MESSAGES'
 export const DELETE_MESSAGE = 'messages/DELETE_MESSAGES';
+export const CLEAR_MESSAGES = 'messages/CLEAR_MESSAGES'
 
 
 const getMessages = (messages) => {
@@ -31,6 +32,12 @@ const deleteMessage = (messageId) => {
   return {
     type: DELETE_MESSAGE,
     messageId
+  }
+}
+
+const clearMessages = () => {
+  return {
+    type: CLEAR_MESSAGES
   }
 }
 
@@ -88,6 +95,10 @@ export const deleteSelectedMessage = (messageId) => async (dispatch) => {
   return res;
 }
 
+export const clearAllMessages = () => async (dispatch) => {
+		dispatch(clearMessages());
+}
+
 const initialState = {}
 
 const messagesReducer = (state = initialState, action) => {
@@ -111,6 +122,9 @@ const messagesReducer = (state = initialState, action) => {
     case DELETE_MESSAGE:
       newState = {...state};
       delete newState[action.messageId];
+      return newState;
+    case CLEAR_MESSAGES:
+      newState = {};
       return newState;
 		default:
 			return state;
