@@ -11,12 +11,17 @@ server_routes.register_blueprint(channel_server_routes, url_prefix="/")
 def get_my_servers():
     user_id = current_user.id
     user = User.query.get(user_id)
-    user_servers_ids = user.joined_servers_ids
-    return_arr = []
-    for i in range(len(user_servers_ids)):
-        appending = Server.query.get(i + 1)
-        return_arr.append(appending.to_dict())
-    return {'MyServers': return_arr}
+    servers = user.server_member
+    return {'MyServers': [server.server.to_dict() for server in servers]}
+
+@server_routes.route('/owned', methods=['GET'])
+def get_owned_servers():
+    # TODO needs to update this logic to grab owned not joined servers
+    user_id = current_user.id
+    user = User.query.get(user_id)
+    servers = user.server_member
+    return {'OwnedServers': [server.server.to_dict() for server in servers]}
+
 
 @server_routes.route('/', methods=['GET'])
 def get_all_servers():
@@ -48,7 +53,7 @@ def delete_one_server(id):
     else:
         db.session.delete(server)
         db.session.commit()
-        return f"{server.name} deleted"
+        return {"Message": "Deleted"}
 
 @server_routes.route('/<int:id>', methods=['PUT'])
 def update_one_server(id):
@@ -59,7 +64,7 @@ def update_one_server(id):
     if(current_user.id != server.owner_id):
         return {"error_code": "403", "message": "This ain't yers"}
     else:
-        server['name'] = name
-        server['server_img'] = server_img
+        server.name = name
+        server.server_img = server_img
         db.session.commit()
-        return f"{server['name']} updated"
+        return {'Message': "updated"}

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink, Route } from "react-router-dom";
-import { getServers, getBelongsServers } from "../../store/servers";
+import { getServers, getJoinedServers } from "../../store/servers";
 import ServerCard from "./ServerCard";
 import CreateSeverForm from "./CreateServerForm";
 import Fab from "./Fab";
@@ -26,7 +26,7 @@ const ListAllServers = () => {
   const [showForm, setShowForm] = useState(false);
 
   useEffect(() => {
-    dispatch(getBelongsServers());
+    dispatch(getJoinedServers());
   }, [dispatch]);
 
   return (

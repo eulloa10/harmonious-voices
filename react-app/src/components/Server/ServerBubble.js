@@ -7,11 +7,11 @@ const ServerBubble = ({server}) => {
 
     return(
         <div>
-            <div className="server-icon-div">
+            <div className={`server-icon-div ${server.id}`}>
                 {server.server_img ? (
-                    <img src={server.server_img} className="server-icon"></img>
+                    <img src={server.server_img} className={`server-icon ${server.id}`}></img>
                 ): (
-                    <p className="server-icon">{initials.join("")}</p>
+                    <p className={`server-icon ${server.id}`}>{initials.join("")}</p>
                 )}
             </div>
         </div>

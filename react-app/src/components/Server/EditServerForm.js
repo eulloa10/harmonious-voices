@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
-import { addServer } from "../../store/servers";
+import { editServer } from "../../store/servers";
 import "./Servers.css";
 
-const CreateSeverForm = ({ hideForm }) => {
+const EditSeverForm = ({ hideForm, contextedServerId}) => {
   const dispatch = useDispatch();
   const history = useHistory();
   const sessionUserId = useSelector((state) => state.session.user.id);
@@ -24,13 +24,13 @@ const CreateSeverForm = ({ hideForm }) => {
       server_img: serverImg,
     };
 
-    let createdServer = await dispatch(addServer(payload)).catch(async (res) => {
-      const data = await res.json();
-      console.log(data);
-      // if(data && data.errors) setErrors(data.errors)
-    });
+    let createdServer = await dispatch(editServer(payload, contextedServerId))
+    // .catch(async (res) => {
+    //   const data = await res.json();
+    //   if(data && data.errors) setErrors(data.errors)
+    // });
     if (createdServer) {
-      history.push(`/servers/${createdServer.id}`);
+      history.push(`/servers/${contextedServerId}`);
       hideForm();
     }
   };
@@ -60,7 +60,7 @@ const CreateSeverForm = ({ hideForm }) => {
           onChange={updateServerImg}
         />
         <button className="form-button" type="submit">
-          Create New Server
+          Edit Server
         </button>
         <button
           className="form-button"
@@ -74,4 +74,4 @@ const CreateSeverForm = ({ hideForm }) => {
   );
 };
 
-export default CreateSeverForm;
+export default EditSeverForm;

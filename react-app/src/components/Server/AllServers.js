@@ -11,7 +11,6 @@ import Explore from "../../svgFiles/explore.svg";
 const AllServers = () => {
   const dispatch = useDispatch();
   let allServers = useSelector((state) => {
-    console.log(state);
     const serversArr = Object.values(state.servers.allServers);
     return serversArr;
   });
