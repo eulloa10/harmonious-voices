@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import {  useParams } from "react-router-dom";
 import { useSelector, useDispatch } from 'react-redux';
-import { fetchMessages } from '../../../store/messages';
+import { clearAllMessages, fetchMessages } from '../../../store/messages';
 import Message from '../Message/Message';
 import MessageInput from '../MessageInput/MessageInput';
 import './MessageList.css'
@@ -15,6 +15,7 @@ const MessageList = () => {
 
   useEffect(() => {
     dispatch(fetchMessages(channelId));
+    dispatch(clearAllMessages());
   }, [dispatch, channelId])
 
   for (let key in messages) {
@@ -25,14 +26,9 @@ const MessageList = () => {
     return null;
   }
 
+  // console.log('-----------ALL MESSAGES', allMessagesList)
   console.log("SERVERID", serverId)
   console.log("CHANNELID", channelId)
-
-
-
-  const handleCancelClick = (e) => {
-    e.preventDefault();
-  };
 
   return (
     <>

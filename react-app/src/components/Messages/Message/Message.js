@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { Link, useLocation, useHistory, useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { deleteSelectedMessage, updateMessage } from "../../../store/messages";
 import { fetchUsers } from "../../../store/user";

@@ -20,8 +20,14 @@ def get_channel_messages(channelId):
 def create_channel_message(channelId):
   form = ChannelMessageForm()
   form['csrf_token'].data = request.cookies['csrf_token']
+  channel = Channel.query.get(channelId)
   # print("FORM", form.data)
   if form.validate_on_submit():
+
+    if channel.type == 'direct':
+      channel.user_one_active = True
+      channel.user_two_active = True
+
     message = Message(
       user_id=current_user.id,
       channel_id=channelId,
@@ -37,7 +43,7 @@ def create_channel_message(channelId):
 def edit_channel_message(messageId):
   message = Message.query.get(messageId)
   form = ChannelMessageForm()
-  print("MESSAGE CONTENT", form.data['content'])
+  # print("MESSAGE CONTENT", form.data['content'])
   form['csrf_token'].data = request.cookies['csrf_token']
   if current_user.id == message.user_id:
     message.content = form.data["content"]

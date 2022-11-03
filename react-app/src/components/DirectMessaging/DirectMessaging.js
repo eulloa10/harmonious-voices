@@ -1,4 +1,4 @@
-import { NavLink } from "react-router-dom";
+import { NavLink, useHistory } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import "./DirectMessaging.css";
@@ -10,6 +10,7 @@ import CreateDirectMessaging from "./CreateDirectMessaging/CreateDirectMessaging
 
 const DirectMessaging = () => {
   const dispatch = useDispatch();
+  const history = useHistory();
   const user = useSelector((state) => state.session.user);
   const [showCreateForm, setShowCreateForm] = useState(false);
   const directChannels = Object.values(
@@ -40,6 +41,7 @@ const DirectMessaging = () => {
 
   const onDelete = (channelId) => {
     dispatch(deleteDirectChannel(channelId));
+    history.push('/direct-messages');
   };
 
   let directChannelLinks;
