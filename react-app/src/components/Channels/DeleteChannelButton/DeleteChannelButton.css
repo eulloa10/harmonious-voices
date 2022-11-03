@@ -1,13 +1,9 @@
-.delete-channel {
-  color: #c3c4c5;
+.delete-channel-button {
+  background-color: #d12727;
+  border-radius: 0.5rem;
+  color: white;
   cursor: pointer;
-  background-color: #d43b3b;
   display: flex;
   gap: 1rem;
   padding: 1rem;
-  border-radius: 0.5rem;
-}
-
-.delete-channel-button {
-  cursor: pointer;
 }

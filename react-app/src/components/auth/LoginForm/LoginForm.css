@@ -40,6 +40,16 @@
   font-size: 1.2rem;
 }
 
+.login-form-input-label > .login-error.show-error-message {
+  color: red;
+  visibility: visible;
+}
+
+.login-form-input-label > .login-error {
+  visibility: hidden;
+  font-size: 1rem;
+}
+
 .login-form-input {
   border-bottom: 0.05rem solid black;
   height: 2rem;
