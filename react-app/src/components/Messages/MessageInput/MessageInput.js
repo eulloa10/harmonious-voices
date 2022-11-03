@@ -41,16 +41,6 @@ const MessageInput = () => {
   return (
     <div className="message-input-container">
       <form className="create-message-form" onSubmit={handleSubmit}>
-        {/* <ul className="create-spot-errors">
-          {
-          Object.keys(errors).map(error => {
-            return (<li>
-              {errors[error]}
-            </li>)
-          }
-          )
-        }
-        </ul> */}
           <input
             className="message-content-input"
             type="text"

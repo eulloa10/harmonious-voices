@@ -32,13 +32,12 @@ def create_channel_message(channelId):
     return message.to_dict()
 
 
-
-
 @message_routes.route('/<int:messageId>', methods=['PUT'])
 @login_required
 def edit_channel_message(messageId):
   message = Message.query.get(messageId)
   form = ChannelMessageForm()
+  print("MESSAGE CONTENT", form.data['content'])
   form['csrf_token'].data = request.cookies['csrf_token']
   if current_user.id == message.user_id:
     message.content = form.data["content"]

@@ -62,10 +62,12 @@ export const createNewMessage = (message, channelId) => async(dispatch) => {
   return res;
 }
 
-export const updateMessage = (messageId, messageContent) => async (dispatch) => {
-  const res = await fetch(`/api/messages/${messageId}`, {
+export const updateMessage = (message) => async (dispatch) => {
+  // console.log("MESSAGEID", messageId, "MESSAGECONTENT", messageContent)
+  const res = await fetch(`/api/messages/${message.id}`, {
     method: 'PUT',
-    body: JSON.stringify(messageContent)
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(message)
   })
 
   if (res.ok) {

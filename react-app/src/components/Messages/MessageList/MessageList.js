@@ -10,7 +10,6 @@ import './MessageList.css'
 const MessageList = () => {
   const dispatch = useDispatch();
   const { serverId, channelId } = useParams();
-  // console.log("SERVERID", serverId, "CHANNELID", channelId)
   const messages = useSelector(state => state.messages)
   const allMessagesList = [];
 
