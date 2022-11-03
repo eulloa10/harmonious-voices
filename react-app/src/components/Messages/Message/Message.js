@@ -7,13 +7,17 @@ import "./Message.css";
 
 const Message = ({ message }) => {
   const dispatch = useDispatch();
-  const history = useHistory();
-  const {channelId, serverId} = useParams();
   const users = useSelector((state) => state.users);
+  const currentUser = useSelector(state => state.session)['user']
   const message_user_id = message.user_id;
   const [messageContent, setMessageContent] = useState(`${message.content}`);
   const [editMode, setEditMode] = useState(true)
-  const allUsersList = [];
+  const [cancelContent, setCancelContent] = useState(`${message.content}`);
+  let editableMessage = false;
+
+  if (message.user_id === currentUser.id) {
+    editableMessage = true;
+  }
 
   useEffect(() => {
     dispatch(fetchUsers());
@@ -21,26 +25,28 @@ const Message = ({ message }) => {
 
   let currUser = users[message_user_id];
 
-  const handleEdit = (e) => {
-    setMessageContent(e.target.value)
-  }
-
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
     setEditMode(!editMode);
-    let res = await dispatch(updateMessage(message)).catch(async (res) => {
-      const data = await res.json();
-    });
-
-    if (res) {
-      // setMessageContent('')
-      history.push(`/servers/${serverId}/${channelId}`)
-    }
-
+    setCancelContent(messageContent);
+    message.content = messageContent;
+    dispatch(updateMessage(message))
   }
 
   const handleClick = (e) => {
     setEditMode(!editMode);
+    e.preventDefault();
+  }
+
+  const handleCancelClick = (e) => {
+    setEditMode(!editMode);
+    setMessageContent(cancelContent);
+    e.preventDefault();
+  }
+
+  const handleDeleteClick = (e) => {
+    setEditMode(!editMode);
+    dispatch(deleteSelectedMessage(message.id))
     e.preventDefault();
   }
 
@@ -65,9 +71,12 @@ const Message = ({ message }) => {
                 {messageContent}
               </div>
             </div>
-            <div className="message-options">
-              <button onClick={handleClick}>Edit</button>
-            </div>
+            {editableMessage &&
+              <div className="message-options">
+                <button onClick={handleClick}>Edit</button>
+                <button onClick={handleDeleteClick}>Delete</button>
+              </div>
+            }
           </div>
         </li>
       )}
@@ -106,7 +115,7 @@ const Message = ({ message }) => {
             </div>
           </div>
           <div className="message-options">
-            <button onClick={handleClick}>Cancel</button>
+            <button onClick={handleCancelClick}>Cancel</button>
           </div>
         </div>
       </li>
@@ -116,41 +125,6 @@ const Message = ({ message }) => {
 
   return ( editMode ? regularView: editView)
 
-
-//   return (
-//     <>
-//       {currUser && message_user_id && (
-//         <li className="single-user-message">
-//           <div className="message">
-//             <div className="prof-img-side">
-//               <img
-//                 className="prof-img"
-//                 src={currUser.user_profile_img}
-//                 alt="user profile"
-//               />
-//             </div>
-//             <div className="message-middle">
-//               <h3 className="message-header">
-//                 {currUser.username}
-//                 <span className="message-date">{message.date_created}</span>
-//               </h3>
-//               <div className="message-content">
-//                 <input
-//                   type="text"
-//                   name="message"
-//                   value={messageContent}
-//                   onChange={handleEdit}
-//                 />
-//               </div>
-//             </div>
-//             <div className="message-options">
-//               <button onClick={handleClick}>Cancel</button>
-//             </div>
-//           </div>
-//         </li>
-//       )}
-//     </>
-//   );
 };
 
 export default Message;

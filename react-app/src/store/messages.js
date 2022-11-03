@@ -69,7 +69,6 @@ export const updateMessage = (message) => async (dispatch) => {
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(message)
   })
-  console.log("RES", res)
 
   if (res.ok) {
 		const updatedMessage = await res.json();
