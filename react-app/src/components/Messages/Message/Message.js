@@ -3,6 +3,9 @@ import { useSelector, useDispatch } from "react-redux";
 import { deleteSelectedMessage, updateMessage } from "../../../store/messages";
 import { fetchUsers } from "../../../store/user";
 import "./Message.css";
+import deleteMsgOption from "../../../svgFiles/deletemsg.svg";
+import editMsgOption from "../../../svgFiles/editmsg.svg";
+
 
 const Message = ({ message }) => {
   const dispatch = useDispatch();
@@ -72,8 +75,12 @@ const Message = ({ message }) => {
             </div>
             {editableMessage &&
               <div className="message-options">
-                <button onClick={handleClick}>Edit</button>
-                <button onClick={handleDeleteClick}>Delete</button>
+                <button className="edit-msg-btn" onClick={handleClick}>
+                  <img src={editMsgOption} alt='options'/>
+                </button>
+                 <button className="delete-msg-btn" onClick={handleDeleteClick}>
+                  <img src={deleteMsgOption} alt='options'/>
+                </button>
               </div>
             }
           </div>
@@ -109,7 +116,6 @@ const Message = ({ message }) => {
                   onChange={(e) => setMessageContent(e.target.value)}
                   required
                 />
-                {/* <button type="submit">Submit</button> */}
               </form>
             </div>
           </div>
