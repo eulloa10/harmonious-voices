@@ -19,8 +19,6 @@ const ListOwnedServers = () => {
   const [showContext, setShowContext] = useState(false);
   const [points, setPoints] = useState({ x: 0, y: 0 });
 
-
-
   let myServers = useSelector((state) => {
     console.log(state);
     const serversArr = Object.values(state.servers.memberOf);
@@ -35,8 +33,8 @@ const ListOwnedServers = () => {
 
   useEffect(() => {
     const handleClick = () => setShowContext(false);
-    window.addEventListener('click', handleClick);
-    return () => window.removeEventListener('click', handleClick);
+    window.addEventListener("click", handleClick);
+    return () => window.removeEventListener("click", handleClick);
   }, []);
 
   const handleLogOut = () => {
@@ -58,11 +56,14 @@ const ListOwnedServers = () => {
         {myServers.map((server) => {
           return (
             <NavLink key={server.id} to={`/servers/${server.id}`}>
-              <div className="servers-container"  onContextMenu={(e) => {
-                e.preventDefault();
-                setShowContext(true);
-                setPoints({x:e.pageX, y:e.pageY})
-              }}>
+              <div
+                className="servers-container"
+                onContextMenu={(e) => {
+                  e.preventDefault();
+                  setShowContext(true);
+                  setPoints({ x: e.pageX, y: e.pageY });
+                }}
+              >
                 <ServerBubble server={server}></ServerBubble>
               </div>
             </NavLink>
@@ -87,9 +88,11 @@ const ListOwnedServers = () => {
         // )}
       }
       {showContext && (
-        <ContextMenu className="context-menu" top={points.y} left={points.x}>
-
-        </ContextMenu>
+        <ContextMenu
+          className="context-menu"
+          top={points.y}
+          left={points.x}
+        ></ContextMenu>
       )}
     </main>
   );

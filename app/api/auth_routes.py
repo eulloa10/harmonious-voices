@@ -70,19 +70,15 @@ def sign_up():
     if not allowed_file(image.filename):
         return {"errors": "file type not permitted"}
 
-
     image.filename = get_unique_filename(image.filename)
 
     if form.validate_on_submit():
-        print("hi")
         upload = upload_file_to_s3(image)
 
         if "url" not in upload:
             return upload, 400
 
         url = upload["url"]
-
-        print("------------------hi")
 
         user = User(
             username=form.data['username'],
