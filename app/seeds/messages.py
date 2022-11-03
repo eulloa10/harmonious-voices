@@ -14,7 +14,7 @@ def seed_messages():
     demo_message_5 = Message(
         user_id=3, channel_id=2, content='test message 5')
     demo_message_6 = Message(
-        user_id=2, channel_id=3, content='test message 6')
+        user_id=2, channel_id=4, content='test message 6')
     demo_message_7 = Message(
         user_id=3, channel_id=4, content='test message 7')
     demo_message_8 = Message(
@@ -22,9 +22,9 @@ def seed_messages():
     demo_message_9 = Message(
         user_id=5, channel_id=5, content='test message 9')
     demo_message_10 = Message(
-        user_id=1, channel_id=6, content='test message 10')
+        user_id=1, channel_id=5, content='test message 10')
     demo_message_11 = Message(
-        user_id=2, channel_id=6, content='test message 11')
+        user_id=2, channel_id=5, content='test message 11')
     demo_message_12 = Message(
         user_id=3, channel_id=4, content='test message 12')
     demo_message_13 = Message(
