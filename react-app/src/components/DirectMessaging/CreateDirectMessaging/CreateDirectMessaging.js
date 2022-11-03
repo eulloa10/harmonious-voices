@@ -30,11 +30,9 @@ const CreateDirectMessaging = ({ onClose }) => {
 
   const handleSubmit = async () => {
     const payload = { user_id_two: Object.values(friend)[0].id };
-    const createdDirectChannel = await dispatch(addDirectChannel(payload)).then(
-      (res) => {
-        history.push(`/direct-messages/${res.id}`);
-      }
-    );
+    await dispatch(addDirectChannel(payload)).then((channel) => {
+      history.push(`/direct-messages/${channel.id}`);
+    });
     onClose();
   };
 
