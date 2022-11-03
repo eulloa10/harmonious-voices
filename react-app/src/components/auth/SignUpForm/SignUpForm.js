@@ -82,7 +82,9 @@ const SignUpForm = () => {
       <form className="signup-form" onSubmit={onSignUp}>
         <div className="signup-form-header">Create an account</div>
         <div className="signup-form-input-container photo">
-          <div className="signup-form-photo-title">PROFILE PHOTO</div>
+          <div className="signup-form-photo-title">
+            PROFILE PHOTO (optional)
+          </div>
           <label for="file" className="signup-form-input-label photo">
             {!image && <i className="fa-solid fa-plus signup-plus"></i>}
             {image && (

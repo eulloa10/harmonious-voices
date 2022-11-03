@@ -69,19 +69,20 @@
 }
 
 .signup-form-input-label.photo {
+  background-color: #7289da;
   cursor: pointer;
   font-size: 2rem;
-  background-color: #7d91d3;
   border-radius: 100%;
   padding: 3rem;
   position: relative;
 }
 
 .fa-solid.fa-plus.signup-plus:hover {
-  color: #c3c4c5;
+  color: white;
 }
 
 .signup-form-input-label.photo > .fa-plus {
+  color: white;
   position: absolute;
   top: 50%;
   left: 50%;
