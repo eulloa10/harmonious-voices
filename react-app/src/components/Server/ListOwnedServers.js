@@ -33,12 +33,10 @@ const ListOwnedServers = () => {
 
     return [...serversArr, ...spreadArr];
   });
-  console.log('My servers', myServers);
+  console.log("My servers", myServers);
 
   const [showForm, setShowForm] = useState(false);
   const [editForm, setEditForm] = useState(false);
-
-
 
   useEffect(() => {
     dispatch(getServers());
@@ -52,25 +50,27 @@ const ListOwnedServers = () => {
     return () => window.removeEventListener("click", handleClick);
   }, []);
 
-
-    serverLinks =
-    (<div>
-        {myServers.map((server, i) => {
-        return (<NavLink key={server.id} to={`/servers/${server.id}`}>
-        <div
-          className={`servers-container ${server.id}`}
-          onContextMenu={(e) => {
-            e.preventDefault();
-            setContextedServerId(e.target.className.split(" ")[1]);
-            setShowContext(true);
-            setPoints({ x: e.pageX, y: e.pageY });
-          }}
-        >
-          <ServerBubble server={server}></ServerBubble>
-        </div>
-      </NavLink>)
+  serverLinks = (
+    <div className="server-link-bubbles">
+      {myServers.map((server, i) => {
+        return (
+          <NavLink key={server.id} to={`/servers/${server.id}`}>
+            <div
+              className={`servers-container ${server.id}`}
+              onContextMenu={(e) => {
+                e.preventDefault();
+                setContextedServerId(e.target.className.split(" ")[1]);
+                setShowContext(true);
+                setPoints({ x: e.pageX, y: e.pageY });
+              }}
+            >
+              <ServerBubble server={server}></ServerBubble>
+            </div>
+          </NavLink>
+        );
       })}
-    </div>)
+    </div>
+  );
 
   const handleLogOut = () => {
     history.push("/");
@@ -89,13 +89,15 @@ const ListOwnedServers = () => {
           </NavLink>
         </div>
         <div className="direct-server-divider"></div>
-          {serverLinks}
+        {serverLinks}
+        <Fab hidden={showForm} onClick={() => setShowForm(true)} />
         <div>
           <NavLink to={`/servers`} className="explore-icon-div">
             <i className="fa-solid fa-compass"></i>
           </NavLink>
         </div>
-        <Fab hidden={showForm} onClick={() => setShowForm(true)} />
+        <div className="direct-server-divider"></div>
+
         <div className="logout-icon-div" onClick={handleLogOut}>
           <i className="fa-solid fa-right-from-bracket"></i>
         </div>
