@@ -27,10 +27,11 @@
 .server-icon-div,
 .explore-icon-div,
 .add-icon-div,
-.logout-icon-div {
+.logout-icon-div,
+.direct-server-icon-div {
   display: flex;
   background-color: #424549;
-  border-radius: 50%;
+  border-radius: 100%;
   font-size: 2rem;
   cursor: pointer;
   min-width: 50px;
@@ -38,7 +39,7 @@
   justify-content: center;
   align-items: center;
   color: white;
-  transition: all 0.3s;
+  transition: ease-in-out all 0.3s;
 }
 
 .explore-icon-div,
@@ -68,6 +69,9 @@
 
 .dm {
   background-color: #7289da;
+}
+
+.dm:hover {
   border-radius: 25%;
 }
 
@@ -87,7 +91,7 @@
   border-radius: 5px;
   background-color: rgb(30, 33, 36);
   width: 150px;
-  transition: all 0.3s;
+  transition: ease-in-out all 0.3s;
 }
 .servercard-main-div:hover {
   box-shadow: 5px 5px 5px black;
@@ -186,7 +190,7 @@ option:hover {
   position: absolute;
   box-shadow: 0 0 20px 0 #ccc;
   opacity: 1;
-  transition: opacity 0.5s linear;
+  transition: ease-in-out opacity 0.5s linear;
   cursor: pointer;
 }
 

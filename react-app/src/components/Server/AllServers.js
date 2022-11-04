@@ -24,11 +24,11 @@ const AllServers = () => {
       {allServers.map((server) => {
         return (
           // <div className="server-card-container">
-            <NavLink key={server.id} to={`/servers/${server.id}`}>
-              <div className="servers-container">
-                <ServerCard server={server}></ServerCard>
-              </div>
-            </NavLink>
+          <NavLink key={server.id} to={`/servers/${server.id}`}>
+            <div className="servers-container">
+              <ServerCard server={server}></ServerCard>
+            </div>
+          </NavLink>
           // </div>
         );
       })}
