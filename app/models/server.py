@@ -18,6 +18,7 @@ class Server(db.Model):
             'id': self.id,
             'name': self.name,
             'ownerId': self.owner_id,
+            'server_img': self.server_img,
             'members': [user.to_dict() for user in self.members],
         }
     def to_resource_dict(self):

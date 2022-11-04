@@ -36,7 +36,7 @@ const ListOwnedServers = () => {
     dispatch(getServers());
     dispatch(getJoinedServers());
     dispatch(getOwnedServers());
-  }, [dispatch]);
+  }, [dispatch, showForm, editForm]);
 
   useEffect(() => {
     const handleClick = () => setShowContext(false);
@@ -60,6 +60,7 @@ const ListOwnedServers = () => {
             DM
           </NavLink>
         </div>
+        <div className="direct-server-divider"></div>
         {myServers.map((server) => {
           return (
             <NavLink key={server.id} to={`/servers/${server.id}`}>
