@@ -71,8 +71,8 @@ export const getServerById = (id) => async (dispatch) => {
 export const addServer = (server) => async (dispatch) => {
   const response = await fetch(`/api/servers`, {
     method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(server),
+    // headers: { "Content-Type": "application/json" },
+    body: server,
   });
 
   if (response.ok) {

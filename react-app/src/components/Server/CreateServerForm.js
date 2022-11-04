@@ -35,6 +35,12 @@ const CreateSeverForm = ({ hideForm }) => {
     }
   };
 
+  const updateFile = (e) => {
+    const file = e.target.files[0];
+    if (file) setServerImg(file);
+  };
+
+
   const handleCancelClick = (e) => {
     e.preventDefault();
     hideForm();
@@ -54,10 +60,10 @@ const CreateSeverForm = ({ hideForm }) => {
           onChange={updateName}
         />
         <input
-          type="text"
-          placeholder="Server Image"
-          value={serverImg}
-          onChange={updateServerImg}
+          type="file"
+          // placeholder="Server Image"
+          // value={serverImg}
+          onChange={updateFile}
         />
         <button className="form-button" type="submit">
           Create New Server
