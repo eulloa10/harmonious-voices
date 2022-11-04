@@ -19,12 +19,7 @@ const MessageInput = () => {
       content: messageContent
     };
 
-    let res = await dispatch(createNewMessage(newMessage, channelId))
-    .catch(async (res) => {
-      const data = await res.json();
-      // if (data.errors) setErrors({...data.errors})
-
-    });
+    let res = dispatch(createNewMessage(newMessage, channelId))
 
     if (res) {
       setMessageContent('')
