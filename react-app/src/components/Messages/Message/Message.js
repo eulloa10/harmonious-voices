@@ -5,6 +5,7 @@ import { fetchUsers } from "../../../store/user";
 import "./Message.css";
 import deleteMsgOption from "../../../svgFiles/deletemsg.svg";
 import editMsgOption from "../../../svgFiles/editmsg.svg";
+import defaultUserProfile from "../../../svgFiles/userprofile.svg"
 
 
 const Message = ({ message }) => {
@@ -26,6 +27,8 @@ const Message = ({ message }) => {
   }, [dispatch]);
 
   let currUser = users[message_user_id];
+
+
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -58,11 +61,19 @@ const Message = ({ message }) => {
         <li className="single-user-message">
           <div className="message">
             <div className="prof-img-side">
-              <img
+              {currUser.user_profile_img ?
+                (<img
                 className="prof-img"
                 src={currUser.user_profile_img}
-                alt="user profile"
-              />
+                alt="profile"
+                />) : (
+                  <img
+                  className="def-prof-img"
+                  src={defaultUserProfile}
+                  alt="default"
+                />
+                )
+              }
             </div>
             <div className="message-middle">
               <h3 className="message-header">
@@ -95,11 +106,19 @@ const Message = ({ message }) => {
       <li className="single-user-message">
         <div className="message">
           <div className="prof-img-side">
-            <img
+            {currUser.user_profile_img ?
+              (<img
               className="prof-img"
               src={currUser.user_profile_img}
-              alt="user profile"
-            />
+              alt="profile"
+              />) : (
+                <img
+                className="def-prof-img"
+                src={defaultUserProfile}
+                alt="default"
+              />
+              )
+            }
           </div>
           <div className="message-middle">
             <h3 className="message-header">
