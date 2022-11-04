@@ -1,10 +1,10 @@
-
 .owned-servers-container {
   display: flex;
   height: 100%;
 }
 
 .servers-nav-bar {
+  align-items: center;
   display: flex;
   flex-direction: column;
   background-color: rgb(30, 33, 36);
@@ -25,11 +25,20 @@
   color: white;
 }
 
+.direct-server-divider {
+  background-color: #424549;
+  width: 60%;
+  padding: 0.1rem;
+}
+
 .server-icon {
   font-size: 25px;
+  /* width: 50px;
+  height: 50px; */
 }
 
 .dm {
+  background-color: #7289da;
   border-radius: 25%;
 }
 
@@ -70,14 +79,14 @@
   font-size: 15px;
 }
 
-.server-card-container{
+.server-card-container {
   display: flex;
   flex-wrap: wrap;
   /* height: 100px;
   width: 5px; */
 }
 
-.server-card-container > a{
+.server-card-container > a {
   height: 50px;
 }
 
@@ -130,9 +139,8 @@ option:hover {
   cursor: pointer;
 }
 
-
 /* --------------------------------Context Server ---------------------------------------*/
-.context-menu{
+.context-menu {
   font-size: 14px;
   background-color: #fff;
   border-radius: 2px;
@@ -147,6 +155,6 @@ option:hover {
   cursor: pointer;
 }
 
-.context-menu-list{
+.context-menu-list {
   list-style: none;
 }

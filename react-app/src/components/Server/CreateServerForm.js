@@ -19,16 +19,19 @@ const CreateSeverForm = ({ hideForm }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const payload = {
-      name,
-      server_img: serverImg,
-    };
+    const payload = new FormData();
 
-    let createdServer = await dispatch(addServer(payload)).catch(async (res) => {
-      const data = await res.json();
-      console.log(data);
-      // if(data && data.errors) setErrors(data.errors)
-    });
+    payload.append("name", name);
+
+    if (serverImg) payload.append("image", serverImg);
+
+    let createdServer = await dispatch(addServer(payload)).catch(
+      async (res) => {
+        const data = await res.json();
+        console.log(data);
+        // if(data && data.errors) setErrors(data.errors)
+      }
+    );
     if (createdServer) {
       history.push(`/servers/${createdServer.id}`);
       hideForm();
@@ -39,7 +42,6 @@ const CreateSeverForm = ({ hideForm }) => {
     const file = e.target.files[0];
     if (file) setServerImg(file);
   };
-
 
   const handleCancelClick = (e) => {
     e.preventDefault();
