@@ -61,6 +61,7 @@ print("----------------------OSENV", os.environ)
 #             url = request.url.replace('http://', 'https://', 1)
 #             code = 301
 #             return redirect(url, code=code)
+print("___________OSENV", os.environ.get('FLASK_ENV'))
 
 @app.before_request
 def https_redirect():
