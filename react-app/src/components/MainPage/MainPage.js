@@ -10,7 +10,7 @@ const MainPage = () => {
   return (
     <div className="main-page">
       <Switch>
-      <Route path="/direct-messages/:channelId">
+        <Route path="/direct-messages/:channelId">
           <ListOwnedServers />
           <DirectMessaging />
           <MessageList />

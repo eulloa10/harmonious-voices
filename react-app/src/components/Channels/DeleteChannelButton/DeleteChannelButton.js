@@ -13,8 +13,8 @@ const DeleteChannelButton = ({ channel, serverId, onClose }) => {
     <div className="delete-channel">
       <button className="delete-channel-button" onClick={deleteChannel}>
         Delete Channel
+        <i className="fa-solid fa-trash-can"></i>
       </button>
-      <i className="fa-solid fa-trash-can"></i>
     </div>
   );
 };
