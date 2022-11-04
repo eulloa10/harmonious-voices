@@ -16,6 +16,7 @@ import { logout } from "../../store/session";
 import Channels from "../Channels/Channels";
 import ContextMenu from "./ContextMenu";
 import EditSeverForm from "./EditServerForm";
+import { clicked } from "./ContextMenu";
 
 const ListOwnedServers = () => {
   const dispatch = useDispatch();
@@ -27,13 +28,13 @@ const ListOwnedServers = () => {
 
   let serverLinks;
 
+
   let myServers = useSelector((state) => {
     const serversArr = Object.values(state.servers.owned);
     const spreadArr = Object.values(state.servers.joined);
 
     return [...serversArr, ...spreadArr];
   });
-  console.log('My servers', myServers);
 
   const [showForm, setShowForm] = useState(false);
   const [editForm, setEditForm] = useState(false);
@@ -44,7 +45,7 @@ const ListOwnedServers = () => {
     dispatch(getServers());
     dispatch(getJoinedServers());
     dispatch(getOwnedServers());
-  }, [dispatch, showForm, editForm, contextedServerId]);
+  }, [dispatch, showForm, editForm, contextedServerId, clicked]);
 
   useEffect(() => {
     const handleClick = () => setShowContext(false);
