@@ -1,23 +1,21 @@
 import { useEffect, useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { useParams } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { useHistory, useParams } from 'react-router-dom';
 import {editServer, deleteAServer} from '../../store/servers';
 import EditSeverForm from './EditServerForm';
 import './Servers.css'
 
 
-const ContextMenu = ({top, left, contextedServerId, setEditForm}) => {
+const ContextMenu = ({top, left, contextedServerId, setEditForm, setOwnedServers}) => {
     const [contextSelectedAction, setContextSelectedAction] = useState('');
     const dispatch = useDispatch();
     const {serverId} = useParams();
     const [showForm, setShowForm] = useState(false);
+    const history = useHistory();
 
 
     const handleClick = (e) => {
-        //TODO: updating buttons
         e.preventDefault();
-        console.log(e.target);
-        console.log('contexted', contextedServerId);
         setContextSelectedAction(e.target.innerText)
     }
     useEffect(() => {
@@ -28,8 +26,8 @@ const ContextMenu = ({top, left, contextedServerId, setEditForm}) => {
             setEditForm(true)
             console.log('in the edit function');
         }else if (contextSelectedAction === 'Delete'){
-            console.log(deleteAServer(contextedServerId));
-            dispatch(deleteAServer(contextedServerId))
+            dispatch(deleteAServer(contextedServerId));
+            // history.push('/servers')
         }
         else{
             return{'Message': 'Selected from item (from ContextMenu)'}

@@ -24,25 +24,54 @@ const ListOwnedServers = () => {
   const [showContext, setShowContext] = useState(false);
   const [points, setPoints] = useState({ x: 0, y: 0 });
   const [contextedServerId, setContextedServerId] = useState("");
+  // const [ownedServers, setOwnedServers] = useState(useSelector((state)=> {return Object.values(state.servers.owned)}))
+
+  let serverLinks;
 
   let myServers = useSelector((state) => {
-    const serversArr = Object.values(state.servers.memberOf);
-    return serversArr;
+    const serversArr = Object.values(state.servers.owned);
+    const spreadArr = Object.values(state.servers.joined);
+
+    return [...serversArr, ...spreadArr];
   });
+  console.log('My servers', myServers);
+
   const [showForm, setShowForm] = useState(false);
   const [editForm, setEditForm] = useState(false);
+
+
 
   useEffect(() => {
     dispatch(getServers());
     dispatch(getJoinedServers());
     dispatch(getOwnedServers());
-  }, [dispatch, showForm, editForm]);
+  }, [dispatch, showForm, editForm, contextedServerId]);
 
   useEffect(() => {
     const handleClick = () => setShowContext(false);
     window.addEventListener("click", handleClick);
     return () => window.removeEventListener("click", handleClick);
   }, []);
+
+
+    serverLinks =
+    (<div>
+        {myServers.map((server, i) => {
+        return (<NavLink key={server.id} to={`/servers/${server.id}`}>
+        <div
+          className={`servers-container ${server.id}`}
+          onContextMenu={(e) => {
+            e.preventDefault();
+            setContextedServerId(e.target.className.split(" ")[1]);
+            setShowContext(true);
+            setPoints({ x: e.pageX, y: e.pageY });
+          }}
+        >
+          <ServerBubble server={server}></ServerBubble>
+        </div>
+      </NavLink>)
+      })}
+    </div>)
 
   const handleLogOut = () => {
     history.push("/");
@@ -61,23 +90,7 @@ const ListOwnedServers = () => {
           </NavLink>
         </div>
         <div className="direct-server-divider"></div>
-        {myServers.map((server) => {
-          return (
-            <NavLink key={server.id} to={`/servers/${server.id}`}>
-              <div
-                className={`servers-container ${server.id}`}
-                onContextMenu={(e) => {
-                  e.preventDefault();
-                  setContextedServerId(e.target.className.split(" ")[1]);
-                  setShowContext(true);
-                  setPoints({ x: e.pageX, y: e.pageY });
-                }}
-              >
-                <ServerBubble server={server}></ServerBubble>
-              </div>
-            </NavLink>
-          );
-        })}
+          {serverLinks}
         <div>
           <NavLink to={`/servers`} className="server-icon-div">
             <img src={Explore} />
