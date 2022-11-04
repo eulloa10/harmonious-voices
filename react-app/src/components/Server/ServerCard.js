@@ -9,9 +9,9 @@ const ServerCard = ({ server }) => {
     <div className="servercard-main-div">
       <div className="servercard-icon-div">
         {server.server_img ? (
-          <img src={server.server_img} className="server-icon"></img>
+          <img src={server.server_img} className="servercard-icon"></img>
         ) : (
-          <p className="server-icon">{initials.join("")}</p>
+          <p className="servercard-icon">{initials.join("")}</p>
         )}
       </div>
       <div className="server-name">
