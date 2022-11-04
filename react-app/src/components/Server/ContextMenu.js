@@ -5,6 +5,7 @@ import {editServer, deleteAServer} from '../../store/servers';
 import EditSeverForm from './EditServerForm';
 import './Servers.css'
 
+export let clicked = 0
 
 const ContextMenu = ({top, left, contextedServerId, setEditForm, setOwnedServers}) => {
     const [contextSelectedAction, setContextSelectedAction] = useState('');
@@ -27,6 +28,7 @@ const ContextMenu = ({top, left, contextedServerId, setEditForm, setOwnedServers
             console.log('in the edit function');
         }else if (contextSelectedAction === 'Delete'){
             dispatch(deleteAServer(contextedServerId));
+            clicked = Math.random();
             // history.push('/servers')
         }
         else{
