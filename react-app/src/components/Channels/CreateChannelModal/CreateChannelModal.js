@@ -12,7 +12,7 @@ const CreateChannelModal = ({ serverId }) => {
         className="create-channel-button"
         onClick={() => setShowModal(true)}
       >
-        <i className="fa-solid fa-plus"></i>
+        <i className="fa-solid fa-plus create-channel-plus"></i>
       </button>
       {showModal && (
         <Modal onClose={() => setShowModal(false)} showModal={showModal}>
