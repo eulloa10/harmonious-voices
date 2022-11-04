@@ -14,27 +14,50 @@
 }
 
 .server-icon-div {
+  background-size: cover;
+  background-position: 50%;
+}
+
+.server-icon-div,
+.explore-icon-div,
+.add-icon-div,
+.logout-icon-div {
   display: flex;
-  border: 3px solid black;
+  background-color: #424549;
   border-radius: 50%;
+  font-size: 2rem;
   cursor: pointer;
   width: 50px;
   height: 50px;
   justify-content: center;
   align-items: center;
   color: white;
+  transition: all 0.3s;
+}
+
+.explore-icon-div,
+.add-icon-div {
+  color: green;
+}
+
+.server-icon-div:hover,
+.logout-icon-div:hover {
+  background-color: #7289da;
+  border-radius: 25%;
+  color: white;
+}
+
+.explore-icon-div:hover,
+.add-icon-div:hover {
+  color: white;
+  background-color: rgb(13, 122, 13);
+  border-radius: 25%;
 }
 
 .direct-server-divider {
   background-color: #424549;
   width: 60%;
   padding: 0.1rem;
-}
-
-.server-icon {
-  font-size: 25px;
-  /* width: 50px;
-  height: 50px; */
 }
 
 .dm {

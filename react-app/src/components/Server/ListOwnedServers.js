@@ -11,7 +11,6 @@ import ServerBubble from "./ServerBubble";
 import CreateSeverForm from "./CreateServerForm";
 import Fab from "./Fab";
 import "./Servers.css";
-import Explore from "../../svgFiles/explore.svg";
 import Logout from "../../svgFiles/logout.svg";
 import { logout } from "../../store/session";
 import Channels from "../Channels/Channels";
@@ -79,13 +78,13 @@ const ListOwnedServers = () => {
           );
         })}
         <div>
-          <NavLink to={`/servers`} className="server-icon-div">
-            <img src={Explore} />
+          <NavLink to={`/servers`} className="explore-icon-div">
+            <i className="fa-solid fa-compass"></i>
           </NavLink>
         </div>
         <Fab hidden={showForm} onClick={() => setShowForm(true)} />
-        <div className="server-icon-div" onClick={handleLogOut}>
-          <img src={Logout} />
+        <div className="logout-icon-div" onClick={handleLogOut}>
+          <i className="fa-solid fa-right-from-bracket"></i>
         </div>
       </nav>
       {showForm && <CreateSeverForm hideForm={() => setShowForm(false)} />}
