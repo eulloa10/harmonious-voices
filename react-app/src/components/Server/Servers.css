@@ -81,19 +81,25 @@
   border-radius: 5px;
   background-color: rgb(30, 33, 36);
   width: 150px;
+  transition: all 0.3s;
 }
 .servercard-main-div:hover {
   box-shadow: 5px 5px 5px black;
 }
 .servercard-icon-div {
   display: flex;
-  /* border-right: 3px solid black; */
-  /* border-radius: 5px; */
+  border-radius: 5px;
   width: 50px;
   height: 50px;
   margin: 3px;
   justify-content: center;
   align-items: center;
+}
+
+.servercard-icon {
+  font-size: 2.4rem;
+  width: 50px;
+  height: 50px;
 }
 
 .server-name {
