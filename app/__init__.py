@@ -47,14 +47,6 @@ Migrate(app, db)
 # Application Security
 CORS(app)
 
-if os.environ.get("FLASK_ENV") == "production":
-    origins = [
-        "http://harmonious-voices.herokuapp.com",
-        "https://harmonious-voices.herokuapp.com"
-    ]
-else:
-    origins = "*"
-
 # Since we are deploying with Docker and Flask,
 # we won't be using a buildpack when we deploy to Heroku.
 # Therefore, we need to make sure that in production any
@@ -67,6 +59,7 @@ def https_redirect():
             url = request.url.replace('http://', 'https://', 1)
             code = 301
             return redirect(url, code=code)
+
 print("___________OSENV", os.environ.get('FLASK_ENV'))
 
 
