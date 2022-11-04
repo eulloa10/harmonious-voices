@@ -61,6 +61,7 @@ def https_redirect():
             return redirect(url, code=code)
 
 print("___________OSENV", os.environ.get('FLASK_ENV'))
+print("___________XFORWARDEDPROTO", os.environ.get('X-Forwarded-Proto'))
 
 
 @app.after_request
