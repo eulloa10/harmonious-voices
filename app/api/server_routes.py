@@ -22,8 +22,13 @@ def get_owned_servers():
     # TODO needs to update this logic to grab owned not joined servers
     user_id = current_user.id
     user = User.query.get(user_id)
-    servers = user.server_member
-    return {'OwnedServers': [server.server.to_dict() for server in servers]}
+    # servers = user.server_member
+    user_to_dict = user.to_dict()
+    user_servers = user_to_dict['owned_servers']
+    print('=====================================================')
+    # print('********************************',user.owned_servers.to_resource_dict())
+    print('asdfasdfafasdfasdfasdfasdf', user_servers)
+    return {'OwnedServers': [server for server in user_servers]}
 
 
 @server_routes.route('/', methods=['GET'])
@@ -47,7 +52,7 @@ def create_one_server():
             return upload, 400
         url = upload["url"]
 
-    print(url)
+    print("--------------------------", url)
     name = request.form['name']
     owner_id = current_user.id
     server_img = url
