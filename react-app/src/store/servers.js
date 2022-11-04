@@ -109,7 +109,8 @@ export const deleteAServer = (serverId) => async (dispatch) => {
 };
 
 const initialState = {
-  memberOf: {},
+  owned: {},
+  joined: {},
   allServers: {},
 };
 
@@ -127,10 +128,11 @@ const serverReducer = (state = { ...initialState }, action) => {
 
     case OWNED:
       const ownedServers = {};
+      console.log(action);
       action.ownedServers.OwnedServers.forEach((server) => {
         ownedServers[server.id] = server;
       });
-      state.memberOf = { ...ownedServers };
+      state.owned = { ...ownedServers };
       return {
         ...state,
       };
@@ -140,7 +142,7 @@ const serverReducer = (state = { ...initialState }, action) => {
       action.joinedServers.MyServers.forEach((server) => {
         joinedServers[server.id] = server;
       });
-      state.memberOf = { ...joinedServers };
+      state.joined = { ...joinedServers };
       return {
         ...state,
       };
