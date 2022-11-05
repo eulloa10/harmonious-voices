@@ -111,9 +111,10 @@ _Below is an example of how you can instruct your audience on installing and set
 <!-- CONTACT -->
 ## Contact
 
-Your Name - [@your_twitter](https://twitter.com/your_username) - email@example.com
+- [Sungmin Lee](https://github.com/sungminlee417)
+- [Andrew Parks](https://github.com/FrontLineCoding)
+- [Edgar Ulloa](https://github.com/eulloa10)
 
-Project Link: [https://github.com/your_username/repo_name](https://github.com/your_username/repo_name)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
