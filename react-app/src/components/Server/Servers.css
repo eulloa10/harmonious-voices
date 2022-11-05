@@ -8,19 +8,12 @@
   min-width: 7rem;
 }
 
-.server-modal-name {
-  margin: 0.5rem;
-}
-
-.create-server-form {
-  margin: 5px;
-}
-
 .servers-nav-bar {
   align-items: center;
   display: flex;
   flex-direction: column;
   gap: 1rem;
+  height: 100%;
 }
 
 .server-link-bubbles {
@@ -128,7 +121,10 @@
   object-fit: cover;
 }
 
-.server-name {
+.server-info-text {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
   margin: 2rem;
   font-size: 15px;
 }
@@ -141,7 +137,6 @@
   display: flex;
   align-items: center;
   gap: 0.4rem;
-  margin: 0 2rem;
   font-size: 1rem;
 }
 
@@ -162,52 +157,101 @@
 }
 
 /* ----------- FORM STYLING ---------- */
-.create-song-form {
+/* TODO take care of the buttons with class names */
+.create-server-form-container {
+  display: flex;
+  flex-direction: column;
+  width: 40rem;
+}
+
+.create-server-form {
+  align-items: center;
   display: flex;
   flex-direction: column;
 }
 
-/* input {
-  background-color: black;
-  height: 25px;
-  margin: 3px;
-  color: rgb(114, 137, 218);
-} */
-/* input:hover {
-  background-color: rgba(114, 137, 218);
-  border: 3px solid black;
-  border-radius: 5px;
-} */
+.server-camera {
+  color: white;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
 
-select {
-  margin-top: 3px;
-  background-color: rgb(114, 137, 218);
-  border-radius: 5px;
-  font-weight: bold;
-  margin-bottom: 10px;
+.create-server-form-header {
+  display: flex;
+  justify-content: space-between;
+  color: white;
+  padding: 2rem;
+  font-size: 2.4rem;
 }
-select:hover {
+
+.create-server-input-container {
+  color: #c3c4c5;
+  display: flex;
+  flex-direction: column;
+  padding: 0 2rem;
+  gap: 1rem;
+  width: 100%;
+}
+
+.create-server-photo-container {
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.create-server-input-container label {
+  font-size: 1.2rem;
+}
+
+.create-server-input-container input {
+  color: #c3c4c5;
+  background-color: #1b1d1f;
+  border-radius: 0.4rem;
+  height: 3.6rem;
+  padding: 1rem;
+}
+
+.create-server-form-buttons {
+  align-items: center;
+  background-color: #26282b;
+  border-radius: 0 0 1rem 1rem;
+  cursor: pointer;
+  display: flex;
+  font-size: 1.4rem;
+  gap: 2rem;
+  justify-content: flex-end;
+  margin-top: 2rem;
+  padding: 1.2rem 2rem 1.2rem;
+  width: 100%;
+}
+
+.create-server-form-button-submit {
+  background-color: #9cace5;
+  border-radius: 0.5rem;
+  color: #ebebec;
+  cursor: not-allowed;
+  padding: 1rem;
+}
+
+.create-server-form-button-submit.typed {
+  background-color: #7289da;
+  color: white;
   cursor: pointer;
 }
-option {
-  background-color: gray;
-}
-option:hover {
-  background-color: rgb(114, 137, 218);
+
+.create-server-form-button-edit {
+  background-color: #7289da;
+  border-radius: 0.5rem;
+  color: white;
   cursor: pointer;
+  padding: 1rem;
 }
-/* TODO take care of the buttons with class names */
-.form-button {
-  margin: 0;
-  margin-top: 10px;
-  background-color: rgb(114, 137, 218);
-  border: 3px solid black;
-  border-radius: 15px;
-  font-weight: 600;
-  padding: 4px;
-}
-.form-button:hover {
-  cursor: pointer;
+
+.create-server-form-button.cancel {
+  color: white;
 }
 
 /* --------------------------------Context Server ---------------------------------------*/

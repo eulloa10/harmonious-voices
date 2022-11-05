@@ -91,7 +91,7 @@ const SignUpForm = () => {
             PROFILE PHOTO (optional)
           </div>
           <label for="file" className="signup-form-input-label photo">
-            {!image && <i className="fa-solid fa-plus signup-plus"></i>}
+            {!image && <i className="fa-solid fa-camera signup-camera"></i>}
             {image && (
               <img
                 className="signup-form-photo"
@@ -162,7 +162,7 @@ const SignUpForm = () => {
           </label>
           <input
             className="signup-form-input"
-            type="confirm-password"
+            type="password"
             name="confirm-password"
             onChange={updateConfirmPassword}
             value={confirmPassword}

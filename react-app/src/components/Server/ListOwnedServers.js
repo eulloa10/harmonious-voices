@@ -26,6 +26,7 @@ const ListOwnedServers = () => {
   const [showContext, setShowContext] = useState(false);
   const [points, setPoints] = useState({ x: 0, y: 0 });
   const [contextedServerId, setContextedServerId] = useState("");
+  const servers = useSelector((state) => state.servers.allServers);
   // const [ownedServers, setOwnedServers] = useState(useSelector((state)=> {return Object.values(state.servers.owned)}))
 
   // let serverLinks;
@@ -130,7 +131,7 @@ const ListOwnedServers = () => {
         // ></EditSeverForm>
         <EditServerModal
           hideForm={() => setEditForm(false)}
-          contextedServerId={contextedServerId}
+          server={servers[contextedServerId]}
         ></EditServerModal>
       )}
       {showContext && (

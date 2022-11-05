@@ -5,7 +5,7 @@ class Server(db.Model):
     __tablename__ = 'servers'
 
     id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String, nullable=False)
+    name = db.Column(db.String, nullable=True)
     owner_id = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=True)
     server_img = db.Column(db.String(), nullable=True)
 
