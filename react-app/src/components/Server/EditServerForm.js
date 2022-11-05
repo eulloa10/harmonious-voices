@@ -7,32 +7,31 @@ import "./Servers.css";
 const EditSeverForm = ({ hideForm, contextedServerId}) => {
   const dispatch = useDispatch();
   const history = useHistory();
-  const sessionUserId = useSelector((state) => state.session.user.id);
-  const username = useSelector((state) => state.session.user.username);
 
   const [name, setName] = useState("");
   const [serverImg, setServerImg] = useState("");
 
   const updateName = (e) => setName(e.target.value);
-  const updateServerImg = (e) => setServerImg(e.target.value);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const payload = {
-      name,
-      server_img: serverImg,
-    };
+  const payload = new FormData();
+
+  payload.append("name", name);
+  if (serverImg) payload.append("image", serverImg);
+
 
     let createdServer = await dispatch(editServer(payload, contextedServerId))
-    // .catch(async (res) => {
-    //   const data = await res.json();
-    //   if(data && data.errors) setErrors(data.errors)
-    // });
     if (createdServer) {
       history.push(`/servers/${contextedServerId}`);
       hideForm();
     }
+  };
+
+  const updateFile = (e) => {
+    const file = e.target.files[0];
+    if (file) setServerImg(file);
   };
 
   const handleCancelClick = (e) => {
@@ -40,13 +39,9 @@ const EditSeverForm = ({ hideForm, contextedServerId}) => {
     hideForm();
   };
 
-  // const errorsArr = Object.values(errors);
   return (
     <section className="new-form-holder centered middled">
       <form className="create-server-form" onSubmit={handleSubmit}>
-        {/* <ul>
-                         {errorsArr.map((error, idx) => <li key={idx}>{error}</li>)}
-                    </ul> */}
         <input
           type="text"
           placeholder="Name"
@@ -54,10 +49,8 @@ const EditSeverForm = ({ hideForm, contextedServerId}) => {
           onChange={updateName}
         />
         <input
-          type="text"
-          placeholder="Server Image"
-          value={serverImg}
-          onChange={updateServerImg}
+          type="file"
+          onChange={updateFile}
         />
         <button className="form-button" type="submit">
           Edit Server
