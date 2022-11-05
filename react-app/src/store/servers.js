@@ -36,7 +36,7 @@ const deleteServer = (id) => ({
 });
 
 export const getServers = () => async (dispatch) => {
-  const response = await fetch(`/api/servers/`);
+  const response = await fetch(`/api/servers`);
 
   if (response.ok) {
     const allServers = await response.json();
@@ -97,7 +97,7 @@ export const editServer = (server, serverId) => async (dispatch) => {
 };
 
 export const deleteAServer = (serverId) => async (dispatch) => {
-  console.log('from store delete', serverId);
+  console.log("from store delete", serverId);
   const response = await fetch(`/api/servers/${serverId}`, {
     method: "DELETE",
   });

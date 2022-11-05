@@ -17,6 +17,10 @@ const ServerCard = ({ server }) => {
       <div className="server-name">
         <p>{server.name}</p>
       </div>
+      <div className="server-members">
+        <i class="fa-solid fa-circle server-members-circle"></i>
+        {server.members.length} members
+      </div>
     </div>
   );
 };

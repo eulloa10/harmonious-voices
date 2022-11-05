@@ -98,8 +98,9 @@
   color: white;
   border-radius: 5px;
   background-color: rgb(30, 33, 36);
-  height: 24rem;
-  width: 20rem;
+  gap: 1rem;
+  height: 26rem;
+  width: 22rem;
   transition: ease-in-out all 0.3s;
 }
 .servercard-main-div:hover {
@@ -116,15 +117,32 @@
 }
 
 .servercard-icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   font-size: 2.4rem;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  height: 100%;
   width: 100%;
-  width: 100%;
+  object-fit: cover;
 }
 
 .server-name {
-  display: flex;
-  justify-content: center;
+  margin: 2rem;
   font-size: 15px;
+}
+
+.server-members-circle {
+  font-size: 0.8rem;
+}
+
+.server-members {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin: 0 2rem;
+  font-size: 1rem;
 }
 
 .all-servers-container {
