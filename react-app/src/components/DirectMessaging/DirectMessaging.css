@@ -16,7 +16,7 @@
   padding: 0.8rem 1rem;
 }
 
-.channels-header:hover {
+.direct-channels-header:hover {
   color: #ebebec;
 }
 
@@ -43,6 +43,15 @@
 }
 
 .fa-solid.fa-xmark.delete-direct-channel-button:hover {
+  color: #ebebec;
+}
+
+.direct-channels-plus {
+  color: #c3c4c5;
+  cursor: pointer;
+}
+
+.direct-channels-plus:hover {
   color: #ebebec;
 }
 

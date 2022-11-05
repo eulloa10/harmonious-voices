@@ -20,18 +20,20 @@ const AllServers = () => {
   }, [dispatch]);
 
   return (
-    <div className="server-card-container">
-      {allServers.map((server) => {
-        return (
-          // <div className="server-card-container">
+    <div className="all-servers-container">
+      <div className="server-card-container">
+        {allServers.map((server) => {
+          return (
+            // <div className="server-card-container">
             <NavLink key={server.id} to={`/servers/${server.id}`}>
               <div className="servers-container">
                 <ServerCard server={server}></ServerCard>
               </div>
             </NavLink>
-          // </div>
-        );
-      })}
+            // </div>
+          );
+        })}
+      </div>
     </div>
   );
 };

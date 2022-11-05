@@ -28,8 +28,7 @@ const ListOwnedServers = () => {
   const [contextedServerId, setContextedServerId] = useState("");
   // const [ownedServers, setOwnedServers] = useState(useSelector((state)=> {return Object.values(state.servers.owned)}))
 
-  let serverLinks;
-
+  // let serverLinks;
 
   let myServers = useSelector((state) => {
     const serversArr = Object.values(state.servers.owned);
@@ -40,8 +39,6 @@ const ListOwnedServers = () => {
 
   const [showForm, setShowForm] = useState(false);
   const [editForm, setEditForm] = useState(false);
-
-
 
   useEffect(() => {
     dispatch(getServers());
@@ -55,26 +52,27 @@ const ListOwnedServers = () => {
     return () => window.removeEventListener("click", handleClick);
   }, []);
 
-
-    serverLinks =
-    (<div>
-        {myServers.map((server, i) => {
-        return (<NavLink key={server.id} to={`/servers/${server.id}`}>
-        <div
-          className={`servers-container ${server.id}`}
-          onContextMenu={(e) => {
-            e.preventDefault();
-            setContextedServerId(e.target.className.split(" ")[1]);
-            setShowContext(true);
-            setPoints({ x: e.pageX, y: e.pageY });
-          }}
-        >
-          <ServerBubble server={server}></ServerBubble>
-        </div>
-      </NavLink>)
-      })}
-    </div>
-    )
+  // serverLinks = (
+  //   <div className="server-link-bubbles">
+  //     {myServers.map((server, i) => {
+  //       return (
+  //         <NavLink key={server.id} to={`/servers/${server.id}`}>
+  //           <div
+  //             className={`servers-container ${server.id}`}
+  //             onContextMenu={(e) => {
+  //               e.preventDefault();
+  //               setContextedServerId(e.target.className.split(" ")[1]);
+  //               setShowContext(true);
+  //               setPoints({ x: e.pageX, y: e.pageY });
+  //             }}
+  //           >
+  //             <ServerBubble server={server}></ServerBubble>
+  //           </div>
+  //         </NavLink>
+  //       );
+  //     })}
+  //   </div>
+  // );
 
   const handleLogOut = () => {
     history.push("/");
@@ -87,25 +85,43 @@ const ListOwnedServers = () => {
         <div>
           <NavLink
             to="/direct-messages"
-            className="server-icon-div dm server-icon"
+            className="direct-server-icon-div dm server-icon"
           >
-            DM
+            <i class="fa-brands fa-discord direct-message-icon"></i>
           </NavLink>
         </div>
         <div className="direct-server-divider"></div>
-          {serverLinks}
+        {myServers.map((server, i) => {
+          return (
+            <NavLink key={server.id} to={`/servers/${server.id}`}>
+              <div
+                className={`servers-container ${server.id}`}
+                onContextMenu={(e) => {
+                  e.preventDefault();
+                  setContextedServerId(e.target.className.split(" ")[1]);
+                  setShowContext(true);
+                  setPoints({ x: e.pageX, y: e.pageY });
+                }}
+              >
+                <ServerBubble server={server}></ServerBubble>
+              </div>
+            </NavLink>
+          );
+        })}
+        <Fab hidden={showForm} onClick={() => setShowForm(true)} />
         <div>
           <NavLink to={`/servers`} className="explore-icon-div">
             <i className="fa-solid fa-compass"></i>
           </NavLink>
         </div>
-        <Fab hidden={showForm} onClick={() => setShowForm(true)} />
+        <div className="direct-server-divider"></div>
+
         <div className="logout-icon-div" onClick={handleLogOut}>
           <i className="fa-solid fa-right-from-bracket"></i>
         </div>
       </nav>
       {/* {showForm && <CreateSeverForm hideForm={() => setShowForm(false)} />} */}
-      {showForm && <CreateServerModal hideForm={() => setShowForm(false)}/>}
+      {showForm && <CreateServerModal hideForm={() => setShowForm(false)} />}
 
       {editForm && (
         // <EditSeverForm
@@ -113,9 +129,9 @@ const ListOwnedServers = () => {
         //   contextedServerId={contextedServerId}
         // ></EditSeverForm>
         <EditServerModal
-        hideForm={() => setEditForm(false)}
-        contextedServerId={contextedServerId}
-      ></EditServerModal>
+          hideForm={() => setEditForm(false)}
+          contextedServerId={contextedServerId}
+        ></EditServerModal>
       )}
       {showContext && (
         <ContextMenu

@@ -41,7 +41,7 @@ const DirectMessaging = () => {
 
   const onDelete = (channelId) => {
     dispatch(deleteDirectChannel(channelId));
-    history.push('/direct-messages');
+    history.push("/direct-messages");
   };
 
   let directChannelLinks;
@@ -83,7 +83,7 @@ const DirectMessaging = () => {
           className="create-direct-channel-button"
           onClick={handleShowCreateForm}
         >
-          <i className="fa-solid fa-plus"></i>
+          <i className="fa-solid fa-plus direct-channels-plus"></i>
         </button>
         {showCreateForm && (
           <CreateDirectMessaging onClose={() => setShowCreateForm(false)} />
