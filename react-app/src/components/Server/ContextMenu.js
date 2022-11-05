@@ -39,7 +39,7 @@ const ContextMenu = ({top, left, contextedServerId, setEditForm, setOwnedServers
     return (
         <>
             <div className="context-menu" style={{top, left}}>
-                <ul className='context-meneu-list'  onClick={(e) => {handleClick(e)}}>
+                <ul className='context-menu-list'  onClick={(e) => {handleClick(e)}}>
                     <li>Edit</li>
                     <li>Delete</li>
                 </ul>
