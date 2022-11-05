@@ -7,7 +7,6 @@ from app.aws import (
 
 
 server_routes = Blueprint('servers', __name__)
-# TODO fix validations on routes to a WTForm
 server_routes.register_blueprint(channel_server_routes, url_prefix="/")
 
 @server_routes.route('/me', methods=['GET'])
@@ -74,13 +73,26 @@ def delete_one_server(id):
 @server_routes.route('/<int:id>', methods=['PUT'])
 def update_one_server(id):
     server = Server.query.get(id)
-    name = request.json['name']
-    server_img = request.json['server_img']
-
+    print('*******************************************',server.to_dict())
+    print('*******************************************',request.form['data'])
     if(current_user.id != server.owner_id):
         return {"error_code": "403", "message": "This ain't yers"}
     else:
-        server.name = name
-        server.server_img = server_img
+        url = None
+
+        if "image" in request.files:
+            image = request.files['image']
+            if not allowed_file(image.filename):
+                return {"errors": "file type not permitted"}
+            image.filename = get_unique_filename(image.filename)
+            upload = upload_file_to_s3(image)
+
+            if "url" not in upload:
+                return upload, 400
+            url = upload["url"]
+
+        server.name = request.form['name']
+        server.server_img = url
         db.session.commit()
+
         return {'Message': "updated"}

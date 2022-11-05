@@ -16,6 +16,9 @@ import { logout } from "../../store/session";
 import Channels from "../Channels/Channels";
 import ContextMenu from "./ContextMenu";
 import EditSeverForm from "./EditServerForm";
+import { clicked } from "./ContextMenu";
+import CreateServerModal from "./CreateServerModal/CreateServerModal";
+import EditServerModal from "./EditServerModal/EditServerModal";
 
 const ListOwnedServers = () => {
   const dispatch = useDispatch();
@@ -33,7 +36,6 @@ const ListOwnedServers = () => {
 
     return [...serversArr, ...spreadArr];
   });
-  console.log("My servers", myServers);
 
   const [showForm, setShowForm] = useState(false);
   const [editForm, setEditForm] = useState(false);
@@ -42,7 +44,7 @@ const ListOwnedServers = () => {
     dispatch(getServers());
     dispatch(getJoinedServers());
     dispatch(getOwnedServers());
-  }, [dispatch, showForm, editForm, contextedServerId]);
+  }, [dispatch, showForm, editForm, contextedServerId, clicked]);
 
   useEffect(() => {
     const handleClick = () => setShowContext(false);
@@ -102,12 +104,18 @@ const ListOwnedServers = () => {
           <i className="fa-solid fa-right-from-bracket"></i>
         </div>
       </nav>
-      {showForm && <CreateSeverForm hideForm={() => setShowForm(false)} />}
+      {/* {showForm && <CreateSeverForm hideForm={() => setShowForm(false)} />} */}
+      {showForm && <CreateServerModal hideForm={() => setShowForm(false)} />}
+
       {editForm && (
-        <EditSeverForm
+        // <EditSeverForm
+        //   hideForm={() => setEditForm(false)}
+        //   contextedServerId={contextedServerId}
+        // ></EditSeverForm>
+        <EditServerModal
           hideForm={() => setEditForm(false)}
           contextedServerId={contextedServerId}
-        ></EditSeverForm>
+        ></EditServerModal>
       )}
       {showContext && (
         <ContextMenu

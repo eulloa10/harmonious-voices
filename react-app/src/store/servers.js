@@ -36,7 +36,7 @@ const deleteServer = (id) => ({
 });
 
 export const getServers = () => async (dispatch) => {
-  const response = await fetch(`/api/servers`);
+  const response = await fetch(`/api/servers/`);
 
   if (response.ok) {
     const allServers = await response.json();
@@ -83,10 +83,10 @@ export const addServer = (server) => async (dispatch) => {
 };
 
 export const editServer = (server, serverId) => async (dispatch) => {
+  console.log(serverId);
   const response = await fetch(`/api/servers/${serverId}`, {
     method: "PUT",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(server),
+    body: server,
   });
 
   if (response.ok) {

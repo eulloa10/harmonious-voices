@@ -8,6 +8,18 @@
   min-width: 7rem;
 }
 
+.servers-container{
+  margin-bottom: 1rem;
+}
+
+.server-modal-name{
+  margin: 0.5rem;
+}
+
+.create-server-form{
+  margin: 5px;
+}
+
 .servers-nav-bar {
   align-items: center;
   display: flex;

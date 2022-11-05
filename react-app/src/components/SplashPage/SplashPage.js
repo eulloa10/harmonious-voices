@@ -1,10 +1,11 @@
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
-import { NavLink, Route, Switch, useHistory } from "react-router-dom";
+import { NavLink, Link, Route, Switch, useHistory } from "react-router-dom";
 import LoginForm from "../auth/LoginForm";
 import SignUpForm from "../auth/SignUpForm/SignUpForm";
 import NavBar from "./NavBar/NavBar";
 import "./SplashPage.css";
+import Github from "../../svgFiles/github.svg";
 
 const SplashPage = () => {
   const history = useHistory();
@@ -23,6 +24,18 @@ const SplashPage = () => {
           <i className="fa-brands fa-discord"></i>
           <span className="splash-page-header-name">Harmonious Voices</span>
         </NavLink>
+        {/* <Link to={{ pathname: "https://github.com/eulloa10/harmonious-voices" }} target="_blank">
+          <img src={Github} alt='github'/>
+        </Link>
+        <Link to={{ pathname: "https://github.com/sungminlee417" }} target="_blank">
+          <img src={Github} alt='Sungmin Github'/>
+        </Link>
+        <Link to={{ pathname: "https://github.com/FrontLineCoding" }} target="_blank">
+          <img src={Github} alt='Andrew Github'/>
+        </Link>
+        <Link to={{ pathname: "https://github.com/eulloa10/harmonious-voices" }} target="_blank">
+          <img src={Github} alt='Edgar Github'/>
+        </Link> */}
         <div className="hero-text">
           <div className="hero-text-header">IMAGINE A PLACE...</div>
           <div className="hero-text-content">
