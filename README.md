@@ -55,7 +55,7 @@ Browser through various user created servers and join any that match your intere
 
 #### Channels
 
-Using the various server channels to effectively communicate with others
+Use the server channels to engage with the community
 
 ![Channel-Messaging](/screenshots/channels.png)
 
