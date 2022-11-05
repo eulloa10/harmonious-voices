@@ -78,34 +78,57 @@ Using the various server channels to effectively communicate with others
 <!-- GETTING STARTED -->
 ## Getting Started
 
-This is an example of how you may give instructions on setting up your project locally.
-To get a local copy up and running follow these simple example steps.
-
-### Prerequisites
-
-This is an example of how to list things you need to use the software and how to install them.
-* npm
-  ```sh
-  npm install npm@latest -g
-  ```
-
 ### Installation
+### Backend
 
-_Below is an example of how you can instruct your audience on installing and setting up your app. This template doesn't rely on any external dependencies or services._
+1. Clone this repository (only this branch)
 
-1. Get a free API Key at [https://example.com](https://example.com)
-2. Clone the repo
-   ```sh
-   git clone https://github.com/your_username_/Project-Name.git
+   ```bash
+   git clone https://github.com/eulloa10/harmonious-voices
    ```
-3. Install NPM packages
-   ```sh
+
+2. Install dependencies
+
+   ```bash
+   pipenv install -r requirements.txt
+   ```
+
+3. Create a **.env** file based on the example with proper settings for your
+   development environment
+
+4. Make sure the SQLite3 database connection URL is in the **.env** file
+
+5. Get into your pipenv, migrate your database, seed your database, and run your Flask app
+
+   ```bash
+   pipenv shell
+   ```
+
+   ```bash
+   flask db upgrade
+   ```
+
+   ```bash
+   flask seed all
+   ```
+
+   ```bash
+   flask run
+### Frontend
+
+1. Navigate to the react-app folder and npm install
+
+   ```bash
+   cd react-app
    npm install
    ```
-4. Enter your API in `config.js`
-   ```js
-   const API_KEY = 'ENTER YOUR API';
+
+2. Start the React app
+
+   ```bash
+   npm start
    ```
+
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
