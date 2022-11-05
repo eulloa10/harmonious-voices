@@ -3,6 +3,6 @@
   cursor: pointer;
 }
 
-.create-channel-plus {
+.create-channel-plus:hover {
   color: #ebebec;
 }

@@ -14,7 +14,6 @@ const CreateSeverForm = ({ hideForm }) => {
   const [serverImg, setServerImg] = useState("");
 
   const updateName = (e) => setName(e.target.value);
-  const updateServerImg = (e) => setServerImg(e.target.value);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -25,17 +24,11 @@ const CreateSeverForm = ({ hideForm }) => {
 
     if (serverImg) payload.append("image", serverImg);
 
-    let createdServer = await dispatch(addServer(payload)).catch(
-      async (res) => {
-        const data = await res.json();
-        console.log(data);
-        // if(data && data.errors) setErrors(data.errors)
-      }
-    );
+    let createdServer = await dispatch(addServer(payload))
     if (createdServer) {
       history.push(`/servers/${createdServer.id}`);
       hideForm();
-    }
+      }
   };
 
   const updateFile = (e) => {
@@ -48,23 +41,18 @@ const CreateSeverForm = ({ hideForm }) => {
     hideForm();
   };
 
-  // const errorsArr = Object.values(errors);
   return (
     <section className="new-form-holder centered middled">
       <form className="create-server-form" onSubmit={handleSubmit}>
-        {/* <ul>
-                         {errorsArr.map((error, idx) => <li key={idx}>{error}</li>)}
-                    </ul> */}
         <input
           type="text"
           placeholder="Name"
           value={name}
           onChange={updateName}
+          className="server-modal-name"
         />
         <input
           type="file"
-          // placeholder="Server Image"
-          // value={serverImg}
           onChange={updateFile}
         />
         <button className="form-button" type="submit">

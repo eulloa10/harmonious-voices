@@ -22,6 +22,7 @@ html {
 body {
   font-family: "Rubik", sans-serif;
   height: 100vh;
+  width: 100vw;
 }
 
 a {
@@ -45,4 +46,5 @@ textarea:focus {
 
 #root {
   height: 100%;
+  width: 100%;
 }
