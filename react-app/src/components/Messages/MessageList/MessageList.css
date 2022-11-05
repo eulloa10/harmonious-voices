@@ -1,14 +1,15 @@
+.channel-messages-container {
+  width: 100%;
+}
+
 .all-messages {
   background-color: #424549;
   height: 90vh;
-  width: 85vw;
-  overflow-y: auto;
 }
 
 .messaging-functionality {
   background-color: #424549;
   height: 10vh;
-  width: 85vw;
   display: space-around;
   justify-content: center;
   align-items: center;

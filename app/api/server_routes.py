@@ -32,7 +32,7 @@ def get_all_servers():
     return {'Servers': [server.to_dict() for server in servers]}
 
 
-@server_routes.route('', methods=['POST'])
+@server_routes.route('/', methods=['POST'])
 def create_one_server():
     url = None
 

@@ -10,12 +10,12 @@ const SignUpForm = () => {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
   const user = useSelector((state) => state.session.user);
   const dispatch = useDispatch();
 
   useEffect(() => {
     Object.keys(errors).forEach((error) => {
-      console.log(error);
       const errorElement = document.getElementById(`signup-error-${error}`);
       errorElement.classList.add("show-error-message");
     });
@@ -26,29 +26,34 @@ const SignUpForm = () => {
     setErrors({});
 
     const errorElements = document.getElementsByClassName("signup-error");
-    for (let i = 0; i < errorElements.length; i++) {
-      const errorElement = errorElements[i];
-      errorElement.classList.remove("show-error-message");
-    }
 
-    const userData = new FormData();
-    userData.append("username", username);
-    userData.append("email", email);
-    userData.append("password", password);
+    if (password === confirmPassword) {
+      for (let i = 0; i < errorElements.length; i++) {
+        const errorElement = errorElements[i];
+        errorElement.classList.remove("show-error-message");
+      }
 
-    if (image) {
-      userData.append("image", image);
-    }
+      const userData = new FormData();
+      userData.append("username", username);
+      userData.append("email", email);
+      userData.append("password", password);
 
-    const data = await dispatch(signUp(userData));
-    if (data) {
-      const errObj = {};
-      data.forEach((error) => {
-        const errorTitle = error.split(" : ")[0];
-        const errorContent = error.split(" : ")[1];
-        errObj[errorTitle] = errorContent;
-      });
-      setErrors(errObj);
+      if (image) {
+        userData.append("image", image);
+      }
+
+      const data = await dispatch(signUp(userData));
+      if (data) {
+        const errObj = {};
+        data.forEach((error) => {
+          const errorTitle = error.split(" : ")[0];
+          const errorContent = error.split(" : ")[1];
+          errObj[errorTitle] = errorContent;
+        });
+        setErrors(errObj);
+      }
+    } else {
+      setErrors({ confirmPassword: "Passwords do not match" });
     }
   };
 
@@ -64,9 +69,9 @@ const SignUpForm = () => {
     setPassword(e.target.value);
   };
 
-  // const updateRepeatPassword = (e) => {
-  //   setRepeatPassword(e.target.value);
-  // };
+  const updateConfirmPassword = (e) => {
+    setConfirmPassword(e.target.value);
+  };
 
   if (user) {
     return <Redirect to="/" />;
@@ -146,6 +151,21 @@ const SignUpForm = () => {
             name="password"
             onChange={updatePassword}
             value={password}
+          ></input>
+        </div>
+        <div className="signup-form-input-container">
+          <label className="signup-form-input-label">
+            CONFIRM PASSWORD
+            <div id="signup-error-confirmPassword" className="signup-error">
+              {errors?.confirmPassword}
+            </div>
+          </label>
+          <input
+            className="signup-form-input"
+            type="confirm-password"
+            name="confirm-password"
+            onChange={updateConfirmPassword}
+            value={confirmPassword}
           ></input>
         </div>
         {/* <div className="signup-form-input-container">

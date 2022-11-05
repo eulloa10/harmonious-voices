@@ -3,7 +3,9 @@
   height: 100%;
   overflow-x: scroll;
   background-color: rgb(30, 33, 36);
+  justify-content: center;
   padding: 1rem;
+  min-width: 7rem;
 }
 
 .servers-nav-bar {
@@ -85,31 +87,31 @@
 }
 .servercard-main-div {
   display: flex;
+  flex-direction: column;
   color: white;
-  padding: 3px;
-  margin: 8px;
   border-radius: 5px;
   background-color: rgb(30, 33, 36);
-  width: 150px;
+  height: 28rem;
+  width: 25rem;
   transition: ease-in-out all 0.3s;
 }
 .servercard-main-div:hover {
-  box-shadow: 5px 5px 5px black;
+  box-shadow: 0 2.4rem 1.8rem rgba(0, 0, 0.1, 0.3);
 }
 .servercard-icon-div {
   display: flex;
   border-radius: 5px;
-  width: 50px;
-  height: 50px;
-  margin: 3px;
+  width: 100%;
+  height: 50%;
   justify-content: center;
   align-items: center;
+  text-align: center;
 }
 
 .servercard-icon {
   font-size: 2.4rem;
-  width: 50px;
-  height: 50px;
+  width: 100%;
+  width: 100%;
 }
 
 .server-name {
@@ -118,15 +120,20 @@
   font-size: 15px;
 }
 
-.server-card-container {
-  display: flex;
-  flex-wrap: wrap;
-  /* height: 100px;
-  width: 5px; */
+.all-servers-container {
+  width: 100%;
+  overflow-y: scroll;
 }
 
-.server-card-container > a {
-  height: 50px;
+.server-card-container {
+  margin: 0 auto;
+  display: grid;
+  justify-content: center;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 8rem;
+  padding: 10rem;
+  flex-wrap: wrap;
+  width: fit-content;
 }
 
 /* ----------- FORM STYLING ---------- */
