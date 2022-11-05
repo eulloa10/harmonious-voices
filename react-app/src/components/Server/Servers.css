@@ -213,19 +213,25 @@ option:hover {
 /* --------------------------------Context Server ---------------------------------------*/
 .context-menu {
   font-size: 14px;
-  background-color: #fff;
-  border-radius: 2px;
+  border-radius: 5px;
   padding: 5px 0 5px 0;
   width: 150px;
   height: auto;
   margin: 0;
   position: absolute;
-  box-shadow: 0 0 20px 0 #ccc;
   opacity: 1;
-  transition: ease-in-out opacity 0.5s linear;
   cursor: pointer;
+  list-style: none;
+  background-color: #1e2124;
+  z-index: 2000;
 }
 
 .context-menu-list {
   list-style: none;
+}
+
+.context-menu-list > li {
+  list-style: none;
+  color: #afb0b1;
+  padding-left: 0.5rem;
 }

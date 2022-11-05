@@ -51,3 +51,30 @@
   font-weight: 200;
   margin: 0 6rem;
 }
+
+.splash-header-links {
+  display: flex;
+  justify-content: space-between;
+}
+
+.contributors-btn {
+  color: white;
+  font-size: 1.5rem;
+}
+
+.contributor-container {
+  display: flex;
+  justify-content: space-between;
+  padding-top: 10px;
+}
+
+.contributor-link {
+  display: flex;
+  align-items: center;
+}
+
+.contributor-name {
+  font-size: 14px;
+  color:white;
+  padding-right: 10px
+}
