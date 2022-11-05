@@ -40,8 +40,9 @@
 ## About The Project
 
 [![Harmonious-Voices](/screenshots/splash.png "Harmonious Voices")](https://harmonious-voices.herokuapp.com/)
+[![Harmonious-Voices](/screenshots/splash.png "Harmonious Voices")](https://harmonious-voices.herokuapp.com/)
 
-Harmonious Voices is a Discord inspired website. It has frontend and backend support for Servers, Channels, Messages, and Direct Messaging features.  However, at the moment it only has frontend support for spots and reviews features. Development for frontend support of images and booking features is currently in progress.
+Harmonious Voices is a Discord inspired website. It has frontend and backend support for Servers, Channels, Messages, and Direct Messaging features.
 
 Here's why:
 * Your time should be focused on creating something amazing. A project that solves a problem and helps others
@@ -62,6 +63,7 @@ This section should list any major frameworks/libraries used to bootstrap your p
 
 
 * [![React][React.js]][React-url]
+* [![Flask][]]
 
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
