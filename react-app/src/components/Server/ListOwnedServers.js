@@ -17,6 +17,8 @@ import Channels from "../Channels/Channels";
 import ContextMenu from "./ContextMenu";
 import EditSeverForm from "./EditServerForm";
 import { clicked } from "./ContextMenu";
+import CreateServerModal from "./CreateServerModal/CreateServerModal";
+import EditServerModal from "./EditServerModal/EditServerModal";
 
 const ListOwnedServers = () => {
   const dispatch = useDispatch();
@@ -71,7 +73,8 @@ const ListOwnedServers = () => {
         </div>
       </NavLink>)
       })}
-    </div>)
+    </div>
+    )
 
   const handleLogOut = () => {
     history.push("/");
@@ -101,12 +104,18 @@ const ListOwnedServers = () => {
           <i className="fa-solid fa-right-from-bracket"></i>
         </div>
       </nav>
-      {showForm && <CreateSeverForm hideForm={() => setShowForm(false)} />}
+      {/* {showForm && <CreateSeverForm hideForm={() => setShowForm(false)} />} */}
+      {showForm && <CreateServerModal hideForm={() => setShowForm(false)}/>}
+
       {editForm && (
-        <EditSeverForm
-          hideForm={() => setEditForm(false)}
-          contextedServerId={contextedServerId}
-        ></EditSeverForm>
+        // <EditSeverForm
+        //   hideForm={() => setEditForm(false)}
+        //   contextedServerId={contextedServerId}
+        // ></EditSeverForm>
+        <EditServerModal
+        hideForm={() => setEditForm(false)}
+        contextedServerId={contextedServerId}
+      ></EditServerModal>
       )}
       {showContext && (
         <ContextMenu
