@@ -40,24 +40,22 @@
 
 Harmonious Voices is a Discord inspired website with frontend and backend support for Servers, Channels, Messages, and Direct Messaging features.
 
----
 #### Direct Messaging
 
-Easily search for a friend to start a direct messaging thread:
+Easily search for a friend to start a direct messaging thread
 
 ![Direct-Messaging](/screenshots/directmessaging2.png)
 
----
-Explore
 
-Browser through various user created servers and join any that match your interests:
+#### Explore
+
+Browser through various user created servers and join any that match your interests
 
 ![Explore-Servers](/screenshots/explore.png)
 
----
-Channels
+#### Channels
 
-Using the various server channels to effectively communicate with others:
+Using the various server channels to effectively communicate with others
 
 ![Channel-Messaging](/screenshots/channels.png)
 
