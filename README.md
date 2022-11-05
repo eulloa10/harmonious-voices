@@ -81,7 +81,7 @@ Using the various server channels to effectively communicate with others
 ### Installation
 ### Backend
 
-1. Clone this repository (only this branch)
+1. Clone this repository
 
    ```bash
    git clone https://github.com/eulloa10/harmonious-voices
