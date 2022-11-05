@@ -91,6 +91,7 @@ Using the various server channels to effectively communicate with others
 
    ```bash
    pipenv install -r requirements.txt
+   pipenv install boto3
    ```
 
 3. Create a **.env** file based on the example with proper settings for your
