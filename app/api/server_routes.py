@@ -73,8 +73,7 @@ def delete_one_server(id):
 @server_routes.route('/<int:id>', methods=['PUT'])
 def update_one_server(id):
     server = Server.query.get(id)
-    print('*******************************************',server.to_dict())
-    print('*******************************************',request.form['data'])
+
     if(current_user.id != server.owner_id):
         return {"error_code": "403", "message": "This ain't yers"}
     else:

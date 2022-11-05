@@ -8,15 +8,11 @@
   min-width: 7rem;
 }
 
-.servers-container{
-  margin-bottom: 1rem;
-}
-
-.server-modal-name{
+.server-modal-name {
   margin: 0.5rem;
 }
 
-.create-server-form{
+.create-server-form {
   margin: 5px;
 }
 
@@ -30,7 +26,6 @@
 .server-link-bubbles {
   display: flex;
   flex-direction: column;
-  gap: 1rem;
 }
 
 .server-icon-div {
@@ -103,8 +98,8 @@
   color: white;
   border-radius: 5px;
   background-color: rgb(30, 33, 36);
-  height: 28rem;
-  width: 25rem;
+  height: 24rem;
+  width: 20rem;
   transition: ease-in-out all 0.3s;
 }
 .servercard-main-div:hover {
@@ -141,8 +136,8 @@
   margin: 0 auto;
   display: grid;
   justify-content: center;
-  grid-template-columns: 1fr 1fr 1fr;
-  gap: 8rem;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  gap: 4rem;
   padding: 10rem;
   flex-wrap: wrap;
   width: fit-content;
