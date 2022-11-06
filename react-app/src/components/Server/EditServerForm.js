@@ -8,8 +8,10 @@ const EditSeverForm = ({ hideForm, server }) => {
   const dispatch = useDispatch();
   const history = useHistory();
 
-  const [name, setName] = useState(server.name);
-  const [serverImg, setServerImg] = useState(server.server_img);
+  const [name, setName] = useState(server.name ? server.name : "");
+  const [serverImg, setServerImg] = useState(
+    server.server_img ? server.server_img : ""
+  );
   const [image, setImage] = useState("");
   const [changed, setChanged] = useState(false);
 

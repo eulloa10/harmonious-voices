@@ -35,11 +35,21 @@
   border-radius: 50%;
   height: 40px;
   width: 40px;
+  /* margin-right: 15px; */
+  /* margin-left: 15px; */
+  padding: 5px;
+  background-color: #7289da;
+}
+
+/* .prof-img-side {
+  border-radius: 50%;
+  height: 40px;
+  width: 40px;
   margin-right: 15px;
   margin-left: 15px;
   padding: 5px;
   background-color: #7289da;
-}
+} */
 
 .message-middle {
   flex-grow: 1;
