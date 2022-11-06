@@ -31,9 +31,8 @@
   </ol>
 </details>
 
-
-
 <!-- ABOUT THE PROJECT -->
+
 ## About The Project
 
 [![Harmonious-Voices](/screenshots/splash.png "Harmonious Voices")](https://harmonious-voices.herokuapp.com/)
@@ -45,7 +44,6 @@ Harmonious Voices is a Discord inspired website with frontend and backend suppor
 Easily search for a friend to start a direct messaging thread
 
 ![Direct-Messaging](/screenshots/directmessaging2.png)
-
 
 #### Explore
 
@@ -61,24 +59,21 @@ Using the various server channels to effectively communicate with others
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-
-
 ### Built With
 
-  - [React](https://reactjs.org/)
-  - [Flask](https://flask.palletsprojects.com/en/2.2.x/)
-  - [Postgres](https://www.postgresql.org/)
-  - [SQLAlchemy](https://www.sqlalchemy.org/)
-
+- [React](https://reactjs.org/)
+- [Flask](https://flask.palletsprojects.com/en/2.2.x/)
+- [Postgres](https://www.postgresql.org/)
+- [SQLAlchemy](https://www.sqlalchemy.org/)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-
-
 <!-- GETTING STARTED -->
+
 ## Getting Started
 
 ### Installation
+
 ### Backend
 
 1. Clone this repository (only this branch)
@@ -114,6 +109,8 @@ Using the various server channels to effectively communicate with others
 
    ```bash
    flask run
+   ```
+
 ### Frontend
 
 1. Navigate to the react-app folder and npm install
@@ -129,26 +126,23 @@ Using the various server channels to effectively communicate with others
    npm start
    ```
 
-
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <!-- CONTACT -->
+
 ## Contact
 
 - [Sungmin Lee](https://github.com/sungminlee417)
 - [Andrew Parks](https://github.com/FrontLineCoding)
 - [Edgar Ulloa](https://github.com/eulloa10)
 
-
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-
-
 <!-- ACKNOWLEDGMENTS -->
+
 ## Additional Resources
 
-* [Flask-SQLAlchemy Quick Reference](https://hackmd.io/@jpshafto/H1VbmP3yO#Query-Format)
-* [AWS S3 Reference](https://hackmd.io/@jpshafto/SyWY45KGu)
-
+- [Flask-SQLAlchemy Quick Reference](https://hackmd.io/@jpshafto/H1VbmP3yO#Query-Format)
+- [AWS S3 Reference](https://hackmd.io/@jpshafto/SyWY45KGu)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>

@@ -118,7 +118,7 @@ const ListOwnedServers = () => {
         <div className="direct-server-divider"></div>
 
         <div className="logout-icon-div" onClick={handleLogOut}>
-          <i className="fa-solid fa-right-from-bracket"></i>
+          <i className="fa-solid fa-right-from-bracket logout-icon"></i>
         </div>
       </nav>
       {/* {showForm && <CreateSeverForm hideForm={() => setShowForm(false)} />} */}

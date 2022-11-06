@@ -42,6 +42,11 @@ const CreateSeverForm = ({ hideForm }) => {
     }
   };
 
+  const onRemovePhoto = (e) => {
+    e.preventDefault();
+    setServerImg("");
+  };
+
   const updateFile = (e) => {
     const file = e.target.files[0];
     if (file) setServerImg(file);
@@ -56,7 +61,7 @@ const CreateSeverForm = ({ hideForm }) => {
     <section className="create-server-form-container">
       <div className="create-server-form-header">Customize your server</div>
       <form className="create-server-form" onSubmit={handleSubmit}>
-        <div className="create-server-photo-container">
+        <div className="create-server-photo-container photo">
           <label for="file" className="signup-form-input-label photo">
             {!serverImg && <i className="fa-solid fa-camera server-camera"></i>}
             {serverImg && (
@@ -74,6 +79,7 @@ const CreateSeverForm = ({ hideForm }) => {
             onChange={updateFile}
             accept="image/*"
           />
+          {serverImg && <button onClick={onRemovePhoto}>Remove</button>}
         </div>
         <div className="create-server-input-container">
           <label>SERVER NAME</label>

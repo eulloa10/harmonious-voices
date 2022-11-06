@@ -202,6 +202,20 @@
   justify-content: space-between;
 }
 
+.create-server-photo-container.photo {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.create-server-photo-container.photo > button {
+  color: #c3c4c5;
+}
+
+.create-server-photo-container.photo > button:hover {
+  color: #ebebec;
+}
+
 .create-server-input-container label {
   font-size: 1.2rem;
 }
@@ -212,6 +226,10 @@
   border-radius: 0.4rem;
   height: 3.6rem;
   padding: 1rem;
+}
+
+.signup-form-photo {
+  object-fit: cover;
 }
 
 .create-server-form-buttons {
@@ -258,7 +276,7 @@
 .context-menu {
   font-size: 14px;
   border-radius: 5px;
-  padding: 5px 0 5px 0;
+  padding: 1rem;
   width: 150px;
   height: auto;
   margin: 0;
@@ -271,11 +289,19 @@
 }
 
 .context-menu-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
   list-style: none;
 }
 
 .context-menu-list > li {
+  border-radius: 5px;
   list-style: none;
   color: #afb0b1;
-  padding-left: 0.5rem;
+  padding: 0.5rem;
+}
+
+.context-menu-list > li:hover {
+  background-color: #424549;
 }

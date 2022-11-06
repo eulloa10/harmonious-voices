@@ -10,11 +10,12 @@ const EditSeverForm = ({ hideForm, server }) => {
 
   const [name, setName] = useState(server.name);
   const [serverImg, setServerImg] = useState(server.server_img);
-  let changed = false;
-  let image;
+  const [image, setImage] = useState("");
+  const [changed, setChanged] = useState(false);
 
   useEffect(() => {
-    if (changed) {
+    let image;
+    if (changed && serverImg) {
       image = (
         <img
           className="signup-form-photo"
@@ -31,8 +32,9 @@ const EditSeverForm = ({ hideForm, server }) => {
         ></img>
       );
     }
-    changed = true;
-  }, [serverImg, changed]);
+    setImage(image);
+    setChanged(true);
+  }, [serverImg]);
 
   const updateName = (e) => setName(e.target.value);
 
@@ -56,6 +58,11 @@ const EditSeverForm = ({ hideForm, server }) => {
     if (file) setServerImg(file);
   };
 
+  const onRemovePhoto = (e) => {
+    e.preventDefault();
+    setServerImg("");
+  };
+
   const handleCancelClick = (e) => {
     e.preventDefault();
     hideForm();
@@ -65,18 +72,19 @@ const EditSeverForm = ({ hideForm, server }) => {
     <section className="create-server-form-container">
       <div className="create-server-form-header">Edit server</div>
       <form className="create-server-form" onSubmit={handleSubmit}>
-        <div className="create-server-photo-container">
+        <div className="create-server-photo-container photo">
           <label for="file" className="signup-form-input-label photo">
             {!serverImg && <i className="fa-solid fa-camera server-camera"></i>}
-            {image}
+            {serverImg && image}
           </label>
           <input
             id="file"
             type="file"
-            class="signup-form-photo-input"
+            className="signup-form-photo-input"
             onChange={updateFile}
             accept="image/*"
           />
+          {serverImg && <button onClick={onRemovePhoto}>Remove</button>}
         </div>
         <div className="create-server-input-container">
           <label>SERVER NAME</label>
