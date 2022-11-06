@@ -13,7 +13,7 @@ const CreateDirectMessaging = ({ onClose }) => {
 
   useEffect(() => {
     dispatch(loadFriendThunk(name));
-  }, [name]);
+  }, [name, dispatch]);
 
   useEffect(() => {
     const submitButton = document.querySelector(

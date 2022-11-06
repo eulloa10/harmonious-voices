@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { editServer } from "../../store/servers";
 import "./Servers.css";
@@ -8,10 +8,20 @@ const EditSeverForm = ({ hideForm, server }) => {
   const dispatch = useDispatch();
   const history = useHistory();
 
-  const [name, setName] = useState(server.name);
-  const [serverImg, setServerImg] = useState(server.server_img);
+  const [name, setName] = useState("");
+  const [serverImg, setServerImg] = useState("");
   const [image, setImage] = useState("");
   const [changed, setChanged] = useState(false);
+
+  useEffect(() => {
+    if (server.name) {
+      setName(server.name);
+    }
+
+    if (server.server_img) {
+      setServerImg(serverImg);
+    }
+  }, []);
 
   useEffect(() => {
     let image;
