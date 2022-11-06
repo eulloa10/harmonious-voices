@@ -88,7 +88,7 @@ const ListOwnedServers = () => {
             to="/direct-messages"
             className="direct-server-icon-div dm server-icon"
           >
-            <i class="fa-brands fa-discord direct-message-icon"></i>
+            <i className="fa-brands fa-discord direct-message-icon"></i>
           </NavLink>
         </div>
         <div className="direct-server-divider"></div>

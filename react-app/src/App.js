@@ -1,20 +1,8 @@
 import React, { useState, useEffect } from "react";
-import { BrowserRouter, Route, Switch, useHistory } from "react-router-dom";
+import { BrowserRouter, Route } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import LoginForm from "./components/auth/LoginForm";
-import SignUpForm from "./components/auth/SignUpForm/SignUpForm";
-import NavBar from "./components/SplashPage/NavBar/NavBar";
-import ProtectedRoute from "./components/auth/ProtectedRoute";
-import UsersList from "./components/UsersList";
-import User from "./components/User";
-import MessageList from "./components/Messages/MessageList/MessageList";
 import { authenticate } from "./store/session";
-import ListOwnedServers from "./components/Server/ListOwnedServers";
 import SplashPage from "./components/SplashPage";
-import DirectMessaging from "./components/DirectMessaging";
-import ListAllServers from "./components/Server/ListAllServers";
-import AllServers from "./components/Server/AllServers";
-import Channels from "./components/Channels";
 import MainPage from "./components/MainPage";
 
 function App() {

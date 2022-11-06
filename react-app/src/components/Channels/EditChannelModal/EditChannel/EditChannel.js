@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-import { useRouteMatch } from "react-router-dom";
 import { editChannel } from "../../../../store/channels";
 import DeleteChannelButton from "../../DeleteChannelButton";
 import "./EditChannel.css";

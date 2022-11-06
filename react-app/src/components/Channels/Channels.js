@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { NavLink, useParams, useRouteMatch, Route } from "react-router-dom";
+import { NavLink, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getServerChannels } from "../../store/channels";
 import "./Channels.css";
@@ -9,7 +9,6 @@ import EditChannelModal from "./EditChannelModal";
 
 const Channels = () => {
   const dispatch = useDispatch();
-  const match = useRouteMatch();
   const { serverId } = useParams();
   const user = useSelector((state) => state.session.user);
   const server = useSelector((state) => state.servers)[serverId];
@@ -28,7 +27,7 @@ const Channels = () => {
         setIsOwnedByUser(false);
       }
     }
-  }, [dispatch, server]);
+  }, [dispatch, server, serverId, user.id]);
 
   return (
     <div className="channels-container">
