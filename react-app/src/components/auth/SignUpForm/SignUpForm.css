@@ -77,11 +77,7 @@
   position: relative;
 }
 
-.fa-solid.fa-plus.signup-plus:hover {
-  color: white;
-}
-
-.signup-form-input-label.photo > .fa-plus {
+.signup-camera {
   color: white;
   position: absolute;
   top: 50%;

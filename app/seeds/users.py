@@ -14,7 +14,7 @@ def seed_users():
     frodo = User(
         username='frodo', email='frodo@aa.io', user_profile_img='https://www.looper.com/img/gallery/frodo-baggins-12-best-moments-in-the-lord-of-the-rings-franchise-ranked/l-intro-1663422318.jpg', password='password')
     gandalf = User(
-        username='gandalf', email='gandalf@aa.io', user_profile_img='https://static.wikia.nocookie.net/lotr/images/e/e7/Gandalf_the_Grey.jpg/revision/latest?cb=20121110131754', password='password')
+        username='gandalf', email='gandalf@aa.io', user_profile_img='https://static0.gamerantimages.com/wordpress/wp-content/uploads/2021/10/Gandalf-Name-Feature-Image.jpg', password='password')
 
 
     # server_one = Server.query.get(1)

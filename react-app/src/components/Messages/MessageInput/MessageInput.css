@@ -1,18 +1,19 @@
+.create-message-form {
+  width: auto;
+  margin: 2rem;
+  display: flex;
+}
+
 .message-content-input {
-  width: 100%;
-  height: 5vh;
   background-color: #55585b;
   border-radius: 5px;
-  margin: 15px;
-  padding: 15px;
+  font-size: 1.4rem;
+  height: 4rem;
+  width: 100%;
   color: #d9dadb;
+  padding: 1rem;
 }
 
 .create-message-btn {
-  visibility: hidden;
-}
-
-.message-content-input:hover {
-  border: none;
-  border-color: none;
+  display: none;
 }

@@ -8,19 +8,12 @@
   min-width: 7rem;
 }
 
-.server-modal-name {
-  margin: 0.5rem;
-}
-
-.create-server-form {
-  margin: 5px;
-}
-
 .servers-nav-bar {
   align-items: center;
   display: flex;
   flex-direction: column;
   gap: 1rem;
+  height: 100%;
 }
 
 .server-link-bubbles {
@@ -98,8 +91,9 @@
   color: white;
   border-radius: 5px;
   background-color: rgb(30, 33, 36);
-  height: 24rem;
-  width: 20rem;
+  gap: 1rem;
+  height: 26rem;
+  width: 22rem;
   transition: ease-in-out all 0.3s;
 }
 .servercard-main-div:hover {
@@ -116,15 +110,34 @@
 }
 
 .servercard-icon {
-  font-size: 2.4rem;
-  width: 100%;
-  width: 100%;
-}
-
-.server-name {
   display: flex;
   justify-content: center;
+  align-items: center;
+  font-size: 2.4rem;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+
+.server-info-text {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+  margin: 2rem;
   font-size: 15px;
+}
+
+.server-members-circle {
+  font-size: 0.8rem;
+}
+
+.server-members {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 1rem;
 }
 
 .all-servers-container {
@@ -144,59 +157,126 @@
 }
 
 /* ----------- FORM STYLING ---------- */
-.create-song-form {
+/* TODO take care of the buttons with class names */
+.create-server-form-container {
+  display: flex;
+  flex-direction: column;
+  width: 40rem;
+}
+
+.create-server-form {
+  align-items: center;
   display: flex;
   flex-direction: column;
 }
 
-/* input {
-  background-color: black;
-  height: 25px;
-  margin: 3px;
-  color: rgb(114, 137, 218);
-} */
-/* input:hover {
-  background-color: rgba(114, 137, 218);
-  border: 3px solid black;
-  border-radius: 5px;
-} */
+.server-camera {
+  color: white;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
 
-select {
-  margin-top: 3px;
-  background-color: rgb(114, 137, 218);
-  border-radius: 5px;
-  font-weight: bold;
-  margin-bottom: 10px;
+.create-server-form-header {
+  display: flex;
+  justify-content: space-between;
+  color: white;
+  padding: 2rem;
+  font-size: 2.4rem;
 }
-select:hover {
+
+.create-server-input-container {
+  color: #c3c4c5;
+  display: flex;
+  flex-direction: column;
+  padding: 0 2rem;
+  gap: 1rem;
+  width: 100%;
+}
+
+.create-server-photo-container {
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.create-server-photo-container.photo {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.create-server-photo-container.photo > button {
+  color: #c3c4c5;
+}
+
+.create-server-photo-container.photo > button:hover {
+  color: #ebebec;
+}
+
+.create-server-input-container label {
+  font-size: 1.2rem;
+}
+
+.create-server-input-container input {
+  color: #c3c4c5;
+  background-color: #1b1d1f;
+  border-radius: 0.4rem;
+  height: 3.6rem;
+  padding: 1rem;
+}
+
+.signup-form-photo {
+  object-fit: cover;
+}
+
+.create-server-form-buttons {
+  align-items: center;
+  background-color: #26282b;
+  border-radius: 0 0 1rem 1rem;
+  cursor: pointer;
+  display: flex;
+  font-size: 1.4rem;
+  gap: 2rem;
+  justify-content: flex-end;
+  margin-top: 2rem;
+  padding: 1.2rem 2rem 1.2rem;
+  width: 100%;
+}
+
+.create-server-form-button-submit {
+  background-color: #9cace5;
+  border-radius: 0.5rem;
+  color: #ebebec;
+  cursor: not-allowed;
+  padding: 1rem;
+}
+
+.create-server-form-button-submit.typed {
+  background-color: #7289da;
+  color: white;
   cursor: pointer;
 }
-option {
-  background-color: gray;
-}
-option:hover {
-  background-color: rgb(114, 137, 218);
+
+.create-server-form-button-edit {
+  background-color: #7289da;
+  border-radius: 0.5rem;
+  color: white;
   cursor: pointer;
+  padding: 1rem;
 }
-/* TODO take care of the buttons with class names */
-.form-button {
-  margin: 0;
-  margin-top: 10px;
-  background-color: rgb(114, 137, 218);
-  border: 3px solid black;
-  border-radius: 15px;
-  font-weight: 600;
-  padding: 4px;
-}
-.form-button:hover {
-  cursor: pointer;
+
+.create-server-form-button.cancel {
+  color: white;
 }
 
 /* --------------------------------Context Server ---------------------------------------*/
 .context-menu {
   font-size: 14px;
   border-radius: 5px;
-  padding: 5px 0 5px 0;
+  padding: 1rem;
   width: 150px;
   height: auto;
   margin: 0;
@@ -209,11 +289,19 @@ option:hover {
 }
 
 .context-menu-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
   list-style: none;
 }
 
 .context-menu-list > li {
+  border-radius: 5px;
   list-style: none;
   color: #afb0b1;
-  padding-left: 0.5rem;
+  padding: 0.5rem;
+}
+
+.context-menu-list > li:hover {
+  background-color: #424549;
 }
