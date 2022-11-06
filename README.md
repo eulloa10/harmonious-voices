@@ -53,7 +53,7 @@ Browser through various user created servers and join any that match your intere
 
 #### Channels
 
-Using the various server channels to effectively communicate with others
+Use the server channels to engage with the community
 
 ![Channel-Messaging](/screenshots/channels.png)
 
@@ -76,7 +76,7 @@ Using the various server channels to effectively communicate with others
 
 ### Backend
 
-1. Clone this repository (only this branch)
+1. Clone this repository
 
    ```bash
    git clone https://github.com/eulloa10/harmonious-voices
@@ -86,6 +86,7 @@ Using the various server channels to effectively communicate with others
 
    ```bash
    pipenv install -r requirements.txt
+   pipenv install boto3
    ```
 
 3. Create a **.env** file based on the example with proper settings for your
