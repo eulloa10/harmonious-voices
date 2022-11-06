@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useCallback } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { NavLink, Redirect } from "react-router-dom";
 import { signUp } from "../../../store/session";
@@ -16,7 +16,7 @@ const SignUpForm = () => {
 
   useEffect(() => {
     console.log(errors);
-    if(errors.Email || errors.Username || errors.Password){
+    if (errors.Email || errors.Username || errors.Password) {
       Object.keys(errors).forEach((error) => {
         const errorElement = document.getElementById(`signup-error-${error}`);
         errorElement.classList.add("show-error-message");
@@ -33,14 +33,17 @@ const SignUpForm = () => {
 
     const validEmail = new RegExp(
       "^[a-zA-Z0-9._:$!%-]+@[a-zA-Z0-9.-]+.[a-zA-Z]$"
-      );
+    );
 
-    if (!validEmail.test(email)) errObj = {...errObj, "email" : "Please Prodive A Valid Email"};
-    if (!(password === confirmPassword)) errObj = {...errObj, "password" : "Passwords Must Match"};
-    if (!username) errObj = {...errObj, "username" : "Please Provide A Username"};
-    setErrors(errObj)
+    if (!validEmail.test(email))
+      errObj = { ...errObj, email: "Please Prodive A Valid Email" };
+    if (!(password === confirmPassword))
+      errObj = { ...errObj, password: "Passwords Must Match" };
+    if (!username)
+      errObj = { ...errObj, username: "Please Provide A Username" };
+    setErrors(errObj);
 
-    if(!(errors.Email && errors.Password && errors.Username)){
+    if (!(errors.Email && errors.Password && errors.Username)) {
       for (let i = 0; i < errorElements.length; i++) {
         const errorElement = errorElements[i];
         errorElement.classList.remove("show-error-message");
@@ -55,7 +58,7 @@ const SignUpForm = () => {
         userData.append("image", image);
       }
 
-      if(password === confirmPassword){
+      if (password === confirmPassword) {
         const data = await dispatch(signUp(userData));
         if (data) {
           const errObj = {};
@@ -67,9 +70,7 @@ const SignUpForm = () => {
           setErrors(errObj);
         }
       }
-
     }
-
 
     // if (password === confirmPassword) {
     //   for (let i = 0; i < errorElements.length; i++) {
@@ -135,7 +136,7 @@ const SignUpForm = () => {
             PROFILE PHOTO (optional)
           </div>
           <label for="file" className="signup-form-input-label photo">
-            {!image && <i className="fa-solid fa-plus signup-plus"></i>}
+            {!image && <i className="fa-solid fa-camera signup-camera"></i>}
             {image && (
               <img
                 className="signup-form-photo"
@@ -206,7 +207,7 @@ const SignUpForm = () => {
           </label>
           <input
             className="signup-form-input"
-            type="confirm-password"
+            type="password"
             name="confirm-password"
             onChange={updateConfirmPassword}
             value={confirmPassword}

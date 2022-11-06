@@ -1,33 +1,47 @@
 .message {
   display: flex;
   flex-direction: row;
-  align-items: center;
+  align-items: flex-start;
   color: white;
+  gap: 2rem;
+  padding: 0.8rem 2rem;
+  position: relative;
+  flex-grow: 1;
 }
 
 .message-header {
-  font-size: 16px;
+  font-size: 1.4rem;
 }
 
 .message-content {
-  font-size: 16px;
+  font-size: 1.4rem;
+  color: #c8c8c8;
+  word-break: break-all;
 }
 
 .message-date {
   margin-left: 5px;
   color: grey;
-  font-size:12px;
+  font-size: 12px;
 }
 
 .prof-img {
   border-radius: 50%;
   height: 40px;
   width: 40px;
-  margin-right: 15px;
-  margin-left: 15px;
 }
 
 .def-prof-img {
+  border-radius: 50%;
+  height: 40px;
+  width: 40px;
+  /* margin-right: 15px; */
+  /* margin-left: 15px; */
+  padding: 5px;
+  background-color: #7289da;
+}
+
+/* .prof-img-side {
   border-radius: 50%;
   height: 40px;
   width: 40px;
@@ -35,52 +49,88 @@
   margin-left: 15px;
   padding: 5px;
   background-color: #7289da;
-}
+} */
 
 .message-middle {
+  flex-grow: 1;
   display: flex;
   flex-direction: column;
+  gap: 0.4rem;
 }
 
 .message:hover {
-  background: #3b3e42;
-;
+  background: #35383b;
 }
 
 .message:hover .message-options {
-  background: #3b3e42;
+  background: #35383b;
   visibility: visible;
 }
 
+.edit-message-form {
+  width: 100%;
+}
 
 .message-edit-input {
   background: #424549;
   border-radius: 5px;
   color: white;
-  width: 65vw;
-  height: 2vh;
+  height: 2rem;
+  width: 80%;
 }
 
 .message-options {
   display: flex;
-  column-gap: 10px;
+  gap: 0.2rem;
+  justify-content: space-around;
+  padding: 0.4rem 0.4rem;
   position: absolute;
+  box-shadow: 0.2rem 0.2rem 0.2rem 0.2rem rgba(0, 0, 0.1, 0.3);
+  top: -20%;
   right: 5%;
   visibility: hidden;
   border-radius: 5px;
-  background-color: #424549;
+}
+
+.edit-msg-btn {
+  background-color: transparent;
+  border-radius: 5px;
+  height: 30px;
+  width: 30px;
+  cursor: pointer;
+}
+
+.delete-msg-btn {
+  background-color: transparent;
+  border-radius: 5px;
+  height: 30px;
+  width: 30px;
+  cursor: pointer;
 }
 
 .edit-msg-btn:hover {
-  background-color: #5f5f5f;
-  border-radius: 5px;
-  height: 30px;
-  width: 30px;
+  background-color: #424549;
 }
 
 .delete-msg-btn:hover {
-  background-color: #5f5f5f;
-  border-radius: 5px;
-  height: 30px;
-  width: 30px;
+  background-color: #424549;
+}
+
+.cancel-edit {
+  position: absolute;
+  right: 5%;
+}
+
+.cancel-edit-button {
+  color: #c8c8c8;
+  cursor: pointer;
+}
+
+.cancel-edit-button:hover {
+  text-decoration: underline;
+}
+
+.edit-message-content {
+  display: flex;
+  justify-content: space-between;
 }

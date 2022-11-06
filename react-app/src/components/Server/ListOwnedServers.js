@@ -26,6 +26,7 @@ const ListOwnedServers = () => {
   const [showContext, setShowContext] = useState(false);
   const [points, setPoints] = useState({ x: 0, y: 0 });
   const [contextedServerId, setContextedServerId] = useState("");
+  const servers = useSelector((state) => state.servers.allServers);
   // const [ownedServers, setOwnedServers] = useState(useSelector((state)=> {return Object.values(state.servers.owned)}))
 
   // let serverLinks;
@@ -87,7 +88,7 @@ const ListOwnedServers = () => {
             to="/direct-messages"
             className="direct-server-icon-div dm server-icon"
           >
-            <i class="fa-brands fa-discord direct-message-icon"></i>
+            <i className="fa-brands fa-discord direct-message-icon"></i>
           </NavLink>
         </div>
         <div className="direct-server-divider"></div>
@@ -117,7 +118,7 @@ const ListOwnedServers = () => {
         <div className="direct-server-divider"></div>
 
         <div className="logout-icon-div" onClick={handleLogOut}>
-          <i className="fa-solid fa-right-from-bracket"></i>
+          <i className="fa-solid fa-right-from-bracket logout-icon"></i>
         </div>
       </nav>
       {/* {showForm && <CreateSeverForm hideForm={() => setShowForm(false)} />} */}
@@ -130,7 +131,7 @@ const ListOwnedServers = () => {
         // ></EditSeverForm>
         <EditServerModal
           hideForm={() => setEditForm(false)}
-          contextedServerId={contextedServerId}
+          server={servers[contextedServerId]}
         ></EditServerModal>
       )}
       {showContext && (

@@ -7,11 +7,22 @@ import "./Servers.css";
 const CreateSeverForm = ({ hideForm }) => {
   const dispatch = useDispatch();
   const history = useHistory();
-  const sessionUserId = useSelector((state) => state.session.user.id);
-  const username = useSelector((state) => state.session.user.username);
 
   const [name, setName] = useState("");
   const [serverImg, setServerImg] = useState("");
+
+  useEffect(() => {
+    const submitButton = document.querySelector(
+      ".create-server-form-button-submit"
+    );
+    if (name) {
+      submitButton.classList.add("typed");
+      submitButton.removeAttribute("disabled");
+    } else {
+      submitButton.classList.remove("typed");
+      submitButton.setAttribute("disabled", "");
+    }
+  }, [name]);
 
   const updateName = (e) => setName(e.target.value);
 
@@ -24,11 +35,16 @@ const CreateSeverForm = ({ hideForm }) => {
 
     if (serverImg) payload.append("image", serverImg);
 
-    let createdServer = await dispatch(addServer(payload))
+    let createdServer = await dispatch(addServer(payload));
     if (createdServer) {
       history.push(`/servers/${createdServer.id}`);
       hideForm();
-      }
+    }
+  };
+
+  const onRemovePhoto = (e) => {
+    e.preventDefault();
+    setServerImg("");
   };
 
   const updateFile = (e) => {
@@ -42,29 +58,51 @@ const CreateSeverForm = ({ hideForm }) => {
   };
 
   return (
-    <section className="new-form-holder centered middled">
+    <section className="create-server-form-container">
+      <div className="create-server-form-header">Customize your server</div>
       <form className="create-server-form" onSubmit={handleSubmit}>
-        <input
-          type="text"
-          placeholder="Name"
-          value={name}
-          onChange={updateName}
-          className="server-modal-name"
-        />
-        <input
-          type="file"
-          onChange={updateFile}
-        />
-        <button className="form-button" type="submit">
-          Create New Server
-        </button>
-        <button
-          className="form-button"
-          type="button"
-          onClick={handleCancelClick}
-        >
-          Cancel
-        </button>
+        <div className="create-server-photo-container photo">
+          <label for="file" className="signup-form-input-label photo">
+            {!serverImg && <i className="fa-solid fa-camera server-camera"></i>}
+            {serverImg && (
+              <img
+                className="signup-form-photo"
+                src={URL.createObjectURL(serverImg)}
+                alt="server pic"
+              ></img>
+            )}
+          </label>
+          <input
+            id="file"
+            type="file"
+            class="signup-form-photo-input"
+            onChange={updateFile}
+            accept="image/*"
+          />
+          {serverImg && <button onClick={onRemovePhoto}>Remove</button>}
+        </div>
+        <div className="create-server-input-container">
+          <label>SERVER NAME</label>
+          <input
+            type="text"
+            placeholder="Name"
+            value={name}
+            onChange={updateName}
+            className="server-modal-name"
+          />
+        </div>
+        <div className="create-server-form-buttons">
+          <button
+            className="create-server-form-button cancel"
+            type="button"
+            onClick={handleCancelClick}
+          >
+            Cancel
+          </button>
+          <button className="create-server-form-button-submit" type="submit">
+            Create New Server
+          </button>
+        </div>
       </form>
     </section>
   );
