@@ -12,6 +12,17 @@ const EditSeverForm = ({ hideForm, server }) => {
   const [serverImg, setServerImg] = useState("");
   const [image, setImage] = useState("");
   const [changed, setChanged] = useState(false);
+  const [errors, setErrors] = useState({});
+
+  useEffect(() => {
+    // console.log(errors);
+    if (errors.name) {
+      Object.keys(errors).forEach((error) => {
+        const errorElement = document.getElementById(`signup-error-${error}`);
+        errorElement.classList.add("show-error-message");
+      });
+    }
+  }, [errors]);
 
   useEffect(() => {
     let image;
@@ -40,16 +51,32 @@ const EditSeverForm = ({ hideForm, server }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    let errObj = {};
+    const errorElements = document.getElementsByClassName("signup-error");
+
 
     const payload = new FormData();
 
-    payload.append("name", name);
-    if (serverImg) payload.append("image", serverImg);
+    if(!name){
+      errObj = {name: "Please Provide A Server Name"}
+      setErrors(errObj);
+    }
+    else{
+      setErrors({});
+      if (!(errors.name)) {
+        for (let i = 0; i < errorElements.length; i++) {
+          const errorElement = errorElements[i];
+          errorElement.classList.remove("show-error-message");
+        }
+      }
+      payload.append("name", name);
+      if (serverImg) payload.append("image", serverImg);
 
-    let createdServer = await dispatch(editServer(payload, server.id));
-    if (createdServer) {
-      history.push(`/servers/${server.id}`);
-      hideForm();
+      let createdServer = await dispatch(editServer(payload, server.id));
+      if (createdServer) {
+        history.push(`/servers/${server.id}`);
+        hideForm();
+      }
     }
   };
 
@@ -88,6 +115,9 @@ const EditSeverForm = ({ hideForm, server }) => {
         </div>
         <div className="create-server-input-container">
           <label>SERVER NAME</label>
+          <div id="signup-error-name" className="signup-error">
+              {errors?.name}
+            </div>
           <input
             type="text"
             placeholder="Name"
