@@ -23,5 +23,5 @@ def user(id):
 @user_routes.route("/find/<string:username>")
 @login_required
 def find_user(username):
-    users = User.query.filter(User.username == username).filter(User.username != current_user.username)
+    users = User.query.filter(User.username.like(f'{username}%')).filter(User.username != current_user.username)
     return {user.id: user.to_dict() for user in users}
