@@ -12,16 +12,17 @@ const EditSeverForm = ({ hideForm, server }) => {
   const [serverImg, setServerImg] = useState("");
   const [image, setImage] = useState("");
   const [changed, setChanged] = useState(false);
+  const [errors, setErrors] = useState({});
 
   useEffect(() => {
-    if (server.name) {
-      setName(server.name);
+    // console.log(errors);
+    if (errors.name) {
+      Object.keys(errors).forEach((error) => {
+        const errorElement = document.getElementById(`signup-error-${error}`);
+        errorElement.classList.add("show-error-message");
+      });
     }
-
-    if (server.server_img) {
-      setServerImg(serverImg);
-    }
-  }, []);
+  }, [errors]);
 
   useEffect(() => {
     let image;
@@ -44,22 +45,38 @@ const EditSeverForm = ({ hideForm, server }) => {
     }
     setImage(image);
     setChanged(true);
-  }, [serverImg]);
+  }, [serverImg, changed]);
 
   const updateName = (e) => setName(e.target.value);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    let errObj = {};
+    const errorElements = document.getElementsByClassName("signup-error");
+
 
     const payload = new FormData();
 
-    payload.append("name", name);
-    if (serverImg) payload.append("image", serverImg);
+    if(!name){
+      errObj = {name: "Please Provide A Server Name"}
+      setErrors(errObj);
+    }
+    else{
+      setErrors({});
+      if (!(errors.name)) {
+        for (let i = 0; i < errorElements.length; i++) {
+          const errorElement = errorElements[i];
+          errorElement.classList.remove("show-error-message");
+        }
+      }
+      payload.append("name", name);
+      if (serverImg) payload.append("image", serverImg);
 
-    let createdServer = await dispatch(editServer(payload, server.id));
-    if (createdServer) {
-      history.push(`/servers/${server.id}`);
-      hideForm();
+      let createdServer = await dispatch(editServer(payload, server.id));
+      if (createdServer) {
+        history.push(`/servers/${server.id}`);
+        hideForm();
+      }
     }
   };
 
@@ -83,7 +100,7 @@ const EditSeverForm = ({ hideForm, server }) => {
       <div className="create-server-form-header">Edit server</div>
       <form className="create-server-form" onSubmit={handleSubmit}>
         <div className="create-server-photo-container photo">
-          <label for="file" className="signup-form-input-label photo">
+          <label htmlFor="file" className="signup-form-input-label photo">
             {!serverImg && <i className="fa-solid fa-camera server-camera"></i>}
             {serverImg && image}
           </label>
@@ -98,6 +115,9 @@ const EditSeverForm = ({ hideForm, server }) => {
         </div>
         <div className="create-server-input-container">
           <label>SERVER NAME</label>
+          <div id="signup-error-name" className="signup-error">
+              {errors?.name}
+            </div>
           <input
             type="text"
             placeholder="Name"

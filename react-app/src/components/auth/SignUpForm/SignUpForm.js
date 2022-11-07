@@ -15,8 +15,8 @@ const SignUpForm = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    console.log(errors);
-    if (errors.Email || errors.Username || errors.Password) {
+    // console.log(errors);
+    if (errors.email || errors.username || errors.password) {
       Object.keys(errors).forEach((error) => {
         const errorElement = document.getElementById(`signup-error-${error}`);
         errorElement.classList.add("show-error-message");
@@ -43,7 +43,7 @@ const SignUpForm = () => {
       errObj = { ...errObj, username: "Please Provide A Username" };
     setErrors(errObj);
 
-    if (!(errors.Email && errors.Password && errors.Username)) {
+    if (!(errors.email && errors.password && errors.username)) {
       for (let i = 0; i < errorElements.length; i++) {
         const errorElement = errorElements[i];
         errorElement.classList.remove("show-error-message");
@@ -58,7 +58,7 @@ const SignUpForm = () => {
         userData.append("image", image);
       }
 
-      if (password === confirmPassword) {
+      if (password === confirmPassword && password) {
         const data = await dispatch(signUp(userData));
         if (data) {
           const errObj = {};
@@ -87,19 +87,48 @@ const SignUpForm = () => {
     //     userData.append("image", image);
     //   }
 
-    //   const data = await dispatch(signUp(userData));
-    //   if (data) {
-    //     const errObj = {};
-    //     data.forEach((error) => {
-    //       const errorTitle = error.split(" : ")[0];
-    //       const errorContent = error.split(" : ")[1];
-    //       errObj[errorTitle] = errorContent;
-    //     });
-    //     setErrors(errObj);
+    //   if (password === confirmPassword) {
+    //     const data = await dispatch(signUp(userData));
+    //     if (data) {
+    //       const errObj = {};
+    //       data.forEach((error) => {
+    //         const errorTitle = error.split(" : ")[0];
+    //         const errorContent = error.split(" : ")[1];
+    //         errObj[errorTitle] = errorContent;
+    //       });
+    //       setErrors(errObj);
+    //     }
     //   }
-    // } else {
-    //   setErrors({ confirmPassword: "Passwords do not match" });
     // }
+
+    if (password === confirmPassword) {
+      for (let i = 0; i < errObj.length; i++) {
+        const errorElement = errObj[i];
+        errorElement.classList.remove("show-error-message");
+      }
+
+      const userData = new FormData();
+      userData.append("username", username);
+      userData.append("email", email);
+      userData.append("password", password);
+
+      if (image) {
+        userData.append("image", image);
+      }
+
+      const data = await dispatch(signUp(userData));
+      if (data) {
+        const errObj = {};
+        data.forEach((error) => {
+          const errorTitle = error.split(" : ")[0];
+          const errorContent = error.split(" : ")[1];
+          errObj[errorTitle] = errorContent;
+        });
+        setErrors(errObj);
+      }
+    } else {
+      setErrors({ confirmPassword: "Passwords do not match" });
+    }
   };
 
   const updateUsername = (e) => {

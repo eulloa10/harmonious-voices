@@ -1,56 +1,58 @@
-import { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { useHistory, useParams } from 'react-router-dom';
-import {editServer, deleteAServer} from '../../store/servers';
-import EditSeverForm from './EditServerForm';
-import './Servers.css'
+import { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
+import { deleteAServer } from "../../store/servers";
+import "./Servers.css";
 
-export let clicked = 0
+export let clicked = 0;
 
-const ContextMenu = ({top, left, contextedServerId, setEditForm, setOwnedServers}) => {
-    const [contextSelectedAction, setContextSelectedAction] = useState('');
-    const dispatch = useDispatch();
-    const {serverId} = useParams();
-    const [showForm, setShowForm] = useState(false);
-    const history = useHistory();
+const ContextMenu = ({
+  top,
+  left,
+  contextedServerId,
+  setEditForm,
+  setOwnedServers,
+}) => {
+  const [contextSelectedAction, setContextSelectedAction] = useState("");
+  const dispatch = useDispatch();
 
-
-    const handleClick = (e) => {
-        e.preventDefault();
-        setContextSelectedAction(e.target.innerText)
+  const handleClick = (e) => {
+    e.preventDefault();
+    setContextSelectedAction(e.target.innerText);
+  };
+  useEffect(() => {
+    if (contextSelectedAction === "") {
+      return;
+    } else if (contextSelectedAction === "Edit") {
+      setEditForm(true);
+      console.log("in the edit function");
+    } else if (contextSelectedAction === "Delete") {
+      dispatch(deleteAServer(contextedServerId));
+      clicked = Math.random();
+      // history.push('/servers')
+    } else {
+      return { Message: "Selected from item (from ContextMenu)" };
     }
-    useEffect(() => {
-        if(contextSelectedAction === ''){
-            return;
-        }
-        else if (contextSelectedAction === 'Edit'){
-            setEditForm(true)
-            console.log('in the edit function');
-        }else if (contextSelectedAction === 'Delete'){
-            dispatch(deleteAServer(contextedServerId));
-            clicked = Math.random();
-            // history.push('/servers')
-        }
-        else{
-            return{'Message': 'Selected from item (from ContextMenu)'}
-        }
-      }, [contextSelectedAction, showForm]);
+  }, [contextSelectedAction, dispatch, setEditForm, contextedServerId]);
 
-    return (
-        <>
-            <div className="context-menu" style={{top, left}}>
-                <ul className='context-menu-list'  onClick={(e) => {handleClick(e)}}>
-                    <li>Edit</li>
-                    <li>Delete</li>
-                </ul>
-            </div>
-            {
-                showForm &&
-                // <EditSeverForm hideForm={() => setShowForm(false)} />
-                <div>testing</div>
-            }
-        </>
-    )
-}
+  return (
+    <>
+      <div className="context-menu" style={{ top, left }}>
+        <ul
+          className="context-menu-list"
+          onClick={(e) => {
+            handleClick(e);
+          }}
+        >
+          <li>Edit</li>
+          <li>Delete</li>
+        </ul>
+      </div>
+      {/* {showForm && (
+        // <EditSeverForm hideForm={() => setShowForm(false)} />
+        <div>testing</div>
+      )} */}
+    </>
+  );
+};
 
 export default ContextMenu;

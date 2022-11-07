@@ -1,22 +1,16 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { NavLink, Route, useHistory } from "react-router-dom";
+import { NavLink, useHistory } from "react-router-dom";
 import {
   getServers,
   getJoinedServers,
   getOwnedServers,
 } from "../../store/servers";
-import ServerCard from "./ServerCard";
 import ServerBubble from "./ServerBubble";
-import CreateSeverForm from "./CreateServerForm";
 import Fab from "./Fab";
 import "./Servers.css";
-import Logout from "../../svgFiles/logout.svg";
 import { logout } from "../../store/session";
-import Channels from "../Channels/Channels";
 import ContextMenu from "./ContextMenu";
-import EditSeverForm from "./EditServerForm";
-import { clicked } from "./ContextMenu";
 import CreateServerModal from "./CreateServerModal/CreateServerModal";
 import EditServerModal from "./EditServerModal/EditServerModal";
 
@@ -45,7 +39,7 @@ const ListOwnedServers = () => {
     dispatch(getServers());
     dispatch(getJoinedServers());
     dispatch(getOwnedServers());
-  }, [dispatch, showForm, editForm, contextedServerId, clicked]);
+  }, [dispatch, showForm, editForm, contextedServerId]);
 
   useEffect(() => {
     const handleClick = () => setShowContext(false);
