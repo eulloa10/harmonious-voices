@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
+import { useHistory } from "react-router-dom";
 import { deleteAServer } from "../../store/servers";
 import "./Servers.css";
 
@@ -14,6 +15,7 @@ const ContextMenu = ({
 }) => {
   const [contextSelectedAction, setContextSelectedAction] = useState("");
   const dispatch = useDispatch();
+  const history = useHistory();
 
   const handleClick = (e) => {
     e.preventDefault();
@@ -28,7 +30,7 @@ const ContextMenu = ({
     } else if (contextSelectedAction === "Delete") {
       dispatch(deleteAServer(contextedServerId));
       clicked = Math.random();
-      // history.push('/servers')
+      history.push('/servers')
     } else {
       return { Message: "Selected from item (from ContextMenu)" };
     }
