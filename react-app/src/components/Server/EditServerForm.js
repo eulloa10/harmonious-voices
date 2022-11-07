@@ -25,16 +25,6 @@ const EditSeverForm = ({ hideForm, server }) => {
   }, [errors]);
 
   useEffect(() => {
-    if (server.name) {
-      setName(server.name);
-    }
-
-    if (server.server_img) {
-      setServerImg(serverImg);
-    }
-  }, []);
-
-  useEffect(() => {
     let image;
     if (changed && serverImg) {
       image = (
@@ -55,7 +45,7 @@ const EditSeverForm = ({ hideForm, server }) => {
     }
     setImage(image);
     setChanged(true);
-  }, [serverImg]);
+  }, [serverImg, changed]);
 
   const updateName = (e) => setName(e.target.value);
 
@@ -110,7 +100,7 @@ const EditSeverForm = ({ hideForm, server }) => {
       <div className="create-server-form-header">Edit server</div>
       <form className="create-server-form" onSubmit={handleSubmit}>
         <div className="create-server-photo-container photo">
-          <label for="file" className="signup-form-input-label photo">
+          <label htmlFor="file" className="signup-form-input-label photo">
             {!serverImg && <i className="fa-solid fa-camera server-camera"></i>}
             {serverImg && image}
           </label>

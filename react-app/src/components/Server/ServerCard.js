@@ -1,15 +1,17 @@
-import { useDispatch } from "react-redux";
 import "./Servers.css";
 
 const ServerCard = ({ server }) => {
-  const dispatch = useDispatch();
   const initials = server.name.split(" ").map((word) => word[0]);
 
   return (
     <div className="servercard-main-div">
       <div className="servercard-icon-div">
         {server.server_img ? (
-          <img src={server.server_img} className="servercard-icon"></img>
+          <img
+            src={server.server_img}
+            className="servercard-icon"
+            alt="serverimage"
+          ></img>
         ) : (
           <p className="servercard-icon">{initials.join("")}</p>
         )}

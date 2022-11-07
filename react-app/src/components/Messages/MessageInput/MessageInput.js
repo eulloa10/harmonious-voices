@@ -1,14 +1,12 @@
-import { useEffect, useState } from "react";
-import { useParams, useHistory, useSearchParams } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux";
+import { useState } from "react";
+import { useParams } from "react-router-dom";
+import { useDispatch } from "react-redux";
 import { createNewMessage } from "../../../store/messages";
 import "./MessageInput.css";
 
 const MessageInput = () => {
   const dispatch = useDispatch();
-  const history = useHistory();
-  const { channelId, serverId } = useParams();
-  const current_user = useSelector((state) => state.session)["user"];
+  const { channelId } = useParams();
   const [messageContent, setMessageContent] = useState("");
 
   const handleSubmit = async (e) => {
@@ -24,10 +22,6 @@ const MessageInput = () => {
       setMessageContent("");
       // history.push(`/servers/${serverId}/${channelId}`)
     }
-  };
-
-  const handleCancelClick = (e) => {
-    e.preventDefault();
   };
 
   return (
