@@ -13,6 +13,7 @@ import { logout } from "../../store/session";
 import ContextMenu from "./ContextMenu";
 import CreateServerModal from "./CreateServerModal/CreateServerModal";
 import EditServerModal from "./EditServerModal/EditServerModal";
+import { clicked } from "./ContextMenu";
 
 const ListOwnedServers = () => {
   const dispatch = useDispatch();
@@ -39,7 +40,7 @@ const ListOwnedServers = () => {
     dispatch(getServers());
     dispatch(getJoinedServers());
     dispatch(getOwnedServers());
-  }, [dispatch, showForm, editForm, contextedServerId]);
+  }, [dispatch, showForm, editForm, contextedServerId, clicked]);
 
   useEffect(() => {
     const handleClick = () => setShowContext(false);
