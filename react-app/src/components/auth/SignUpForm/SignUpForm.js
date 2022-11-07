@@ -29,19 +29,19 @@ const SignUpForm = () => {
     setErrors({});
     let errObj = {};
 
-    // const errorElements = document.getElementsByClassName("signup-error");
+    const errorElements = document.getElementsByClassName("signup-error");
 
-    // const validEmail = new RegExp(
-    //   "^[a-zA-Z0-9._:$!%-]+@[a-zA-Z0-9.-]+.[a-zA-Z]$"
-    // );
+    const validEmail = new RegExp(
+      "^[a-zA-Z0-9._:$!%-]+@[a-zA-Z0-9.-]+.[a-zA-Z]$"
+    );
 
-    // if (!validEmail.test(email))
-    //   errObj = { ...errObj, email: "Please Prodive A Valid Email" };
-    // if (!(password === confirmPassword))
-    //   errObj = { ...errObj, password: "Passwords Must Match" };
-    // if (!username)
-    //   errObj = { ...errObj, username: "Please Provide A Username" };
-    // setErrors(errObj);
+    if (!validEmail.test(email))
+      errObj = { ...errObj, email: "Please Prodive A Valid Email" };
+    if (!(password === confirmPassword))
+      errObj = { ...errObj, password: "Passwords Must Match" };
+    if (!username)
+      errObj = { ...errObj, username: "Please Provide A Username" };
+    setErrors(errObj);
 
     if (!(errors.email && errors.password && errors.username)) {
       for (let i = 0; i < errorElements.length; i++) {
