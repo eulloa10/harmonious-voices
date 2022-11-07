@@ -36,7 +36,7 @@ const deleteServer = (id) => ({
 });
 
 export const getServers = () => async (dispatch) => {
-  const response = await fetch(`/api/servers`);
+  const response = await fetch(`/api/servers/`);
 
   if (response.ok) {
     const allServers = await response.json();
