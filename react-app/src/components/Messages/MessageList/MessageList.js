@@ -26,8 +26,8 @@ const MessageList = () => {
   }
 
   // console.log('-----------ALL MESSAGES', allMessagesList)
-  console.log("SERVERID", serverId);
-  console.log("CHANNELID", channelId);
+  // console.log("SERVERID", serverId);
+  // console.log("CHANNELID", channelId);
 
   return (
     <>
