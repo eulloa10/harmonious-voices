@@ -272,6 +272,16 @@
   color: white;
 }
 
+.signup-error.show-error-message {
+  color: red;
+  visibility: visible;
+}
+
+.signup-error {
+  visibility: hidden;
+  font-size: 1rem;
+}
+
 /* --------------------------------Context Server ---------------------------------------*/
 .context-menu {
   font-size: 14px;
