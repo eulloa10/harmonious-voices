@@ -15,13 +15,13 @@ const SignUpForm = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    console.log(errors);
-    if (errors.Email || errors.Username || errors.Password) {
-      Object.keys(errors).forEach((error) => {
-        const errorElement = document.getElementById(`signup-error-${error}`);
-        errorElement.classList.add("show-error-message");
-      });
-    }
+    // console.log(errors);
+    // if (errors.Email || errors.Username || errors.Password) {
+    Object.keys(errors).forEach((error) => {
+      const errorElement = document.getElementById(`signup-error-${error}`);
+      errorElement.classList.add("show-error-message");
+    });
+    // }
   }, [errors]);
 
   const onSignUp = async (e) => {
@@ -29,50 +29,21 @@ const SignUpForm = () => {
     setErrors({});
     let errObj = {};
 
-    const errorElements = document.getElementsByClassName("signup-error");
+    // const errorElements = document.getElementsByClassName("signup-error");
 
-    const validEmail = new RegExp(
-      "^[a-zA-Z0-9._:$!%-]+@[a-zA-Z0-9.-]+.[a-zA-Z]$"
-    );
+    // const validEmail = new RegExp(
+    //   "^[a-zA-Z0-9._:$!%-]+@[a-zA-Z0-9.-]+.[a-zA-Z]$"
+    // );
 
-    if (!validEmail.test(email))
-      errObj = { ...errObj, email: "Please Prodive A Valid Email" };
-    if (!(password === confirmPassword))
-      errObj = { ...errObj, password: "Passwords Must Match" };
-    if (!username)
-      errObj = { ...errObj, username: "Please Provide A Username" };
-    setErrors(errObj);
+    // if (!validEmail.test(email))
+    //   errObj = { ...errObj, email: "Please Prodive A Valid Email" };
+    // if (!(password === confirmPassword))
+    //   errObj = { ...errObj, password: "Passwords Must Match" };
+    // if (!username)
+    //   errObj = { ...errObj, username: "Please Provide A Username" };
+    // setErrors(errObj);
 
-    if (!(errors.Email && errors.Password && errors.Username)) {
-      for (let i = 0; i < errorElements.length; i++) {
-        const errorElement = errorElements[i];
-        errorElement.classList.remove("show-error-message");
-      }
-
-      const userData = new FormData();
-      userData.append("username", username);
-      userData.append("email", email);
-      userData.append("password", password);
-
-      if (image) {
-        userData.append("image", image);
-      }
-
-      if (password === confirmPassword) {
-        const data = await dispatch(signUp(userData));
-        if (data) {
-          const errObj = {};
-          data.forEach((error) => {
-            const errorTitle = error.split(" : ")[0];
-            const errorContent = error.split(" : ")[1];
-            errObj[errorTitle] = errorContent;
-          });
-          setErrors(errObj);
-        }
-      }
-    }
-
-    // if (password === confirmPassword) {
+    // if (!(errors.Email && errors.Password && errors.Username)) {
     //   for (let i = 0; i < errorElements.length; i++) {
     //     const errorElement = errorElements[i];
     //     errorElement.classList.remove("show-error-message");
@@ -87,19 +58,48 @@ const SignUpForm = () => {
     //     userData.append("image", image);
     //   }
 
-    //   const data = await dispatch(signUp(userData));
-    //   if (data) {
-    //     const errObj = {};
-    //     data.forEach((error) => {
-    //       const errorTitle = error.split(" : ")[0];
-    //       const errorContent = error.split(" : ")[1];
-    //       errObj[errorTitle] = errorContent;
-    //     });
-    //     setErrors(errObj);
+    //   if (password === confirmPassword) {
+    //     const data = await dispatch(signUp(userData));
+    //     if (data) {
+    //       const errObj = {};
+    //       data.forEach((error) => {
+    //         const errorTitle = error.split(" : ")[0];
+    //         const errorContent = error.split(" : ")[1];
+    //         errObj[errorTitle] = errorContent;
+    //       });
+    //       setErrors(errObj);
+    //     }
     //   }
-    // } else {
-    //   setErrors({ confirmPassword: "Passwords do not match" });
     // }
+
+    if (password === confirmPassword) {
+      for (let i = 0; i < errObj.length; i++) {
+        const errorElement = errObj[i];
+        errorElement.classList.remove("show-error-message");
+      }
+
+      const userData = new FormData();
+      userData.append("username", username);
+      userData.append("email", email);
+      userData.append("password", password);
+
+      if (image) {
+        userData.append("image", image);
+      }
+
+      const data = await dispatch(signUp(userData));
+      if (data) {
+        const errObj = {};
+        data.forEach((error) => {
+          const errorTitle = error.split(" : ")[0];
+          const errorContent = error.split(" : ")[1];
+          errObj[errorTitle] = errorContent;
+        });
+        setErrors(errObj);
+      }
+    } else {
+      setErrors({ confirmPassword: "Passwords do not match" });
+    }
   };
 
   const updateUsername = (e) => {

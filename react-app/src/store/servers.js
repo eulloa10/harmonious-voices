@@ -47,7 +47,6 @@ export const getJoinedServers = () => async (dispatch) => {
   const promise = await fetch("/api/servers/me");
   if (promise.ok) {
     const promisedSevers = await promise.json();
-    console.log(promisedSevers);
     dispatch(loadJoinedSevers(promisedSevers));
   }
 };
@@ -55,7 +54,6 @@ export const getOwnedServers = () => async (dispatch) => {
   const promise = await fetch("/api/servers/owned");
   if (promise.ok) {
     const promisedSevers = await promise.json();
-    console.log(promisedSevers);
     dispatch(loadOwnedSevers(promisedSevers));
   }
 };
@@ -83,7 +81,6 @@ export const addServer = (server) => async (dispatch) => {
 };
 
 export const editServer = (server, serverId) => async (dispatch) => {
-  console.log(serverId);
   const response = await fetch(`/api/servers/${serverId}`, {
     method: "PUT",
     body: server,
@@ -97,7 +94,6 @@ export const editServer = (server, serverId) => async (dispatch) => {
 };
 
 export const deleteAServer = (serverId) => async (dispatch) => {
-  console.log("from store delete", serverId);
   const response = await fetch(`/api/servers/${serverId}`, {
     method: "DELETE",
   });
@@ -128,7 +124,6 @@ const serverReducer = (state = { ...initialState }, action) => {
 
     case OWNED:
       const ownedServers = {};
-      console.log(action);
       action.ownedServers.OwnedServers.forEach((server) => {
         ownedServers[server.id] = server;
       });
