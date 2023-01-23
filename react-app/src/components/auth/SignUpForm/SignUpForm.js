@@ -15,8 +15,8 @@ const SignUpForm = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    // console.log(errors);
-    if (errors.email || errors.username || errors.password) {
+    console.log(errors);
+    if (errors.email || errors.username || errors.password || errors.confirmPassword) {
       Object.keys(errors).forEach((error) => {
         const errorElement = document.getElementById(`signup-error-${error}`);
         errorElement.classList.add("show-error-message");
@@ -43,7 +43,7 @@ const SignUpForm = () => {
       errObj = { ...errObj, username: "Please Provide A Username" };
     setErrors(errObj);
 
-    if (!(errors.email && errors.password && errors.username)) {
+    if (!(errors.email && errors.password && errors.username && errors.confirmPassword)) {
       for (let i = 0; i < errorElements.length; i++) {
         const errorElement = errorElements[i];
         errorElement.classList.remove("show-error-message");
@@ -70,64 +70,6 @@ const SignUpForm = () => {
           setErrors(errObj);
         }
       }
-    }
-
-    // if (password === confirmPassword) {
-    //   for (let i = 0; i < errorElements.length; i++) {
-    //     const errorElement = errorElements[i];
-    //     errorElement.classList.remove("show-error-message");
-    //   }
-
-    //   const userData = new FormData();
-    //   userData.append("username", username);
-    //   userData.append("email", email);
-    //   userData.append("password", password);
-
-    //   if (image) {
-    //     userData.append("image", image);
-    //   }
-
-    //   if (password === confirmPassword) {
-    //     const data = await dispatch(signUp(userData));
-    //     if (data) {
-    //       const errObj = {};
-    //       data.forEach((error) => {
-    //         const errorTitle = error.split(" : ")[0];
-    //         const errorContent = error.split(" : ")[1];
-    //         errObj[errorTitle] = errorContent;
-    //       });
-    //       setErrors(errObj);
-    //     }
-    //   }
-    // }
-
-    if (password === confirmPassword) {
-      for (let i = 0; i < errObj.length; i++) {
-        const errorElement = errObj[i];
-        errorElement.classList.remove("show-error-message");
-      }
-
-      const userData = new FormData();
-      userData.append("username", username);
-      userData.append("email", email);
-      userData.append("password", password);
-
-      if (image) {
-        userData.append("image", image);
-      }
-
-      const data = await dispatch(signUp(userData));
-      if (data) {
-        const errObj = {};
-        data.forEach((error) => {
-          const errorTitle = error.split(" : ")[0];
-          const errorContent = error.split(" : ")[1];
-          errObj[errorTitle] = errorContent;
-        });
-        setErrors(errObj);
-      }
-    } else {
-      setErrors({ confirmPassword: "Passwords do not match" });
     }
   };
 
@@ -164,7 +106,7 @@ const SignUpForm = () => {
           <div className="signup-form-photo-title">
             PROFILE PHOTO (optional)
           </div>
-          <label for="file" className="signup-form-input-label photo">
+          <label htmlFor="file" className="signup-form-input-label photo">
             {!image && <i className="fa-solid fa-camera signup-camera"></i>}
             {image && (
               <img
@@ -177,7 +119,7 @@ const SignUpForm = () => {
           <input
             id="file"
             type="file"
-            class="signup-form-photo-input"
+            className="signup-form-photo-input"
             onChange={updateFile}
             accept="image/*"
           />
