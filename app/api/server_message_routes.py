@@ -21,7 +21,6 @@ def create_channel_message(channelId):
   form = ChannelMessageForm()
   form['csrf_token'].data = request.cookies['csrf_token']
   channel = Channel.query.get(channelId)
-  # print("FORM", form.data)
   if form.validate_on_submit():
 
     if channel.type == 'direct':
@@ -49,7 +48,6 @@ def edit_channel_message(messageId):
     message.content = form.data["content"]
     db.session.commit()
     return message.to_dict()
-
 
 
 @message_routes.route('/<int:messageId>', methods=['DELETE'])

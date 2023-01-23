@@ -10,12 +10,6 @@ import Github from "../../svgFiles/github.svg";
 const SplashPage = () => {
   const history = useHistory();
   const user = useSelector((state) => state.session.user);
-  const [showContributors, setShowContributors] = useState(false);
-
-  const handleContributorsClick = (e) => {
-    setShowContributors(!showContributors);
-    e.preventDefault();
-  }
 
   useEffect(() => {
     if (user) {
@@ -45,26 +39,20 @@ const SplashPage = () => {
           </div>
         </div>
         <div className='contributors'>
-          <button className='contributors-btn' onClick={handleContributorsClick}>
-            Contributors
-          </button>
-          {showContributors && (
-            <div className='contributor-container'>
-              <Link className='contributor-link' to={{ pathname: "https://github.com/sungminlee417" }} target="_blank">
-                <span className='contributor-name'>Sungmin Lee</span>
-                <img className='github-img' src={Github} alt='Sungmin Github'/>
-              </Link>
-              <Link className='contributor-link' to={{ pathname: "https://github.com/FrontLineCoding" }} target="_blank">
-                <span className='contributor-name'>Andrew Parks</span>
-                <img className='github-img' src={Github} alt='Andrew Github'/>
-              </Link>
-              <Link className='contributor-link' to={{ pathname: "https://github.com/eulloa10" }} target="_blank">
-                <span className='contributor-name'>Edgar Ulloa</span>
-                <img className='github-img' src={Github} alt='Edgar Github'/>
-              </Link>
-            </div>
-          )
-          }
+          <div className='contributor-container'>
+            <Link className='contributor-link' to={{ pathname: "https://github.com/sungminlee417" }} target="_blank">
+              <span className='contributor-name'>Sungmin Lee</span>
+              <img className='github-img' src={Github} alt='Sungmin Github'/>
+            </Link>
+            <Link className='contributor-link' to={{ pathname: "https://github.com/FrontLineCoding" }} target="_blank">
+              <span className='contributor-name'>Andrew Parks</span>
+              <img className='github-img' src={Github} alt='Andrew Github'/>
+            </Link>
+            <Link className='contributor-link' to={{ pathname: "https://github.com/eulloa10" }} target="_blank">
+              <span className='contributor-name'>Edgar Ulloa</span>
+              <img className='github-img' src={Github} alt='Edgar Github'/>
+            </Link>
+          </div>
         </div>
       </div>
       <Switch>
