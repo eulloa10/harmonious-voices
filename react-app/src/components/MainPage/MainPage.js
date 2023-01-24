@@ -5,6 +5,7 @@ import MessageList from "../Messages/MessageList/MessageList";
 import ListOwnedServers from "../Server/ListOwnedServers";
 import AllServers from "../Server/AllServers";
 import "./MainPage.css";
+import NoChannels from "../NoChannels";
 
 const MainPage = () => {
   return (
@@ -18,6 +19,7 @@ const MainPage = () => {
         <Route path="/direct-messages">
           <ListOwnedServers />
           <DirectMessaging />
+          <NoChannels />
         </Route>
         <Route path="/servers/:serverId/:channelId">
           <ListOwnedServers />
@@ -27,6 +29,7 @@ const MainPage = () => {
         <Route path="/servers/:serverId">
           <ListOwnedServers />
           <Channels />
+          <NoChannels />
         </Route>
         <Route path="/servers">
           <ListOwnedServers />

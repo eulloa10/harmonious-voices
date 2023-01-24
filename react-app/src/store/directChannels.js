@@ -24,6 +24,7 @@ export const getDirectChannels = () => async (dispatch) => {
     const channels = await response.json();
     const directChannels = channels.directChannels;
     dispatch(loadDirectChannels(directChannels));
+    return directChannels;
   }
 };
 

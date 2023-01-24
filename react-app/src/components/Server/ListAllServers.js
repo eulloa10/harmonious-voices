@@ -14,14 +14,13 @@ import ServerBubble from "./ServerBubble";
 const ListAllServers = () => {
   const dispatch = useDispatch();
   let myServers = useSelector((state) => {
-    console.log(state);
     const serversArr = Object.values(state.servers.memberOf);
     return serversArr;
   });
 
   const rightClick = (e) => {
-    console.log('Did it work');
-  }
+    // console.log("Did it work");
+  };
 
   const [showForm, setShowForm] = useState(false);
 

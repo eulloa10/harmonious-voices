@@ -18,7 +18,11 @@ const DirectMessaging = () => {
   );
 
   useEffect(() => {
-    dispatch(getDirectChannels());
+    dispatch(getDirectChannels()).then((channels) => {
+      if (Object.values(channels).length) {
+        history.push(`/direct-messages/${Object.values(channels)[0].id}`);
+      }
+    });
   }, [dispatch]);
 
   useEffect(() => {
@@ -41,7 +45,11 @@ const DirectMessaging = () => {
 
   const onDelete = (channelId) => {
     dispatch(deleteDirectChannel(channelId));
-    history.push("/direct-messages");
+    if (directChannels.length > 1) {
+      history.push(`/direct-messages/${Object.values(directChannels)[0].id}`);
+    } else {
+      history.push("/direct-messages");
+    }
   };
 
   let directChannelLinks;

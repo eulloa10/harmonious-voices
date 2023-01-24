@@ -30,6 +30,7 @@ export const getServerChannels = (serverId) => async (dispatch) => {
     const channels = await response.json();
     const serverChannels = channels.serverChannels;
     dispatch(loadServerChannels(serverChannels));
+    return serverChannels;
   }
 };
 

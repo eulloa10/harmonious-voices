@@ -26,11 +26,10 @@ const ContextMenu = ({
       return;
     } else if (contextSelectedAction === "Edit") {
       setEditForm(true);
-      console.log("in the edit function");
     } else if (contextSelectedAction === "Delete") {
       dispatch(deleteAServer(contextedServerId));
       clicked = Math.random();
-      history.push('/servers')
+      history.push("/servers");
     } else {
       return { Message: "Selected from item (from ContextMenu)" };
     }

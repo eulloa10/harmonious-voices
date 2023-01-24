@@ -15,8 +15,12 @@ const SignUpForm = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    console.log(errors);
-    if (errors.email || errors.username || errors.password || errors.confirmPassword) {
+    if (
+      errors.email ||
+      errors.username ||
+      errors.password ||
+      errors.confirmPassword
+    ) {
       Object.keys(errors).forEach((error) => {
         const errorElement = document.getElementById(`signup-error-${error}`);
         errorElement.classList.add("show-error-message");
@@ -43,7 +47,14 @@ const SignUpForm = () => {
       errObj = { ...errObj, username: "Please Provide A Username" };
     setErrors(errObj);
 
-    if (!(errors.email && errors.password && errors.username && errors.confirmPassword)) {
+    if (
+      !(
+        errors.email &&
+        errors.password &&
+        errors.username &&
+        errors.confirmPassword
+      )
+    ) {
       for (let i = 0; i < errorElements.length; i++) {
         const errorElement = errorElements[i];
         errorElement.classList.remove("show-error-message");

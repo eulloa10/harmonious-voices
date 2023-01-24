@@ -15,7 +15,6 @@ const EditSeverForm = ({ hideForm, server }) => {
   const [errors, setErrors] = useState({});
 
   useEffect(() => {
-    // console.log(errors);
     if (errors.name) {
       Object.keys(errors).forEach((error) => {
         const errorElement = document.getElementById(`signup-error-${error}`);
@@ -54,16 +53,14 @@ const EditSeverForm = ({ hideForm, server }) => {
     let errObj = {};
     const errorElements = document.getElementsByClassName("signup-error");
 
-
     const payload = new FormData();
 
-    if(!name){
-      errObj = {name: "Please Provide A Server Name"}
+    if (!name) {
+      errObj = { name: "Please Provide A Server Name" };
       setErrors(errObj);
-    }
-    else{
+    } else {
       setErrors({});
-      if (!(errors.name)) {
+      if (!errors.name) {
         for (let i = 0; i < errorElements.length; i++) {
           const errorElement = errorElements[i];
           errorElement.classList.remove("show-error-message");
@@ -116,8 +113,8 @@ const EditSeverForm = ({ hideForm, server }) => {
         <div className="create-server-input-container">
           <label>SERVER NAME</label>
           <div id="signup-error-name" className="signup-error">
-              {errors?.name}
-            </div>
+            {errors?.name}
+          </div>
           <input
             type="text"
             placeholder="Name"

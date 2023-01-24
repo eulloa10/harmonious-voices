@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { clearAllMessages, fetchMessages } from "../../../store/messages";
-import { io } from 'socket.io-client';
+import { io } from "socket.io-client";
 import Message from "../Message/Message";
 import MessageInput from "../MessageInput/MessageInput";
 import "./MessageList.css";
@@ -20,33 +20,35 @@ const MessageList = () => {
   const allMessagesList = [];
 
   useEffect(() => {
-    dispatch(fetchMessages(channelId)).then((messages) => setSocketMessages(messages));
+    dispatch(fetchMessages(channelId)).then((messages) =>
+      setSocketMessages(messages)
+    );
     dispatch(clearAllMessages());
 
     // create websocket/connect
     socket = io();
 
-     // listen for chat events
+    // listen for chat events
     socket.on("message", (chat) => {
-      setSocketMessages(messages => [...messages, chat.newMessage])
-    })
+      setSocketMessages((messages) => [...messages, chat.newMessage]);
+    });
 
     setCurrRoom(`message${channelId}`);
 
     // when component unmounts, disconnect
-    return (() => {
-        socket.disconnect()
-    })
+    return () => {
+      socket.disconnect();
+    };
   }, [dispatch, channelId]);
 
   useEffect(() => {
     const joinRoom = (room) => {
-      socket.emit("join_room", {room: currRoom})
-    }
+      socket.emit("join_room", { room: currRoom });
+    };
 
     const leaveRoom = (room) => {
-      socket.emit("leave_room", {room: prevRoom})
-    }
+      socket.emit("leave_room", { room: prevRoom });
+    };
 
     if (isLoaded) {
       leaveRoom(prevRoom);
@@ -57,8 +59,7 @@ const MessageList = () => {
 
     setIsLoaded(true);
 
-    return (() => setIsLoaded(false));
-
+    return () => setIsLoaded(false);
   }, [prevRoom, currRoom, isLoaded]);
 
   if (!messages) {
@@ -75,7 +76,7 @@ const MessageList = () => {
             ))}
           </ul>
           <section className="messaging-functionality">
-            <MessageInput socket={socket} />
+            <MessageInput socket={socket} currRoom={currRoom} />
           </section>
         </div>
       )}

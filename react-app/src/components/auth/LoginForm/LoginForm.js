@@ -14,7 +14,6 @@ const LoginForm = () => {
   useEffect(() => {
     Object.keys(errors).forEach((error) => {
       const errorElement = document.getElementById(`login-error-${error}`);
-      console.log(errorElement);
       errorElement.classList.add("show-error-message");
     });
   }, [errors]);
