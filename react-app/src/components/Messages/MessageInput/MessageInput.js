@@ -4,7 +4,7 @@ import { useDispatch } from "react-redux";
 import { createNewMessage } from "../../../store/messages";
 import "./MessageInput.css";
 
-const MessageInput = () => {
+const MessageInput = ({ socket }) => {
   const dispatch = useDispatch();
   const { channelId } = useParams();
   const [messageContent, setMessageContent] = useState("");
@@ -16,11 +16,10 @@ const MessageInput = () => {
       content: messageContent,
     };
 
-    let res = dispatch(createNewMessage(newMessage, channelId));
+    let res = dispatch(createNewMessage(newMessage, channelId)).then((newMessage) => socket.send({newMessage}));
 
     if (res) {
       setMessageContent("");
-      // history.push(`/servers/${serverId}/${channelId}`)
     }
   };
 

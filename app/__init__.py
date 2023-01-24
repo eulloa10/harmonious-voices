@@ -4,6 +4,7 @@ from flask_cors import CORS
 from flask_migrate import Migrate
 from flask_wtf.csrf import CSRFProtect, generate_csrf
 from flask_login import LoginManager
+from .socket import socketio
 
 from .models import db, User
 from .api.user_routes import user_routes
@@ -44,6 +45,9 @@ app.register_blueprint(channel_routes, url_prefix='/api/channels')
 db.init_app(app)
 Migrate(app, db)
 
+# initialize socket instance
+socketio.init_app(app)
+
 # Application Security
 CORS(app)
 
@@ -73,9 +77,41 @@ def inject_csrf_token(response):
     return response
 
 
+# @app.route('/', defaults={'path': ''})
+# @app.route('/<path:path>')
+# def react_root(path):
+#     if path == 'favicon.ico':
+#         return app.send_static_file('favicon.ico')
+#     return app.send_static_file('index.html')
+
 @app.route('/', defaults={'path': ''})
 @app.route('/<path:path>')
 def react_root(path):
+    """
+    This route will direct to the public directory in our
+    react builds in the production environment for favicon
+    or index.html requests
+    """
     if path == 'favicon.ico':
-        return app.send_static_file('favicon.ico')
+        return app.send_from_directory('public', 'favicon.ico')
     return app.send_static_file('index.html')
+
+
+@app.route("/api/docs")
+def api_help():
+    """
+    Returns all API routes and their doc strings
+    """
+    acceptable_methods = ['GET', 'POST', 'PUT', 'PATCH', 'DELETE']
+    route_list = {rule.rule: [[method for method in rule.methods if method in acceptable_methods],
+                              app.view_functions[rule.endpoint].__doc__]
+                  for rule in app.url_map.iter_rules() if rule.endpoint != 'static'}
+    return route_list
+
+
+@app.errorhandler(404)
+def not_found(e):
+  return app.send_static_file('index.html')
+
+if __name__ == '__main__':
+    socketio.run(app)

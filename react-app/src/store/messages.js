@@ -48,6 +48,7 @@ export const fetchMessages = (channelId) => async (dispatch) => {
   // console.log("FETCHED DATA", data)
   if (res.ok) {
     dispatch(getMessages(data.messages));
+    return data.messages;
   } else {
     // if response status code is 400 or greater, throw the response as an error
     throw res;
@@ -65,6 +66,8 @@ export const createNewMessage = (message, channelId) => async(dispatch) => {
   if (res.ok) {
 		const newMessage = await res.json();
 		dispatch(addMessage(newMessage));
+    console.log("NEWMESSAGE", newMessage);
+    return newMessage;
 	}
   return res;
 }
