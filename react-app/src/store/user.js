@@ -1,15 +1,14 @@
 // import { csrfFetch } from './csrf'
 
 export const GET_USERS = 'users/GET_USERS';
-
+export const ADD_USER_SERVER = 'users/ADD_USER_SERVER';
 
 const getUsers = (users) => {
   return {
     type: GET_USERS,
-    users
+    users,
   };
 };
-
 
 export const fetchUsers = () => async (dispatch) => {
   const res = await fetch(`/api/users/`);
@@ -23,23 +22,38 @@ export const fetchUsers = () => async (dispatch) => {
   }
 };
 
+export const addUserToServer = (userId, serverId) => async (dispatch) => {
+  const res = await fetch(`/api/server_member/${userId}/${serverId}`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ userId, serverId }),
+  });
+};
 
-const initialState = {}
+export const removeUserFromServer = (userId, serverId) => async (dispatch) => {
+  const res = await fetch(`/api/server_member/${userId}/${serverId}`, {
+    method: 'DELETE',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ userId, serverId }),
+  });
+};
+
+const initialState = {};
 
 const usersReducer = (state = initialState, action) => {
-  let newState = {...initialState}
-	switch (action.type) {
-		case GET_USERS:
-      newState = {...state};
+  let newState = { ...initialState };
+  switch (action.type) {
+    case GET_USERS:
+      newState = { ...state };
       // console.log("MESSAGESRED", action.users)
-			action.users.forEach((user) => {
-				// newState[user.id] = [user.username, user.user_profile_img];
+      action.users.forEach((user) => {
+        // newState[user.id] = [user.username, user.user_profile_img];
         newState[user.id] = user;
-			});
-			return newState;
-		default:
-			return state;
-	}
+      });
+      return newState;
+    default:
+      return state;
+  }
 };
 
 export default usersReducer;
