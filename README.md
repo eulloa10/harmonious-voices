@@ -34,6 +34,7 @@
 <!-- ABOUT THE PROJECT -->
 
 ## About The Project
+[Live Link](https://harmonious-voices.herokuapp.com/)
 
 [![Harmonious-Voices](/screenshots/splash.png "Harmonious Voices")](https://harmonious-voices.herokuapp.com/)
 
