@@ -104,3 +104,25 @@
 .signup-form-login-link:hover {
   text-decoration: underline;
 }
+
+.back-arrow-container-signup {
+  width: 100%;
+  height: 10%;
+  display: flex;
+  align-items: center;
+  margin-left: 25%;
+}
+
+.back-arrow-btn-signup {
+  height: 4vh;
+  width: 2vw;
+}
+
+.back-arrow-img-signup {
+  height: 4vh;
+  width: 2vw;
+}
+
+.back-arrow-btn-signup:hover {
+  cursor:pointer;
+}

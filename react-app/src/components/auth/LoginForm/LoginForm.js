@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { NavLink, Redirect } from "react-router-dom";
+import { NavLink, Redirect, useHistory } from "react-router-dom";
 import { login } from "../../../store/session";
 import "./LoginForm.css";
+import LeftArrow from "../../../assets/left_arrow.png";
 
 const LoginForm = () => {
   const [errors, setErrors] = useState({});
@@ -10,6 +11,7 @@ const LoginForm = () => {
   const [password, setPassword] = useState("");
   const user = useSelector((state) => state.session.user);
   const dispatch = useDispatch();
+  const history = useHistory();
 
   useEffect(() => {
     Object.keys(errors).forEach((error) => {
@@ -53,8 +55,17 @@ const LoginForm = () => {
     return <Redirect to="/" />;
   }
 
+  const handleBackArrow = () => {
+    history.goBack();
+  }
+
   return (
     <div className="login-form-container">
+      <div className="back-arrow-container">
+        <button className="back-arrow-btn" onClick={handleBackArrow}>
+          <img className="back-arrow-img" src={LeftArrow} alt="back arrow"/>
+        </button>
+      </div>
       <form className="login-form" onSubmit={onLogin}>
         <div className="login-form-header">
           <div className="login-form-header-header">Welcome back!</div>

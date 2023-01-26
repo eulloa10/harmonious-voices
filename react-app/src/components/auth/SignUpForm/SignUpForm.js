@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { NavLink, Redirect } from "react-router-dom";
+import { NavLink, Redirect, useHistory } from "react-router-dom";
 import { signUp } from "../../../store/session";
 import "./SignUpForm.css";
+import LeftArrow from "../../../assets/left_arrow.png";
 
 const SignUpForm = () => {
   const [errors, setErrors] = useState({});
@@ -13,6 +14,7 @@ const SignUpForm = () => {
   const [confirmPassword, setConfirmPassword] = useState("");
   const user = useSelector((state) => state.session.user);
   const dispatch = useDispatch();
+  const history = useHistory();
 
   useEffect(() => {
     if (
@@ -109,8 +111,17 @@ const SignUpForm = () => {
     if (file) setImage(file);
   };
 
+  const handleBackArrow = () => {
+    history.goBack();
+  }
+
   return (
     <div className="signup-form-container">
+      <div className="back-arrow-container-signup">
+        <button className="back-arrow-btn-signup" onClick={handleBackArrow}>
+          <img className="back-arrow-img-signup" src={LeftArrow} alt="back arrow"/>
+        </button>
+      </div>
       <form className="signup-form" onSubmit={onSignUp}>
         <div className="signup-form-header">Create an account</div>
         <div className="signup-form-input-container photo">
