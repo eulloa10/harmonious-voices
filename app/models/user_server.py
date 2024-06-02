@@ -15,3 +15,6 @@ user_servers = db.Table(
         primary_key=True
     ),
 )
+
+if environment == "production":
+    user_servers.schema = SCHEMA
