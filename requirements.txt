@@ -7,10 +7,13 @@
 
 -i https://pypi.org/simple
 alembic==1.6.5
+boto3
+botocore
 click==7.1.2
 flask-cors==3.0.8
 flask-login==0.5.0
 flask-migrate==3.0.1
+flask-socketio
 flask-sqlalchemy==2.5.1
 flask-wtf==0.15.1
 flask==2.0.1
@@ -27,4 +30,3 @@ six==1.15.0
 sqlalchemy==1.4.19
 werkzeug==2.0.1
 wtforms==2.3.3
-flask-socketio
