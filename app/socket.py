@@ -5,8 +5,8 @@ import os
 # configure cors_allowed_origins
 if os.environ.get('FLASK_ENV') == 'production':
     origins = [
-        'https://harmonious-voices.herokuapp.com',
-        'http://harmonious-voices.herokuapp.com'
+        'https://harmonious-voices.onrender.com',
+        'http://harmonious-voices.onrender.com'
     ]
 else:
     origins = "*"
