@@ -1,12 +1,15 @@
-from .db import db
+from .db import db, environment, SCHEMA, add_prefix_for_prod
 from .user_server import user_servers
 
 class Server(db.Model):
     __tablename__ = 'servers'
 
+    if environment == "production":
+        __table_args__ = {'schema': SCHEMA}
+
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String, nullable=True)
-    owner_id = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=True)
+    owner_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod("users.id")), nullable=True)
     server_img = db.Column(db.String(), nullable=True)
 
     # server_owner = db.relationship("User", back_populates="owned_servers")
@@ -32,8 +35,8 @@ class ServerMember(db.Model):
     __tablename__ = 'server_members'
 
     id = db.Column(db.Integer, primary_key=True)
-    user_id = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=True)
-    server_id = db.Column(db.Integer, db.ForeignKey("servers.id"), nullable=True)
+    user_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod("users.id")), nullable=True)
+    server_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod("servers.id")), nullable=True)
 
     # user = db.relationship('User', secondary=user_servers, back_ref="servers")
 

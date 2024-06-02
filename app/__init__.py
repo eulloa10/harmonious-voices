@@ -15,7 +15,6 @@ from .api.server_message_routes import message_routes
 from .api.server_message_routes import channel_routes
 from .api.server_member_routes import server_member_routes
 
-
 from .seeds import seed_commands
 
 from .config import Config

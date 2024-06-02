@@ -1,14 +1,17 @@
-from .db import db
+from .db import db, environment, SCHEMA, add_prefix_for_prod
 
 class Channel(db.Model):
     __tablename__ = 'channels'
 
+    if environment == "production":
+        __table_args__ = {'schema': SCHEMA}
+
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String, nullable=True)
-    server_id = db.Column(db.Integer, db.ForeignKey("servers.id"), nullable=True)
+    server_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod("servers.id")), nullable=True)
     type = db.Column(db.String())
-    user_id_one = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=True)
-    user_id_two = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=True)
+    user_id_one = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod("users.id")), nullable=True)
+    user_id_two = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod("users.id")), nullable=True)
     user_one_active = db.Column(db.Boolean, default=True, nullable=True)
     user_two_active = db.Column(db.Boolean, default=True, nullable=True)
 
