@@ -5,13 +5,13 @@ user_servers = db.Table(
     db.Column(
         "user_id",
         db.Integer,
-        db.ForeignKey("users.id"),
+        db.ForeignKey(add_prefix_for_prod("users.id")),
         primary_key=True
     ),
     db.Column(
         "server_id",
         db.Integer,
-        db.ForeignKey("servers.id"),
+        db.ForeignKey(add_prefix_for_prod("servers.id")),
         primary_key=True
     ),
 )
